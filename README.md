@@ -1,7 +1,7 @@
 
 # boom-lab's Website
 
-Visit **[boom-lab.github.io/boomlab-website](https://boom-lab.github.io/boomlab-website)** 🚀
+Visit **[boom.science](https://boom.science)** 🚀
 
 _Built with [Lab Website Template](https://greene-lab.gitbook.io/lab-website-template-docs)_
 
