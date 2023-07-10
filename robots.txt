@@ -1,1 +1,1 @@
-Sitemap: /boomlab-website/sitemap.xml
+Sitemap: /sitemap.xml
