@@ -1,6 +1,6 @@
 ---
 name: Shawnee Traylor
-image: images/photo.jpg
+image: images/people/Traylor.jpg
 role: phd
 aliases:
   - S. Traylor
