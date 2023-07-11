@@ -3,7 +3,7 @@
 
 # boom-lab's Website
 
-An engaging 1-3 sentence description of your lab.
+David Nicholson • Biogeochemical Ocean Observing and Modeling • Woods Hole Oceanographic Institution 
 
 {% include section.html %}
 
