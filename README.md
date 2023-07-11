@@ -1,5 +1,5 @@
 
-# boom-lab's Website
+# WHOI BOOMLab Website
 
 Visit **[boom.science](https://boom.science)** 🚀
 
