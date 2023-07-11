@@ -1,9 +1,9 @@
-- title: Cool Dataset
-  subtitle: a subtitle
+- title: GO-BGC
+  subtitle: The Global Ocean Biogeochemical Array
   group: featured
-  image: images/photo.jpg
-  link: https://github.com/
-  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  image: http://www3.mbari.org/gobgc/images/GOBGCMap.png
+  link: https://go-bgc.org/
+  description: The Global Ocean Biogeochemistry (GO-BGC) Array is a project funded by the US National Science Foundation to build a global network of chemical and biological sensors that will monitor ocean health. Scientists at the Monterey Bay Aquarium Research Institute, the University of Washington, Scripps Institution of Oceanography, Woods Hole Oceanographic Institution, and Princeton University will use this grant to build and deploy 500 robotic ocean-monitoring floats around the globe as part of NSF’s Mid-scale Research Infrastructure-2 program.
   repo: greenelab/lab-website-template
   tags:
     - resource
