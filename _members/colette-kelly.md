@@ -1,6 +1,6 @@
 ---
 name: Colette Kelly
-image: images/photo.jpg
+image: images/people/Kelly.jpg
 role: postdoc
 aliases:
   - C. Kelly

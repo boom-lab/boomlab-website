@@ -1,6 +1,6 @@
 ---
 name: Alice Ren
-image: images/photo.jpg
+image: images/people/Ren.jpg
 role: postdoc
 aliases:
   - A. Ren
