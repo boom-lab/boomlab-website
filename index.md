@@ -1,10 +1,6 @@
 ---
 ---
-
-# boom-lab's Website
-
-David Nicholson • Biogeochemical Ocean Observing and Modeling • Woods Hole Oceanographic Institution 
-
+Biogeochemical Ocean Observing and Modeling
 {% include section.html %}
 
 ## Highlights

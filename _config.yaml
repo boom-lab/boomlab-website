@@ -1,9 +1,9 @@
 # site properties and page defaults
-title: boom-lab
-subtitle: 
+title: nicholson boom-lab
+subtitle: Woods Hole Oceanographic Institution
 description: An engaging 1-3 sentence description of your lab.
-header: images/background.jpg
-footer: images/background.jpg
+header: images/background_arctic.JPG
+footer: images/background_arctic2.JPG
 
 # site social media and other links
 links:

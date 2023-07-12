@@ -1,12 +1,12 @@
 ---
 name: Ellen Park
-image: images/photo.jpg
+image: images/people/EPark.jpg
 role: phd
 aliases:
   - E. Park
 links:
   home-page: https://boom.science
-  orcid: 0000-0000-0000-0000
+  orcid: 0000-0000-0000-0001
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

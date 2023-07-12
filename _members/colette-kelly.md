@@ -1,6 +1,6 @@
 ---
 name: Colette Kelly
-image: images/people/Kelly.jpg
+image: https://nitrogen.stanford.edu/sites/g/files/sbiybj20311/files/styles/medium_square/public/media/person/colettelkelly1604361295658.jpg?h=98492e8c&itok=QAGlgsTR
 role: postdoc
 aliases:
   - C. Kelly

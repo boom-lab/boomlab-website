@@ -1,120 +1,630 @@
 # DO NOT EDIT, GENERATED AUTOMATICALLY
 
-- id: doi:10.1093/nar/gkad289
-  title: 'MyGeneset.info: an interactive and programmatic platform for community-curated
-    and user-created collections of genes'
+- id: doi:10.1525/elementa.2021.00107
+  title: Evaluation of new and net community production estimates by multiple ship-based
+    and autonomous observations in the Northeast Pacific Ocean
   authors:
-  - Ricardo Avila
-  - Vincent Rubinetti
-  - Xinghua Zhou
-  - Dongbo Hu
-  - Zhongchao Qian
-  - Marco Alvarado Cano
-  - Everaldo Rodolpho
-  - Ginger Tsueng
-  - Casey Greene
-  - Chunlei Wu
-  publisher: Nucleic Acids Research
-  date: '2023-04-18'
-  link: https://doi.org/gr5hb5
-  orcid: 0000-0002-4655-3773
+  - Alexandria K. Niebergall
+  - Shawnee Traylor
+  - Yibin Huang
+  - Melanie Feen
+  - Meredith G. Meyer
+  - Heather M. McNair
+  - David Nicholson
+  - Andrea J. Fassbender
+  - Melissa M. Omand
+  - Adrian Marchetti
+  - Susanne Menden-Deuer
+  - Weiyi Tang
+  - Weida Gong
+  - Philippe Tortell
+  - Roberta Hamme
+  - Nicolas Cassar
+  publisher: Elem Sci Anth
+  date: '2023-01-01'
+  link: https://doi.org/gsgcb7
+  orcid: 0000-0003-2653-9349
   plugin: orcid.py
   file: orcid.yaml
-- id: doi:10.1101/2023.01.05.522941
-  title: Hetnet connectivity search provides rapid insights into how two biomedical
-    entities are related
+- id: doi:10.12688/openreseurope.15047.2
+  title: Real-time quality control of optical backscattering data from Biogeochemical-Argo
+    floats
   authors:
-  - Daniel S. Himmelstein
-  - Michael Zietz
-  - Vincent Rubinetti
-  - Kyle Kloster
-  - Benjamin J. Heil
-  - Faisal Alquaddoomi
-  - Dongbo Hu
-  - David N. Nicholson
-  - Yun Hao
-  - Blair D. Sullivan
-  - Michael W. Nagle
-  - Casey S. Greene
-  publisher: Cold Spring Harbor Laboratory
-  date: '2023-01-07'
-  link: https://doi.org/grmcb9
-  orcid: 0000-0002-4655-3773
+  - Giorgio Dall'Olmo
+  - Udaya Bhaskar TVS
+  - Henry Bittig
+  - Emmanuel Boss
+  - Jodi Brewster
+  - "Herv\xE9 Claustre"
+  - Matt Donnelly
+  - Tanya Maurer
+  - David Nicholson
+  - Violetta Paba
+  - Josh Plant
+  - Antoine Poteau
+  - "Rapha\xEBlle Sauz\xE8de"
+  - Christina Schallenberg
+  - Catherine Schmechtig
+  - Claudia Schmid
+  - Xiaogang Xing
+  publisher: Open Research Europe
+  date: '2023-05-30'
+  link: https://doi.org/gsgcb8
+  orcid: 0000-0003-2653-9349
   plugin: orcid.py
   file: orcid.yaml
-- id: doi:10.1186/s13059-020-02021-3
-  title: Compressing gene expression data using multiple latent space dimensionalities
-    learns complementary biological representations
+- id: doi:10.1575/1912/29464
+  title: EXPORTS North Atlantic eddy tracking
   authors:
-  - Gregory P. Way
-  - Michael Zietz
-  - Vincent Rubinetti
-  - Daniel S. Himmelstein
-  - Casey S. Greene
-  publisher: Genome Biology
-  date: '2020-05-11'
-  link: https://doi.org/gg2mjh
-  orcid: 0000-0002-4655-3773
+  - Zachary K Erickson
+  - Erik Fields
+  - Melissa M. Omand
+  - Leah Johnson
+  - Andrew F. Thompson
+  - "Eric D\u2019Asaro"
+  - Filipa Carvalho
+  - Lilian A. Dove
+  - Craig M. Lee
+  - David P. Nicholson
+  - Geoff Shilling
+  - "Ivona Cetini\u0107"
+  - David Siegel
+  publisher: NASA STI Program and Woods Hole Oceanographic Institution
+  date: '2022-11-01'
+  link: https://doi.org/gsgcb9
+  orcid: 0000-0003-2653-9349
   plugin: orcid.py
   file: orcid.yaml
-- id: doi:10.1371/journal.pcbi.1007128
-  title: Open collaborative writing with Manubot
+- id: doi:10.12688/openreseurope.15047.1
+  title: Real-time quality control of optical backscattering data from Biogeochemical-Argo
+    floats
   authors:
-  - Daniel S. Himmelstein
-  - Vincent Rubinetti
-  - David R. Slochower
-  - Dongbo Hu
-  - Venkat S. Malladi
-  - Casey S. Greene
-  - Anthony Gitter
-  publisher: PLOS Computational Biology
-  date: '2020-12-04'
-  link: https://doi.org/c7np
-  orcid: 0000-0002-4655-3773
-  plugin: sources.py
-  file: sources.yaml
-  type: paper
-  description: Lorem ipsum _dolor_ **sit amet**, consectetur adipiscing elit, sed
-    do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  image: https://journals.plos.org/ploscompbiol/article/figure/image?size=inline&id=info:doi/10.1371/journal.pcbi.1007128.g001&rev=2
-  buttons:
-  - type: manubot
-    link: https://greenelab.github.io/meta-review/
-  - type: source
-    text: Manuscript Source
-    link: https://github.com/greenelab/meta-review
-  - type: website
-    link: http://manubot.org/
-  tags:
-  - open science
-  - collaboration
-  repo: greenelab/meta-review
-- id: doi:10.1101/573782
-  title: Sequential compression of gene expression across dimensionalities and methods
-    reveals no single best method or dimensionality
-  authors:
-  - Gregory P. Way
-  - Michael Zietz
-  - Vincent Rubinetti
-  - Daniel S. Himmelstein
-  - Casey S. Greene
-  publisher: Cold Spring Harbor Laboratory
-  date: '2019-03-11'
-  link: https://doi.org/gfxjxf
-  orcid: 0000-0002-4655-3773
+  - Giorgio Dall'Olmo
+  - Udaya Bhaskar TVS
+  - Henry Bittig
+  - Emmanuel Boss
+  - Jodi Brewster
+  - "Herv\xE9 Claustre"
+  - Matt Donnelly
+  - Tanya Maurer
+  - David Nicholson
+  - Violetta Paba
+  - Josh Plant
+  - Antoine Poteau
+  - "Rapha\xEBlle Sauz\xE8de"
+  - Christina Schallenberg
+  - Catherine Schmechtig
+  - Claudia Schmid
+  - Xiaogang Xing
+  publisher: Open Research Europe
+  date: '2022-10-13'
+  link: https://doi.org/gsgccb
+  orcid: 0000-0003-2653-9349
   plugin: orcid.py
   file: orcid.yaml
-- id: doi:10.1016/j.csbj.2020.05.017
-  title: Constructing knowledge graphs and their biomedical applications
+- id: doi:10.1029/2021GB007145
+  title: "Can We Estimate Air\u2010Sea Flux of Biological O\n            <sub>2</sub>\n\
+    \            From Total Dissolved Oxygen?"
   authors:
-  - David N. Nicholson
-  - Casey S. Greene
-  publisher: Computational and Structural Biotechnology Journal
-  date: '2020-01-01'
-  link: https://doi.org/gg7m48
-  image: https://ars.els-cdn.com/content/image/1-s2.0-S2001037020302804-gr1.jpg
-  plugin: sources.py
-  file: sources.yaml
+  - Yibin Huang
+  - Rachel Eveleth
+  - David Nicholson
+  - Nicolas Cassar
+  publisher: Global Biogeochemical Cycles
+  date: '2022-09-01'
+  link: https://doi.org/gsgccf
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1002/lno.12154
+  title: 'Spatial and temporal variations in atmospheric gas flux from the Hudson
+    River: the estuarine gas exchange maximum'
+  authors:
+  - Malcolm E. Scully
+  - Anna P. M. Michel
+  - David P. Nicholson
+  - Shawnee Traylor
+  publisher: Limnology and Oceanography
+  date: '2022-06-09'
+  link: https://doi.org/grdz8s
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1029/2021GL092621
+  title: 'Decomposing the Oxygen Signal in the Ocean Interior: Beyond Decomposing
+    Organic Matter'
+  authors:
+  - Nicolas Cassar
+  - David Nicholson
+  - Samar Khatiwala
+  - Ellen Cliff
+  publisher: Geophysical Research Letters
+  date: '2021-09-23'
+  link: https://doi.org/gsgccg
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1029/2020GB006718
+  title: Global Estimates of Marine Gross Primary Production Based on Machine Learning
+    Upscaling of Field Observations
+  authors:
+  - Yibin Huang
+  - David Nicholson
+  - Bangqin Huang
+  - Nicolas Cassar
+  publisher: Global Biogeochemical Cycles
+  date: '2021-03-01'
+  link: https://doi.org/gnm49j
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1029/2020GB006764
+  title: "Size\u2010Differentiated Export Flux in Different Dynamical Regimes in the\
+    \ Ocean"
+  authors:
+  - M. Dever
+  - D. Nicholson
+  - M. M. Omand
+  - A. Mahadevan
+  publisher: Global Biogeochemical Cycles
+  date: '2021-03-01'
+  link: https://doi.org/gsgcch
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1029/2020GL087669
+  title: River Inflow Dominates Methane Emissions in an Arctic Coastal System
+  authors:
+  - Cara C. Manning
+  - Victoria L. Preston
+  - Samantha F. Jones
+  - Anna P. M. Michel
+  - David P. Nicholson
+  - Patrick J. Duke
+  - Mohamed M. M. Ahmed
+  - Kevin Manganini
+  - Brent G. T. Else
+  - Philippe D. Tortell
+  publisher: Geophysical Research Letters
+  date: '2020-05-23'
+  link: https://doi.org/gsgccj
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1002/lom3.10340
+  title: "The estimation of gross oxygen production and community respiration from\
+    \ autonomous time\u2010series measurements in the oligotrophic ocean"
+  authors:
+  - Benedetto Barone
+  - David Nicholson
+  - "Sara Ferr\xF3n"
+  - Eric Firing
+  - David Karl
+  publisher: 'Limnology and Oceanography: Methods'
+  date: '2019-11-20'
+  link: https://doi.org/ggdg62
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.5194/bg-16-3351-2019
+  title: Changes in gross oxygen production, net oxygen production, and air-water
+    gas exchange during seasonal ice melt in Whycocomagh Bay, a Canadian estuary in
+    the Bras d'Or Lake system
+  authors:
+  - Cara C. Manning
+  - Rachel H. R. Stanley
+  - David P. Nicholson
+  - Brice Loose
+  - Ann Lovely
+  - Peter Schlosser
+  - Bruce G. Hatcher
+  publisher: Biogeosciences
+  date: '2019-09-05'
+  link: https://doi.org/gsgcck
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.3389/fmars.2019.00393
+  title: 'Ocean Time Series Observations of Changing Marine Ecosystems: An Era of
+    Integration, Synthesis, and Societal Applications'
+  authors:
+  - Heather M. Benway
+  - Laura Lorenzoni
+  - Angelicque E. White
+  - "Bj\xF6rn Fiedler"
+  - Naomi M. Levine
+  - David P. Nicholson
+  - Michael D. DeGrandpre
+  - Heidi M. Sosik
+  - Matthew J. Church
+  - "Todd D. O\u2019Brien"
+  - Margaret Leinen
+  - Robert A. Weller
+  - David M. Karl
+  - Stephanie A. Henson
+  - Ricardo M. Letelier
+  publisher: Frontiers in Marine Science
+  date: '2019-07-12'
+  link: https://doi.org/gghpzq
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1146/annurev-marine-121916-063604
+  title: Using Noble Gases to Assess the Ocean's Carbon Pumps
+  authors:
+  - Roberta C. Hamme
+  - David P. Nicholson
+  - William J. Jenkins
+  - Steven R. Emerson
+  publisher: Annual Review of Marine Science
+  date: '2019-01-03'
+  link: https://doi.org/gnxsv6
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1021/acs.est.8b04190
+  title: Rapid Mapping of Dissolved Methane and Carbon Dioxide in Coastal Ecosystems
+    Using the ChemYak Autonomous Surface Vehicle
+  authors:
+  - David P. Nicholson
+  - Anna P. M. Michel
+  - Scott D. Wankel
+  - Kevin Manganini
+  - Rebecca A. Sugrue
+  - Zoe O. Sandwith
+  - Samuel A. Monk
+  publisher: Environmental Science &amp; Technology
+  date: '2018-10-25'
+  link: https://doi.org/gfqttv
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1016/j.jmarsys.2018.03.007
+  title: Control of net community production by microbial community respiration at
+    Station ALOHA
+  authors:
+  - "Sandra Mart\xEDnez-Garc\xEDa"
+  - Robert R. Bidigare
+  - Daniela A. del Valle
+  - Laurie W. Juranek
+  - David P. Nicholson
+  - Donn A. Viviani
+  - Samuel T. Wilson
+  - Matthew J. Church
+  publisher: Journal of Marine Systems
+  date: '2018-08-01'
+  link: https://doi.org/gdq4f9
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1029/2017JG004263
+  title: "A Phytoplankton Model for the Allocation of Gross Photosynthetic Energy\
+    \ Including the Trade\u2010Offs of Diazotrophy"
+  authors:
+  - D. P. Nicholson
+  - R. H. R. Stanley
+  - S. C. Doney
+  publisher: 'Journal of Geophysical Research: Biogeosciences'
+  date: '2018-06-01'
+  link: https://doi.org/gdpcs7
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1002/lom3.10233
+  title: Surface gas exchange determined from an aquatic eddy covariance floating
+    platform
+  authors:
+  - Matthew H. Long
+  - David P. Nicholson
+  publisher: 'Limnology and Oceanography: Methods'
+  date: '2017-12-29'
+  link: https://doi.org/gc94r8
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.5670/oceanog.2018.108
+  title: 'The North Atlantic Biological Pump: Insights from the Ocean Observatories
+    Initiative Irminger Sea Array'
+  authors:
+  - Hilary Palevsky
+  - David Nicholson
+  publisher: Oceanography
+  date: '2018-03-01'
+  link: https://doi.org/gc7pvg
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1002/2017GL074375
+  title: Revising Estimates of Aquatic Gross Oxygen Production by the Triple Oxygen
+    Isotope Method to Incorporate the Local Isotopic Composition of Water
+  authors:
+  - Cara C. Manning
+  - Evan M. Howard
+  - David P. Nicholson
+  - Brenda Y. Ji
+  - Zoe O. Sandwith
+  - Rachel H. R. Stanley
+  publisher: Geophysical Research Letters
+  date: '2017-10-25'
+  link: https://doi.org/gsgccm
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.5194/bg-2017-428
+  title: Changes in gross oxygen production, net oxygen production, and air-water
+    gas exchange during seasonal ice melt in the Bras d'Or Lake, a Canadian estuary
+  authors:
+  - Cara C. Manning
+  - Rachel H. R. Stanley
+  - David P. Nicholson
+  - Brice Loose
+  - Ann Lovely
+  - Peter Schlosser
+  - Bruce G. Hatcher
+  publisher: Copernicus GmbH
+  date: '2017-10-19'
+  link: https://doi.org/gsgccn
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.5194/bg-2017-428-supplement
+  title: Supplementary material to &amp;quot;Changes in gross oxygen production, net
+    oxygen production, and air-water gas exchange during seasonal ice melt in the
+    Bras d'Or Lake, a Canadian estuary&amp;quot;
+  authors:
+  - Cara C. Manning
+  - Rachel H. R. Stanley
+  - David P. Nicholson
+  - Brice Loose
+  - Ann Lovely
+  - Peter Schlosser
+  - Bruce G. Hatcher
+  publisher: Copernicus GmbH
+  date: '2017-10-19'
+  link: https://doi.org/gsgccp
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1002/lom3.10177
+  title: Air calibration of an oxygen optode on an underwater glider
+  authors:
+  - David P. Nicholson
+  - Melanie L. Feen
+  publisher: 'Limnology and Oceanography: Methods'
+  date: '2017-03-16'
+  link: https://doi.org/f99rdh
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1002/2016JC012306
+  title: Impact of recently upwelled water on productivity investigated using in situ
+    and incubation-based methods in Monterey Bay
+  authors:
+  - Cara C. Manning
+  - Rachel H. R. Stanley
+  - David P. Nicholson
+  - Jason M. Smith
+  - J. Timothy Pennington
+  - Melanie R. Fewings
+  - Michael E. Squibb
+  - Francisco P. Chavez
+  publisher: 'Journal of Geophysical Research: Oceans'
+  date: '2017-03-01'
+  link: https://doi.org/f97pvj
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1002/2016GL070226
+  title: Discrepant estimates of primary and export production from satellite algorithms,
+    a biogeochemical model, and geochemical tracer measurements in the North Pacific
+    Ocean
+  authors:
+  - Hilary I. Palevsky
+  - Paul D. Quay
+  - David P. Nicholson
+  publisher: Geophysical Research Letters
+  date: '2016-08-28'
+  link: https://doi.org/f866s9
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1088/1755-1315/35/1/012019
+  title: Noble gas tracers of ventilation during deep-water formation in the Weddell
+    Sea
+  authors:
+  - D P Nicholson
+  - S Khatiwala
+  - P Heimbach
+  publisher: 'IOP Conference Series: Earth and Environmental Science'
+  date: '2016-05-01'
+  link: https://doi.org/gsgccq
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1088/1755-1315/35/1/012017
+  title: Quantifying air-sea gas exchange using noble gases in a coastal upwelling
+    zone
+  authors:
+  - C C Manning
+  - R H R Stanley
+  - D P Nicholson
+  - M E Squibb
+  publisher: 'IOP Conference Series: Earth and Environmental Science'
+  date: '2016-05-01'
+  link: https://doi.org/gsgccr
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1002/2015gb005318
+  title: The annual cycle of gross primary production, net community production, and
+    export efficiency across the North Pacific Ocean
+  authors:
+  - Hilary I. Palevsky
+  - Paul D. Quay
+  - Deirdre E. Lockwood
+  - David P. Nicholson
+  publisher: Global Biogeochemical Cycles
+  date: '2016-02-01'
+  link: https://doi.org/f8gbs4
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1002/2015gb005141
+  title: "Short\u2010term variability in euphotic zone biogeochemistry and primary\
+    \ productivity at Station ALOHA: A case study of summer 2012"
+  authors:
+  - Samuel T. Wilson
+  - Benedetto Barone
+  - Francois Ascani
+  - Robert R. Bidigare
+  - Matthew J. Church
+  - Daniela A. Valle
+  - Sonya T. Dyhrman
+  - "Sara Ferr\xF3n"
+  - Jessica N. Fitzsimmons
+  - Laurie W. Juranek
+  - Zbigniew S. Kolber
+  - Ricardo M. Letelier
+  - "Sandra Mart\xEDnez\u2010Garc\xEDa"
+  - David P. Nicholson
+  - Kelvin J. Richards
+  - Yoshimi M. Rii
+  - "M\xF3nica Rouco"
+  - Donn A. Viviani
+  - Angelicque E. White
+  - Jonathan P. Zehr
+  - David M. Karl
+  publisher: Global Biogeochemical Cycles
+  date: '2015-08-01'
+  link: https://doi.org/f3r23r
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1002/2015GL063065
+  title: Quantifying subtropical North Pacific gyre mixed layer primary productivity
+    from Seaglider observations of diel oxygen cycles
+  authors:
+  - David P. Nicholson
+  - Samuel T. Wilson
+  - Scott C. Doney
+  - David M. Karl
+  publisher: Geophysical Research Letters
+  date: '2015-05-22'
+  link: https://doi.org/ggc8mq
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1002/2013gb004704
+  title: The triple oxygen isotope tracer of primary productivity in a dynamic ocean
+    model
+  authors:
+  - David Nicholson
+  - Rachel H. R. Stanley
+  - Scott C. Doney
+  publisher: Global Biogeochemical Cycles
+  date: '2014-05-01'
+  link: https://doi.org/f56z4k
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1029/2010jc006856
+  title: Evaluating triple oxygen isotope estimates of gross primary production at
+    the Hawaii Ocean Time-series and Bermuda Atlantic Time-series Study sites
+  authors:
+  - David P. Nicholson
+  - Rachel H. R. Stanley
+  - Eugeni Barkan
+  - David M. Karl
+  - Boaz Luz
+  - Paul D. Quay
+  - Scott C. Doney
+  publisher: 'Journal of Geophysical Research: Oceans'
+  date: '2012-05-01'
+  link: https://doi.org/ggmkrw
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.5194/bg-8-2993-2011
+  title: 'Comment on: &amp;quot;Technical note: Consistent calculation of aquatic
+    gross production from oxygen triple isotope measurements&amp;quot; by Kaiser (2011)'
+  authors:
+  - D. P. Nicholson
+  publisher: Biogeosciences
+  date: '2011-10-27'
+  link: https://doi.org/dmrwtf
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1029/2010jc006152
+  title: Constraining ventilation during deepwater formation using deep ocean measurements
+    of the dissolved gas ratios<sup>40</sup>Ar/<sup>36</sup>Ar, N<sub>2</sub>/Ar,
+    and Kr/Ar
+  authors:
+  - David Nicholson
+  - Steven Emerson
+  - Nicolas Caillon
+  - Jean Jouzel
+  - Roberta C. Hamme
+  publisher: Journal of Geophysical Research
+  date: '2010-11-19'
+  link: https://doi.org/dsj97s
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.4319/lo.2008.53.5_part_2.2226
+  title: Net community production in the deep euphotic zone of the subtropical North
+    Pacific gyre from glider surveys
+  authors:
+  - David Nicholson
+  - Steven Emerson
+  - Charles C. Eriksen
+  publisher: Limnology and Oceanography
+  date: '2008-09-01'
+  link: https://doi.org/czsfmr
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1029/2007gb003095
+  title: 'Net biological oxygen production in the ocean: Remote in situ measurements
+    of O<sub>2</sub>and N<sub>2</sub>in surface waters'
+  authors:
+  - Steven Emerson
+  - Charles Stump
+  - David Nicholson
+  publisher: Global Biogeochemical Cycles
+  date: '2008-08-23'
+  link: https://doi.org/brhxvh
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.4319/lo.2006.51.2.0874
+  title: Alkaline phosphatase activity in the phytoplankton communities of Monterey
+    Bay and San Francisco Bay
+  authors:
+  - David Nicholson
+  - Sonya Dyhrman
+  - Francisco Chavez
+  - Adina Paytan
+  publisher: Limnology and Oceanography
+  date: '2006-03-01'
+  link: https://doi.org/dptrh2
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1029/2004eo420006
+  title: Understanding North Pacific carbon cycle changes
+  authors:
+  - Christopher L. Sabine
+  - Laurie Juranek
+  - Carrie Lee
+  - David Nicholson
+  - Ana Ver
+  publisher: Eos, Transactions American Geophysical Union
+  date: '2004-01-01'
+  link: https://doi.org/dcx658
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
 - id: doi:10.7554/eLife.32822
   title: Sci-Hub provides access to nearly all scholarly literature
   authors:

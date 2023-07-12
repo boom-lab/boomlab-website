@@ -1,7 +1,7 @@
 ---
 name: Katherine Parise
 image: images/photo.jpg
-role: research
+role: researcher
 aliases:
   - K. Parise
 links:
