@@ -2,6 +2,7 @@
 name: Ashley Schefler
 image: images/People/Scheffler.jpg
 role: phd
+pronouns: She/Her
 aliases:
   - A. Schefler
 links:

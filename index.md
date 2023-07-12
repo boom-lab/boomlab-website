@@ -1,6 +1,12 @@
 ---
 ---
-Biogeochemical Ocean Observing and Modeling
+Welcome to Biogeochemical Ocean Observing and Modeling Lab (BOOMLAB) at the [Woods Hole Oceanographic Institution](https://www.whoi.edu)! The BOOMLAB [team](/team) and PI [David (Roo) Nicholson](members/david-nicholson.html) apply sensor-based observations and numerical models to understand and predict the flow of carbon and related elements through the ocean in the context of a changing climate.
+{%
+  include figure.html
+  image="images/lab_group.JPG"
+  width="100%"
+%}
+
 {% include section.html %}
 
 ## Highlights

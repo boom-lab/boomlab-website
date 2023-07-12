@@ -6,6 +6,8 @@ aliases:
   - D. Nicholson
   - Roo Nicholson
   - David Nicholson
+pronouns:
+  - He/Him
 links:
   home-page: https://boom.science
   orcid: 0000-0003-2653-9349

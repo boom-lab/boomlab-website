@@ -2,6 +2,7 @@
 name: Alice Ren
 image: images/people/Ren.jpg
 role: postdoc
+pronouns: She/Her
 aliases:
   - A. Ren
 links:

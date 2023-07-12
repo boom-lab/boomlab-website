@@ -2,6 +2,7 @@
 name: Katherine Parise
 image: images/photo.jpg
 role: researcher
+pronouns: She/Her
 aliases:
   - K. Parise
 links:
