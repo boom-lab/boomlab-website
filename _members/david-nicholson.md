@@ -1,6 +1,6 @@
 ---
 name: David (Roo) Nicholson
-image: images/people/Nicholson.jpg
+image: images/Nicholson.jpg
 role: pi
 aliases:
   - D. Nicholson
