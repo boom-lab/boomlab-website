@@ -1,7 +1,8 @@
 ---
 name: Ellen Park
-image: images/people/EPark.jpg
+image: images/people/Park.jpg
 role: phd
+pronouns: She/Her
 aliases:
   - E. Park
 links:
