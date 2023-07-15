@@ -6,15 +6,9 @@ pronouns: She/Her
 aliases:
   - A. Ren
 links:
-  home-page: https://boom.science
-  orcid: 0000-0000-0000-0000
+  home-page: https://arenscripps.github.io/home/
+  orcid: 0000-0002-2059-4198
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Faucibus purus in massa tempor nec feugiat nisl pretium fusce.
-Elit at imperdiet dui accumsan.
-Duis tristique sollicitudin nibh sit amet commodo nulla facilisi.
-Vitae elementum curabitur vitae nunc sed velit dignissim sodales.
-Lacinia at quis risus sed vulputate odio ut.
-Magna eget est lorem ipsum.
-Magna eget est lorem ipsum.
+During my PhD, I worked with large ocean datasets collected by underwater gliders (https://spraydata.ucsd.edu/). At WHOI, I am continuing to work with gliders in the Gulf Stream (http://gliders.whoi.edu/). I have expertise in dissolved oxygen optode sensor measurements and calibration on gliders. I am both interested in pure physical oceanography projects and biogeochemical projects.
+
