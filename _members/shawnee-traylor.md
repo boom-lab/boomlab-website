@@ -8,6 +8,7 @@ aliases:
 links:
   home-page: https://boom.science
   orcid: 0000-0003-3865-3464
+twitter: ShawneeTraylor
 research gate: https://www.researchgate.net/profile/Shawnee-Traylor
 ---
 
