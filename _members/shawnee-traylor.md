@@ -28,4 +28,36 @@ She studies these global biogeochemical cycles using a range of tools, from **tr
 #### Prior to joining the BOOMLAB, 
 Shawnee completed her undergraduate studies in environmental chemistry at Columbia University (2018) and worked as a field research assistant at the [Palmer Station, Antarctica LTER site](https://www.nsf.gov/geo/opp/support/palmerst.jsp). Her [undergraduate research](https://www.college.columbia.edu/about/stories/shawneetraylor) at the Lamont-Doherty Earth Observatory focused around environmental sensing, with applications from urban air and water quality to the carbon dynamics and resiliency of coral reefs. Shawnee is also interested in public outreach through data-driven art. Previous projects include a [collaboration with Ennead Architecture Lab](http://www.enneadlab.org/projects/water-sampling-station) and serving as the Science and Technology Advisor to New York-based nonprofit +Pool for the launch of a [floating public art installation](https://pluspool.org/programming/details/light-installation/) in the East River that communicated water quality in real time. 
 
+{%
+  include figure.html
+  image="images/shawnee/BEAMS Traylor crop.jpg"
+  caption="Measuring metabolism of recovering coral reefs off Panamá"
+  width="400px"
+%}
+{%
+  include figure.html
+  image="images/shawnee/Bgc launch traylor.jpg"
+  caption="Deploying the BOOMLAB's first BGC-Argo float in the North Atlantic."
+  width="400px"
+%}
 
+{%
+  include figure.html
+  image="images/shawnee/Weddell Sea Traylor crop.jpg"
+  caption="Sampling dissolved gases on an island in the Weddell Sea."
+  width="400px"
+%}
+
+{%
+  include figure.html
+  image="images/shawnee/Iwan Baan Plus pool.jpg"
+  caption="Plus Pool Light demonstrating NYC water quality in real time. Photo by Iwan Baan."
+  width="400px"
+%}
+
+{%
+  include figure.html
+  image="images/shawnee/Palmer Traylor.jpg"
+  caption="Water sampling off the West Antarctic Peninsula. Also pictured: Anna Bashkirova and Marie Zahn"
+  width="400px"
+%}
