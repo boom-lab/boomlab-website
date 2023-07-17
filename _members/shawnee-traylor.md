@@ -30,34 +30,34 @@ Shawnee completed her undergraduate studies in environmental chemistry at Columb
 
 {%
   include figure.html
-  image="images/shawnee/BEAMS Traylor crop.jpg"
+  image="images/people/shawnee/BEAMS Traylor crop.jpg"
   caption="Measuring metabolism of recovering coral reefs off Panamá"
-  width="400px"
+  width="300px"
 %}
 {%
   include figure.html
   image="images/people/shawnee/Bgc launch traylor.jpg"
   caption="Deploying the BOOMLAB's first BGC-Argo float in the North Atlantic."
-  width="400px"
+  width="300px"
 %}
 
 {%
   include figure.html
   image="images/people/shawnee/Weddell Sea Traylor crop.jpg"
   caption="Sampling dissolved gases on an island in the Weddell Sea."
-  width="400px"
+  width="300px"
 %}
 
 {%
   include figure.html
   image="images/people/shawnee/Iwan Baan Plus pool.jpg"
   caption="Plus Pool Light demonstrating NYC water quality in real time. Photo by Iwan Baan."
-  width="400px"
+  width="300px"
 %}
 
 {%
   include figure.html
   image="images/people/shawnee/Palmer Traylor.jpg"
   caption="Water sampling off the West Antarctic Peninsula. Also pictured: Anna Bashkirova and Marie Zahn"
-  width="400px"
+  width="300px"
 %}
