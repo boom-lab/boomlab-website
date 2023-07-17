@@ -14,7 +14,7 @@ research gate: https://www.researchgate.net/profile/Shawnee-Traylor
 <br>
 <br>
 ####A member of the BOOMLAB since 2019, 
-Shawnee is earning her doctorate in chemical oceanography, specializing on using **dissolved gases to better understand the ocean's role in regulating global climate**. 
+Shawnee is earning her doctorate in chemical oceanography and specializes in using **dissolved gases to better understand the ocean's role in regulating global climate**. 
 <br>
 #### Her thesis work focuses on:
 - novel methods to measure dissolved gases
