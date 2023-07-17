@@ -13,13 +13,13 @@ research gate: https://www.researchgate.net/profile/Shawnee-Traylor
 ---
 <br>
 <br>
-Shawnee joined the BOOMLAB in 2019 and is earning her doctorate in Chemical Oceanography, specializing on using dissolved gases to better understand the ocean's role in regulating global climate. 
+Shawnee joined the BOOMLAB in 2019 and is earning her doctorate in chemical oceanography, specializing on using dissolved gases to better understand the ocean's role in regulating global climate. 
 
 <br>
 Her thesis work focuses on: <br>
-1) novel methods to measure dissolved gases<br>
-2) coastal Arctic greenhouse gas emissions<br>
-3) the biological carbon pump [(NASA EXPORTS)](/projects). <br>
+- 1) novel methods to measure dissolved gases<br>
+- 2) coastal Arctic greenhouse gas emissions<br>
+- 3) the biological carbon pump [(NASA EXPORTS)](/projects). <br>
 <br>
 She studies these global biogeochemical cycles using a range of tools, from traditional field and lab work to leveraging autonomous platforms such as gliders and biogeochemical floats. She has a special interest in enhancing our observational capabilities in high latitude environments, and her work has brought her to both polar regions. 
 <br>
