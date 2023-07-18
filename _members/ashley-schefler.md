@@ -1,20 +1,8 @@
 ---
 name: Ashley Schefler
 image: images/People/Schefler.jpg
-role: phd
+role: PhD Student
 pronouns: She/Her
-aliases:
-  - A. Schefler
-links:
-  home-page: https://boom.science
-  orcid: 0000-0000-0000-0001
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Faucibus purus in massa tempor nec feugiat nisl pretium fusce.
-Elit at imperdiet dui accumsan.
-Duis tristique sollicitudin nibh sit amet commodo nulla facilisi.
-Vitae elementum curabitur vitae nunc sed velit dignissim sodales.
-Lacinia at quis risus sed vulputate odio ut.
-Magna eget est lorem ipsum.
-Magna eget est lorem ipsum.
+Ashley is a first-year PhD student in the physical oceanography department at WHOI. She uses a combination of climate models and observations to study dissolved oxygen content in the ocean, and is currently focused on eastern boundary upwelling systems in the Pacific. In her spare time, she enjoys reading, hiking, playing board games and dungeons and dragons, and doing improv comedy.
