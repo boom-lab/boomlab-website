@@ -5,6 +5,8 @@ role: phd
 pronouns: She/Her
 aliases:
   - E. Park
+  - Ellen Park
+  - Ellen R. Park
 links:
   home-page: https://boom.science
   orcid: 0000-0000-0000-0001

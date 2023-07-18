@@ -7,6 +7,12 @@
   repo: go-bgc
   tags:
     - bgc argo
+    - biological carbon pump
+    - solubility carbon pump
+    - primary productivity
+    - air-sea exchange
+    - oxygen
+    - ocean observing
 
 - title: EXPORTS
   subtitle: EXport Processes in the Ocean from Remote Sensing (EXPORTS)
@@ -15,35 +21,38 @@
   link: https://oceanexports.org/
   description: EXPORTS) is a large-scale NASA-led field campaign that will provide critical information for quantifying the export and fate of upper ocean net primary production (NPP) using satellite observations and state of the art ocean technologies.
 
-  repo: greenelab/lab-website-template
   tags:
     - biological carbon pump
     - ocean observing
+    - primary productivity
 
-- title: Cool Tutorial
-  subtitle: a subtitle
-  image: images/photo.jpg
-  link: https://github.com/
-  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  repo: greenelab/lab-website-template
+- title: GOHSNAP
+  subtitle: Gases in the Overturning and Horizontal circulation of the Subpolar North Atlantic Program
+  image: images/osnap_array.png
+  #link: https://github.com/
+  description: This project adds dissolved gas sensors (oxygen and carbon dioxide) to to the OSNAP subpolar mooring array to investigate the rates and processes governing gas exchange.
+  #repo: greenelab/lab-website-template
   tags:
-    - resource
-    - publication
+    - air-sea exchange
+    - oxygen
+    - solubility carbon pump
 
-- title: Cool Web App
-  subtitle: a subtitle
-  image: images/photo.jpg
-  link: https://github.com/
-  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  repo: greenelab/lab-website-template
-  tags:
-    - software
-
-- title: Cool Web Server
-  subtitle: a subtitle
-  image: images/photo.jpg
+- title: ChemYak 
+  subtitle: An autonomous surface vehicle equipped with sensor to measure dissolved greenhouse gases in coastal enviroments
+  image: images/chemyak.jpg
   link: https://github.com/
   description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   repo: greenelab/lab-website-template
   tags:
     - software
+
+- title: Noble gas tracers
+  subtitle: a subtitle
+  image: images/photo.jpg
+  link: https://github.com/
+  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  repo: dnicholson/gas_toolbox
+  tags:
+    - air-sea exchange
+    - solubility carbon pump
+    - numerical modeling

@@ -5,6 +5,7 @@ role: researcher
 pronouns: She/Her
 aliases:
   - K. Parise
+  - Katherine Parise
 links:
   home-page: https://boom.science
   orcid: 0000-0000-0000-0000

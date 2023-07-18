@@ -6,17 +6,16 @@ aliases:
   - D. Nicholson
   - Roo Nicholson
   - David Nicholson
+  - David P. Nicholson
+  - D Nicholson
 pronouns:
   - He/Him
 links:
+  email: dnicholson@whoi.edu
   home-page: https://boom.science
   orcid: 0000-0003-2653-9349
+  github: go-bgc
+  github: boom-lab
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Faucibus purus in massa tempor nec feugiat nisl pretium fusce.
-Elit at imperdiet dui accumsan.
-Duis tristique sollicitudin nibh sit amet commodo nulla facilisi.
-Vitae elementum curabitur vitae nunc sed velit dignissim sodales.
-Lacinia at quis risus sed vulputate odio ut.
-Magna eget est lorem ipsum.
+Dr. David Nicholson is an Associate Scientist in the Marine Chemistry and Geochemistry Department at the Woods Hole Oceanographic Institution. His research has the broad goal of understanding global biogeochemical cycles in the context of a changing climate. Towards this challenge, his research uses observations from autonomous platforms, such as underwater gliders, floats and surface vehicles and numerical models of varying complexity. In addition, a central focus in the Nicholson Lab is on marine cycles of dissolved gases, including oxygen, carbon dioxide, methane and the noble gases. 
