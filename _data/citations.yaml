@@ -55,6 +55,31 @@
   plugin: sources.py
   file: sources.yaml
   image: images/gobgc-logo-2-sm.png
+- id: doi:10.1073/pnas.2217946120
+  title: Dissolved gases in the deep North Atlantic track ocean ventilation processes
+  authors:
+  - Alan M. Seltzer
+  - David P. Nicholson
+  - William M. Smethie
+  - Rebecca L. Tyne
+  - Emilie Le Roy
+  - Rachel H. R. Stanley
+  - Martin Stute
+  - Peter H. Barry
+  - Katelyn McPaul
+  - Perrin W. Davidson
+  - Bonnie X. Chang
+  - Patrick A. Rafter
+  - Paul Lethaby
+  - Rod J. Johnson
+  - Samar Khatiwala
+  - William J. Jenkins
+  publisher: Proceedings of the National Academy of Sciences
+  date: '2023-03-06'
+  link: https://doi.org/grwfcj
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
 - id: doi:10.1575/1912/29464
   title: EXPORTS North Atlantic eddy tracking
   authors:
