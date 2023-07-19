@@ -12,7 +12,7 @@ links:
   orcid: 0000-0000-0000-0001
 ---
 
-Ellen is a fourth-year PhD student in chemical oceanography in the MIT-WHOI Joint Program. Broadly, her research uses Biogeochemical Argo floats to explore carbon and oxygen cycles in the North Atlantic.
+Ellen is a fourth-year PhD student in chemical oceanography in the MIT-WHOI Joint Program. Broadly, her research uses Biogeochemical Argo floats to better understand carbon and oxygen cycles in the North Atlantic.
 
 More specifically, her thesis work explores:
 - oxygen dynamics in the Labrador Sea
