@@ -117,8 +117,9 @@
   date: '2022-09-01'
   link: https://doi.org/gsgccf
   orcid: 0000-0003-2653-9349
-  plugin: orcid.py
-  file: orcid.yaml
+  plugin: sources.py
+  file: sources.yaml
+  image: images/air-sea.png
 - id: doi:10.1002/lno.12154
   title: 'Spatial and temporal variations in atmospheric gas flux from the Hudson
     River: the estuarine gas exchange maximum'
@@ -131,8 +132,9 @@
   date: '2022-06-09'
   link: https://doi.org/grdz8s
   orcid: 0000-0003-2653-9349
-  plugin: orcid.py
-  file: orcid.yaml
+  plugin: sources.py
+  file: sources.yaml
+  image: images/air-sea.png
 - id: doi:10.1029/2021GL092621
   title: 'Decomposing the Oxygen Signal in the Ocean Interior: Beyond Decomposing
     Organic Matter'
@@ -196,7 +198,7 @@
   orcid: 0000-0003-2653-9349
   plugin: sources.py
   file: sources.yaml
-  image: images/WHOI_AcronymLogo_BlueType_RGB.png
+  image: images/chemyak.png
 - id: doi:10.1002/lom3.10340
   title: "The estimation of gross oxygen production and community respiration from\
     \ autonomous time\u2010series measurements in the oligotrophic ocean"
@@ -228,8 +230,9 @@
   date: '2019-09-05'
   link: https://doi.org/gsgcck
   orcid: 0000-0003-2653-9349
-  plugin: orcid.py
-  file: orcid.yaml
+  plugin: sources.py
+  file: sources.yaml
+  image: images/air-sea.png
 - id: doi:10.3389/fmars.2019.00393
   title: 'Ocean Time Series Observations of Changing Marine Ecosystems: An Era of
     Integration, Synthesis, and Societal Applications'
@@ -266,8 +269,9 @@
   date: '2019-01-03'
   link: https://doi.org/gnxsv6
   orcid: 0000-0003-2653-9349
-  plugin: orcid.py
-  file: orcid.yaml
+  plugin: sources.py
+  file: sources.yaml
+  image: images/air-sea.png
 - id: doi:10.1021/acs.est.8b04190
   title: Rapid Mapping of Dissolved Methane and Carbon Dioxide in Coastal Ecosystems
     Using the ChemYak Autonomous Surface Vehicle
@@ -283,8 +287,9 @@
   date: '2018-10-25'
   link: https://doi.org/gfqttv
   orcid: 0000-0003-2653-9349
-  plugin: orcid.py
-  file: orcid.yaml
+  plugin: sources.py
+  file: sources.yaml
+  image: images/chemyak.png
 - id: doi:10.1016/j.jmarsys.2018.03.007
   title: Control of net community production by microbial community respiration at
     Station ALOHA

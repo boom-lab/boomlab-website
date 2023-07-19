@@ -21,4 +21,19 @@
   image: images/gobgc-logo-2-sm.png
 
 - id: doi:10.1029/2020GL087669
-  image: images/WHOI_AcronymLogo_BlueType_RGB.png
+  image: images/chemyak.png
+
+- id: doi:10.1021/acs.est.8b04190
+  image: images/chemyak.png
+
+- id: doi:10.1146/annurev-marine-121916-063604
+  image: images/air-sea.png
+
+- id: doi:10.1029/2021GB007145
+  image: images/air-sea.png
+
+- id: doi:10.1002/lno.12154
+  image: images/air-sea.png
+
+- id: doi:10.5194/bg-16-3351-2019
+  image: images/air-sea.png
