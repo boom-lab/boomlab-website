@@ -1,7 +1,7 @@
 ---
 name: Ashley Schefler
 image: images/people/Schefler.jpg
-role: PhD Student
+role: phd
 pronouns: She/Her
 ---
 
