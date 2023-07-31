@@ -1,1 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-27T17:05:36+00:00</updated><id>/feed.xml</id><title type="html">nicholson boom-lab</title><subtitle>The Biogeochemical Ocean Observing and Modeling Lab at the Woods Hole Oeanographic Institution</subtitle><entry><title type="html">Example post 3</title><link href="/2023/02/23/example-post-3.html" rel="alternate" type="text/html" title="Example post 3" /><published>2023-02-23T00:00:00+00:00</published><updated>2023-07-27T17:04:23+00:00</updated><id>/2023/02/23/example-post-3</id><content type="html" xml:base="/2023/02/23/example-post-3.html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>]]></content><author><name>john-doe</name></author><category term="biology," /><category term="medicine" /><summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]]></summary></entry><entry><title type="html">Example post 2</title><link href="/2021/09/30/example-post-2.html" rel="alternate" type="text/html" title="Example post 2" /><published>2021-09-30T00:00:00+00:00</published><updated>2023-07-27T17:04:23+00:00</updated><id>/2021/09/30/example-post-2</id><content type="html" xml:base="/2021/09/30/example-post-2.html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>]]></content><author><name>jane-smith</name></author><summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]]></summary></entry><entry><title type="html">Example post 1</title><link href="/2019/01/07/example-post-1.html" rel="alternate" type="text/html" title="Example post 1" /><published>2019-01-07T00:00:00+00:00</published><updated>2023-07-27T17:04:23+00:00</updated><id>/2019/01/07/example-post-1</id><content type="html" xml:base="/2019/01/07/example-post-1.html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>]]></content><author><name>sarah-johnson</name></author><category term="biology" /><category term="medicine" /><category term="big data" /><summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]]></summary></entry></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-07-31T18:04:36+00:00</updated><id>/feed.xml</id><title type="html">nicholson boom-lab</title><subtitle>The Biogeochemical Ocean Observing and Modeling Lab at the Woods Hole Oeanographic Institution</subtitle><entry><title type="html">Shared HPC network drive</title><link href="/2023/02/23/vast-howto.html" rel="alternate" type="text/html" title="Shared HPC network drive" /><published>2023-02-23T00:00:00+00:00</published><updated>2023-07-31T18:03:48+00:00</updated><id>/2023/02/23/vast-howto</id><content type="html" xml:base="/2023/02/23/vast-howto.html"><![CDATA[<h1 id="storage-on-the-whoi-vast-drive">Storage on the WHOI VAST drive</h1>
+<p>Our lab has 100 Tb dedicated space on the WHOI VAST SSD storage drive. Permissions for current lab members should be in place, but contact Roo if you need access</p>
+
+<h2 id="connecting-to-vast">Connecting to VAST</h2>
+<h3 id="option-1-smb-share">Option 1: smb share</h3>
+<p>You can directly mount the shared drive to your laptop. MacOS instructions below</p>
+
+<ol>
+  <li>With Finder open, <kbd>Ctrl</kbd>+<kbd>k</kbd> to “Connect to Server”</li>
+  <li>server address: <code class="language-plaintext highlighter-rouge">smb://vast:/proj/boom</code></li>
+  <li>Once mounted, the volume is accessible directly at <code class="language-plaintext highlighter-rouge">/Volumes/boom/</code></li>
+</ol>
+
+<h3 id="option-2-from-poseidon">Option 2: from Poseidon</h3>
+<ol>
+  <li>ssh to <code class="language-plaintext highlighter-rouge">yourusername@poseidon.whoi.edu</code></li>
+  <li><code class="language-plaintext highlighter-rouge">cd /proj/boom</code>
+*probably need to be inside WHOI firewall</li>
+</ol>
+
+<h3 id="globus">Globus</h3>
+
+<p><a href="https://whoi-it.whoi.edu/globus-file-transfer-at-whoi/">Overview of Globus @ WHOI</a> - Basically you log into Globus via <a href="https://app.globus.org"></a> with your WHOI account, then search for and connect to the “WHOI Vast Proj Space” collection - you’ll see the boom directory and other Vast proj directories within and can connect and transfer between any that you have permissions for.</p>
+
+<h2 id="organization">Organization</h2>
+<p>We are just setting this up, so the below may change…</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+├── data
+│   ├── gdac
+│   │   ├── aoml  [8570 entries exceeds filelimit, not opening dir]
+│   │   ├── bodc
+│   │   ├── coriolis
+│   │   ├── csio
+│   │   ├── csiro
+│   │   ├── incois
+│   │   ├── jma
+│   │   ├── kma
+│   │   ├── kordi
+│   │   ├── meds
+│   │   └── nmdis
+│   └── osu
+│       └── orca.science.oregonstate.edu
+│           └── data
+│               └── 1x2
+│                   └── monthly
+│                       └── cafe.modis.r2018
+│                           └── hdf  [20 entries exceeds filelimit, not opening dir]
+|    └── **add new datasets here...**
+└── users
+    └── dnicholson
+    └── **create your dir here...**
+
+</code></pre></div></div>]]></content><author><name>david-nicholson</name></author><category term="lab," /><category term="how-to," /><category term="computing" /><summary type="html"><![CDATA[Storage on the WHOI VAST drive Our lab has 100 Tb dedicated space on the WHOI VAST SSD storage drive. Permissions for current lab members should be in place, but contact Roo if you need access]]></summary></entry><entry><title type="html">Example post 2</title><link href="/2021/09/30/example-post-2.html" rel="alternate" type="text/html" title="Example post 2" /><published>2021-09-30T00:00:00+00:00</published><updated>2023-07-31T18:03:48+00:00</updated><id>/2021/09/30/example-post-2</id><content type="html" xml:base="/2021/09/30/example-post-2.html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>]]></content><author><name>jane-smith</name></author><summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]]></summary></entry><entry><title type="html">Example post 1</title><link href="/2019/01/07/example-post-1.html" rel="alternate" type="text/html" title="Example post 1" /><published>2019-01-07T00:00:00+00:00</published><updated>2023-07-31T18:03:48+00:00</updated><id>/2019/01/07/example-post-1</id><content type="html" xml:base="/2019/01/07/example-post-1.html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>]]></content><author><name>sarah-johnson</name></author><category term="biology" /><category term="medicine" /><category term="big data" /><summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]]></summary></entry></feed>
