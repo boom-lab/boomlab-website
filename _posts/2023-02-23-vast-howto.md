@@ -18,8 +18,9 @@ You can directly mount the shared drive to your laptop. MacOS instructions below
 1. ssh to ```yourusername@poseidon.whoi.edu```
 2. ```cd /proj/boom```
 *probably need to be inside WHOI firewall
+Also, many useful datasets (era5, cmip6, etc.) are available on ```/proj/cmip6/data```
 
-### Globus
+### Option 3: Globus
 
 [Overview of Globus @ WHOI](https://whoi-it.whoi.edu/globus-file-transfer-at-whoi/) - Basically you log into Globus via [](https://app.globus.org) with your WHOI account, then search for and connect to the "WHOI Vast Proj Space" collection - you'll see the boom directory and other Vast proj directories within and can connect and transfer between any that you have permissions for. 
 
