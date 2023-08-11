@@ -13,7 +13,7 @@ Welcome to Biogeochemical Ocean Observing and Modeling Lab (BOOMLAB) at the [Woo
 
 {% capture text %}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Check out the latest publications from the BOOMLAB team!
 
 {%
   include button.html
@@ -36,13 +36,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 {% capture text %}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Our current research is advancing understanding of ocean biogeochemistry through sensor-based ocean observing, process studies and modeling through open ocean and coastal environments. Here's some of the latest! 
 
 {%
   include button.html
   link="projects"
   text="Browse our projects"
-  icon="fa-solid fa-arrow-right"
+  icon="fa-solid flask-vial"
   flip=true
   style="bare"
 %}
@@ -51,7 +51,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 {%
   include feature.html
-  image="images/photo.jpg"
+  image="images/NAVIS-1920.jpg"
   link="projects"
   title="Our Projects"
   flip=true
@@ -61,13 +61,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 {% capture text %}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+We are a collaborative group of students, postdocs and researchers
 
 {%
   include button.html
   link="team"
   text="Meet our team"
-  icon="fa-solid fa-arrow-right"
+  icon="fa-solid people-group"
   flip=true
   style="bare"
 %}
