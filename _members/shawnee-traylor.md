@@ -1,6 +1,6 @@
 ---
 name: Shawnee Traylor
-image: images/people/Traylor.jpg
+image: images/people/IMG_6320crop.jpg
 role: phd
 pronouns: She/Her
 aliases:
