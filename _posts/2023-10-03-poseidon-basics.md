@@ -69,7 +69,7 @@ colette$ scp <filename> <whoiID>@poseidon.whoi.edu:
 2. Secure copy a file from Poseidon to local machine \\
 Open a Terminal on your local machine and run:
 ```bash
-colette$ scp colette.kelly@poseidon.whoi.edu:/<filename>
+colette$ scp <whoiID>@poseidon.whoi.edu:/<filename>
 ```
 
 ## Running Python code with 3rd-party packages on Poseidon
