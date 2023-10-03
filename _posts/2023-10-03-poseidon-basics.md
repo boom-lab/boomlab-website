@@ -60,13 +60,13 @@ There are lots of ways to sync files between Poseidon and your local machine. My
 
 A really simple way to sync files is with secure copy. Instructions are below because the Poseidon documentation is a bit out of date as of writing (10/3/23).
 
-1. Secure copy a file from local machine to Poseidon
+1. Secure copy a file from local machine to Poseidon \\
 Open a Terminal on your local machine and run:
 ```bash
 colette$ scp <filename> <whoiID>@poseidon.whoi.edu:
 ```
 
-2. Secure copy a file from Poseidon to local machine
+2. Secure copy a file from Poseidon to local machine \\
 Open a Terminal on your local machine and run:
 ```bash
 colette$ scp colette.kelly@poseidon.whoi.edu:/<filename>
