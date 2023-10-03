@@ -12,7 +12,7 @@ colette$ ssh <WHOI ID>@poseidon.whoi.edu
 ```
 
 ## Slurm basics
-Slurm is the resource manager on Poseidon. It lets you request computing resources and submit jobs to the cluster. It also lets you start an interactive session from which you can run Jupyter Notebooks (more info [here](https://boom.science/2023/10/02/poseidon-jupyter.html)
+Slurm is the resource manager on Poseidon. It lets you request computing resources and submit jobs to the cluster. You submit jobs with Sbatch scripts, which tell Slurm what computing resources you need, and then run the commands to activate virtual environments and run Python scripts (example [here](https://github.com/boom-lab/poseidon-data/blob/main/cds/get_era5.sh)). Slurm also lets you start an interactive session from which you can run Jupyter Notebooks (more info [here](https://boom.science/2023/10/02/poseidon-jupyter.html)).
 
 Start a ```bash``` interactive session on a compute node with one core for 20 minutes:
 ```bash
@@ -39,7 +39,7 @@ Track how much memory a job is using:
 ------------ ---------- 
 3190091.0       254340K
 ```
-Get effective job usage for completed job:
+Get effective job usage for completed job (this example is terrible, your efficiency should be way better than this!!):
 ```bash
 [colette.kelly@poseidon-l2 cds]$ seff 3190107
 Job ID: 3190107
@@ -58,14 +58,16 @@ Memory Efficiency: 44.14% of 2.00 GB
 ## Syncing files to Poseidon
 There are lots of ways to sync files between Poseidon and your local machine. My preferred way is to clone Github repositories directly into my home directory on Poseidon. This gives you all the benefits of git (version control, branches) so you can undo changes if you mess things up.
 
-A really simple way to sync files is the secure copy. Instructions are below because the Poseidon documentation is a bit out of date as of writing (10/3/23).
+A really simple way to sync files is with secure copy. Instructions are below because the Poseidon documentation is a bit out of date as of writing (10/3/23).
 
-Secure copy a file from local machine to Poseidon:
+1. Secure copy a file from local machine to Poseidon
+Open a Terminal on your local machine and run:
 ```bash
 colette$ scp <filename> <whoiID>@poseidon.whoi.edu:
 ```
 
-Secure copy a file from Poseidon to local machine:
+2. Secure copy a file from Poseidon to local machine
+Open a Terminal on your local machine and run:
 ```bash
 colette$ scp colette.kelly@poseidon.whoi.edu:/<filename>
 ```
@@ -73,15 +75,17 @@ colette$ scp colette.kelly@poseidon.whoi.edu:/<filename>
 ## Running Python code with 3rd-party packages on Poseidon
 There are a few steps you need to take before you can run Python code that relies on 3rd-party packages (Pandas, Numpy, etc.) on Poseidon. The best way to install and manage these 3rd-party packages is to create a virtual environment for each project you're working on (more info on virtual environments [here](https://github.com/stanfordpython/python-handouts/blob/master/virtual-environments.md)). Below are instructions for creating a virtual environment and installing packages with conda and with Pip, the built-in Python package manager.
 
-### Creating a virtual environment with conda, based on an environment.yml file
+### Creating a virtual environment with conda
 1. Module load Anaconda
 ```bash
 [colette.kelly@poseidon-l2 ~]$ module load anaconda3/2021.11
 ```
-2. Create the virtual environment
+2. Create the virtual environment based on an environment.yml file
 ```bash
 [colette.kelly@poseidon-l2]$ conda env create -f environment.yml
 ```
+(You can also activate the virtual environment and install packages individually)
+
 3. Activate the virtual environment
 ```bash
 [colette.kelly@poseidon-l2]$ source activate <env-name>
@@ -120,4 +124,4 @@ Once a virtual environment is activated (either in an interactive session or in 
 [colette.kelly@pn055 ~]$ python3 get_era5.py
 ```
 
-If you're running the python code with a Bash script, include a line to activate the virtual environment before the command to run the Python script, as in this [example](https://github.com/boom-lab/poseidon-data/blob/main/examples/python3rdparty.sh).
+If you're running the python code with a batch script, include a line to activate the virtual environment before the command to run the Python script, as in this [example](https://github.com/boom-lab/poseidon-data/blob/main/examples/python3rdparty.sh).
