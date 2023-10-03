@@ -62,10 +62,10 @@
 
   <meta name="author" content="colette-kelly">
   <meta property="og:type" content="article">
-  <meta property="og:updated_time" content="2023-10-03T21:49:13+00:00">
+  <meta property="og:updated_time" content="2023-10-03T21:58:05+00:00">
   <meta property="article:published_time" content="2023-10-03T00:00:00+00:00">
-  <meta property="article:modified_time" content="2023-10-03T21:49:13+00:00">
-  <meta name="revised" content="2023-10-03T21:49:13+00:00">
+  <meta property="article:modified_time" content="2023-10-03T21:58:05+00:00">
+  <meta name="revised" content="2023-10-03T21:58:05+00:00">
 
 
 <script type="application/ld+json">
@@ -75,7 +75,7 @@
       "@type": "BlogPosting",
       "author": { "@type": "Person", "name": "Poseidon basics" },
       "datePublished": "2023-10-03T00:00:00+00:00",
-      "dateModified": "2023-10-03T21:49:13+00:00",
+      "dateModified": "2023-10-03T21:58:05+00:00",
     
     "name": "Poseidon basics",
     "description": "Woods Hole Oceanographic Institution. The Biogeochemical Ocean Observing and Modeling Lab at the Woods Hole Oeanographic Institution",
@@ -497,7 +497,7 @@
 </code></pre></div></div>
 
 <h2 id="slurm-basics">Slurm basics</h2>
-<p>Slurm is the resource manager on Poseidon. It lets you request computing resources and submit jobs to the cluster. It also lets you start an interactive session from which you can run Jupyter Notebooks (more info <a href="https://boom.science/2023/10/02/poseidon-jupyter.html">here</a></p>
+<p>Slurm is the resource manager on Poseidon. It lets you request computing resources and submit jobs to the cluster. You submit jobs with Sbatch scripts, which tell Slurm what computing resources you need, and then run the commands to activate virtual environments and run Python scripts (example <a href="https://github.com/boom-lab/poseidon-data/blob/main/cds/get_era5.sh">here</a>). Slurm also lets you start an interactive session from which you can run Jupyter Notebooks (more info <a href="https://boom.science/2023/10/02/poseidon-jupyter.html">here</a>).</p>
 
 <p>Start a <code class="language-plaintext highlighter-rouge">bash</code> interactive session on a compute node with one core for 20 minutes:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l1 ~]<span class="nv">$ </span>srun <span class="nt">-N</span> 1 <span class="nt">-n</span> 1 <span class="nt">--mem</span><span class="o">=</span>500 <span class="nt">--time</span><span class="o">=</span>00:20:00 <span class="nt">--pty</span> bash
@@ -519,7 +519,7 @@
 <span class="nt">------------</span> <span class="nt">----------</span> 
 3190091.0       254340K
 </code></pre></div></div>
-<p>Get effective job usage for completed job:</p>
+<p>Get effective job usage for completed job (this example is terrible, your efficiency should be way better than this!!):</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2 cds]<span class="nv">$ </span>seff 3190107
 Job ID: 3190107
 Cluster: slurm_cluster
@@ -537,30 +537,38 @@ Memory Efficiency: 44.14% of 2.00 GB
 <h2 id="syncing-files-to-poseidon">Syncing files to Poseidon</h2>
 <p>There are lots of ways to sync files between Poseidon and your local machine. My preferred way is to clone Github repositories directly into my home directory on Poseidon. This gives you all the benefits of git (version control, branches) so you can undo changes if you mess things up.</p>
 
-<p>A really simple way to sync files is the secure copy. Instructions are below because the Poseidon documentation is a bit out of date as of writing (10/3/23).</p>
+<p>A really simple way to sync files is with secure copy. Instructions are below because the Poseidon documentation is a bit out of date as of writing (10/3/23).</p>
 
-<p>Secure copy a file from local machine to Poseidon:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>scp &lt;filename&gt; &lt;whoiID&gt;@poseidon.whoi.edu:
-</code></pre></div></div>
-
-<p>Secure copy a file from Poseidon to local machine:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>scp colette.kelly@poseidon.whoi.edu:/&lt;filename&gt;
-</code></pre></div></div>
+<ol>
+  <li>Secure copy a file from local machine to Poseidon
+Open a Terminal on your local machine and run:
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>scp &lt;filename&gt; &lt;whoiID&gt;@poseidon.whoi.edu:
+</code></pre></div>    </div>
+  </li>
+  <li>Secure copy a file from Poseidon to local machine
+Open a Terminal on your local machine and run:
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>scp colette.kelly@poseidon.whoi.edu:/&lt;filename&gt;
+</code></pre></div>    </div>
+  </li>
+</ol>
 
 <h2 id="running-python-code-with-3rd-party-packages-on-poseidon">Running Python code with 3rd-party packages on Poseidon</h2>
 <p>There are a few steps you need to take before you can run Python code that relies on 3rd-party packages (Pandas, Numpy, etc.) on Poseidon. The best way to install and manage these 3rd-party packages is to create a virtual environment for each project you’re working on (more info on virtual environments <a href="https://github.com/stanfordpython/python-handouts/blob/master/virtual-environments.md">here</a>). Below are instructions for creating a virtual environment and installing packages with conda and with Pip, the built-in Python package manager.</p>
 
-<h3 id="creating-a-virtual-environment-with-conda-based-on-an-environmentyml-file">Creating a virtual environment with conda, based on an environment.yml file</h3>
+<h3 id="creating-a-virtual-environment-with-conda">Creating a virtual environment with conda</h3>
 <ol>
   <li>Module load Anaconda
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2 ~]<span class="nv">$ </span>module load anaconda3/2021.11
 </code></pre></div>    </div>
   </li>
-  <li>Create the virtual environment
+  <li>Create the virtual environment based on an environment.yml file
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2]<span class="nv">$ </span>conda <span class="nb">env </span>create <span class="nt">-f</span> environment.yml
 </code></pre></div>    </div>
+    <p>(You can also activate the virtual environment and install packages individually)</p>
   </li>
   <li>Activate the virtual environment
     <div class="language-bash highlighter-rouge">
@@ -609,7 +617,7 @@ Memory Efficiency: 44.14% of 2.00 GB
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@pn055 ~]<span class="nv">$ </span>python3 get_era5.py
 </code></pre></div></div>
 
-<p>If you’re running the python code with a Bash script, include a line to activate the virtual environment before the command to run the Python script, as in this <a href="https://github.com/boom-lab/poseidon-data/blob/main/examples/python3rdparty.sh">example</a>.</p>
+<p>If you’re running the python code with a batch script, include a line to activate the virtual environment before the command to run the Python script, as in this <a href="https://github.com/boom-lab/poseidon-data/blob/main/examples/python3rdparty.sh">example</a>.</p>
   </section>
 
   
