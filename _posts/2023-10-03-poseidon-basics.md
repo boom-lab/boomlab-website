@@ -63,13 +63,13 @@ A really simple way to sync files is with secure copy. Instructions are below be
 1. Secure copy a file from local machine to Poseidon \\
 Open a Terminal on your local machine and run:
 ```bash
-colette$ scp <filename> <whoiID>@poseidon.whoi.edu:
+colette$ scp <local-filename> <whoiID>@poseidon.whoi.edu:/vortexfs1/home/<whoiID>/<remote-filename>
 ```
 
 2. Secure copy a file from Poseidon to local machine \\
 Open a Terminal on your local machine and run:
 ```bash
-colette$ scp <whoiID>@poseidon.whoi.edu:/<filename>
+colette$ scp <whoiID>@poseidon.whoi.edu:/vortexfs1/home/<whoiID>/<remote-filename> <local-filename>
 ```
 
 ## Running Python code with 3rd-party packages on Poseidon
