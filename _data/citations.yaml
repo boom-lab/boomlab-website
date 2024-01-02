@@ -1,5 +1,36 @@
 # DO NOT EDIT, GENERATED AUTOMATICALLY
 
+- id: doi:10.5194/bg-21-13-2024
+  title: 'Reviews and syntheses: expanding the global coverage of gross primary production
+    and net community production measurements using Biogeochemical-Argo floats'
+  authors:
+  - Robert W. Izett
+  - Katja Fennel
+  - Adam C. Stoer
+  - David P. Nicholson
+  publisher: Biogeosciences
+  date: '2024-01-02'
+  link: https://doi.org/gtbsxh
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1029/2023GC010914
+  title: Ash Deposition Triggers Phytoplankton Blooms at Nishinoshima Volcano, Japan
+  authors:
+  - Liam J. Kelly
+  - Kristen E. Fauria
+  - Tushar Mittal
+  - Jan El Kassar
+  - Ralf Bennartz
+  - David Nicholson
+  - Ajit Subramaniam
+  - Ashok Kumar Gupta
+  publisher: Geochemistry, Geophysics, Geosystems
+  date: '2023-10-26'
+  link: https://doi.org/gs2vr9
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
 - id: doi:10.1525/elementa.2021.00107
   title: Evaluation of new and net community production estimates by multiple ship-based
     and autonomous observations in the Northeast Pacific Ocean
@@ -80,6 +111,20 @@
   orcid: 0000-0003-2653-9349
   plugin: orcid.py
   file: orcid.yaml
+- id: doi:10.5194/bg-2023-46
+  title: 'Reviews and syntheses: Expanding the global coverage of gross primary production
+    and net community production measurements using BGC-Argo floats'
+  authors:
+  - Robert W. Izett
+  - Katja Fennel
+  - Adam C. Stoer
+  - David P. Nicholson
+  publisher: Copernicus GmbH
+  date: '2023-03-07'
+  link: https://doi.org/gtbsxj
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
 - id: doi:10.1575/1912/29464
   title: EXPORTS North Atlantic eddy tracking
   authors:
@@ -131,8 +176,8 @@
   plugin: orcid.py
   file: orcid.yaml
 - id: doi:10.1029/2021GB007145
-  title: "Can We Estimate Air\u2010Sea Flux of Biological O\n            <sub>2</sub>\n\
-    \            From Total Dissolved Oxygen?"
+  title: "Can We Estimate Air\u2010Sea Flux of Biological O<sub>2</sub> From Total\
+    \ Dissolved Oxygen?"
   authors:
   - Yibin Huang
   - Rachel Eveleth
@@ -460,8 +505,8 @@
   plugin: orcid.py
   file: orcid.yaml
 - id: doi:10.1002/2016JC012306
-  title: Impact of recently upwelled water on productivity investigated using in situ
-    and incubation-based methods in Monterey Bay
+  title: "Impact of recently upwelled water on productivity investigated using in\
+    \ situ and incubation\u2010based methods in <scp>M</scp>onterey <scp>B</scp>ay"
   authors:
   - Cara C. Manning
   - Rachel H. R. Stanley
@@ -541,7 +586,7 @@
   - Francois Ascani
   - Robert R. Bidigare
   - Matthew J. Church
-  - Daniela A. Valle
+  - Daniela A. del Valle
   - Sonya T. Dyhrman
   - "Sara Ferr\xF3n"
   - Jessica N. Fitzsimmons
@@ -591,8 +636,9 @@
   plugin: orcid.py
   file: orcid.yaml
 - id: doi:10.1029/2010jc006856
-  title: Evaluating triple oxygen isotope estimates of gross primary production at
-    the Hawaii Ocean Time-series and Bermuda Atlantic Time-series Study sites
+  title: "Evaluating triple oxygen isotope estimates of gross primary production at\
+    \ the Hawaii Ocean Time\u2010series and Bermuda Atlantic Time\u2010series Study\
+    \ sites"
   authors:
   - David P. Nicholson
   - Rachel H. R. Stanley
@@ -620,7 +666,7 @@
   file: orcid.yaml
 - id: doi:10.1029/2010jc006152
   title: Constraining ventilation during deepwater formation using deep ocean measurements
-    of the dissolved gas ratios<sup>40</sup>Ar/<sup>36</sup>Ar, N<sub>2</sub>/Ar,
+    of the dissolved gas ratios <sup>40</sup>Ar/<sup>36</sup>Ar, N<sub>2</sub>/Ar,
     and Kr/Ar
   authors:
   - David Nicholson
@@ -628,8 +674,8 @@
   - Nicolas Caillon
   - Jean Jouzel
   - Roberta C. Hamme
-  publisher: Journal of Geophysical Research
-  date: '2010-11-19'
+  publisher: 'Journal of Geophysical Research: Oceans'
+  date: '2010-11-01'
   link: https://doi.org/dsj97s
   orcid: 0000-0003-2653-9349
   plugin: orcid.py
@@ -649,7 +695,7 @@
   file: orcid.yaml
 - id: doi:10.1029/2007gb003095
   title: 'Net biological oxygen production in the ocean: Remote in situ measurements
-    of O<sub>2</sub>and N<sub>2</sub>in surface waters'
+    of O<sub>2</sub> and N<sub>2</sub> in surface waters'
   authors:
   - Steven Emerson
   - Charles Stump
@@ -683,7 +729,7 @@
   - David Nicholson
   - Ana Ver
   publisher: Eos, Transactions American Geophysical Union
-  date: '2004-01-01'
+  date: '2004-10-19'
   link: https://doi.org/dcx658
   orcid: 0000-0003-2653-9349
   plugin: orcid.py
