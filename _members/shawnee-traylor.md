@@ -7,7 +7,7 @@ aliases:
   - S. Traylor
   - Shawnee Traylor
 links:
-  home-page: https://boom.science
+  home-page: https://shawneetraylor.wixsite.com/home
   orcid: 0000-0003-3865-3464
 twitter: ShawneeTraylor
 research gate: https://www.researchgate.net/profile/Shawnee-Traylor
@@ -15,7 +15,7 @@ research gate: https://www.researchgate.net/profile/Shawnee-Traylor
 <br>
 <br>
 #### A member of the BOOMLAB since 2019, 
-Shawnee is earning her doctorate in chemical oceanography and specializes in using **dissolved gases to better understand the ocean's role in regulating global climate**. 
+[Shawnee](https://shawneetraylor.wixsite.com/home) is earning her doctorate in chemical oceanography and specializes in using **dissolved gases to better understand the ocean's role in regulating global climate**. 
 <br>
 #### Her thesis work focuses on:
 - novel methods to measure dissolved gases
