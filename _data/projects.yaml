@@ -31,7 +31,7 @@
   image: images/osnap_array.png
   #link: https://github.com/
   description: This project adds dissolved gas sensors (oxygen and carbon dioxide) to to the OSNAP subpolar mooring array to investigate the rates and processes governing gas exchange.
-  #repo: greenelab/lab-website-template
+  #repo: 
   tags:
     - air-sea exchange
     - oxygen
@@ -42,9 +42,32 @@
   image: images/chemyak.jpg
   link: https://github.com/
   description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  repo: greenelab/lab-website-template
+  repo: 
   tags:
     - software
+
+- title: Assessing Carbon Dioxide Removal and Ecosystem Response for an Ocean Alkalinity Enhancement Field Trial
+  subtitle: NOPP mCDR project monitoring OAE experiment with Spray Gliders
+  image: images/photo.jpg
+  link: 
+  description: The Nicholson lab will
+  repo: 
+  tags:
+    - air-sea exchange
+    - carbon dioxide removal
+    - numerical modeling
+    
+- title: Scalable, Multiparameter Chip-Size Carbon Sensors
+  subtitle: Arpa-e funded project to develop innovative sensors for mCDR applications
+  image: images/photo.jpg
+  link: https://www.whoi.edu/press-room/news-release/whoi-doe-mcdr-funding/
+  description: 
+  repo: 
+  tags:
+    - sensors
+    - carbon dioxide removal
+
+
 
 - title: Noble gas tracers
   subtitle: a subtitle
