@@ -14,6 +14,31 @@
     - oxygen
     - ocean observing
     - NSF funded
+    
+- title: OAE Gliders
+  subtitle: Assessing Carbon Dioxide Removal and Ecosystem Response for an Ocean Alkalinity Enhancement Field Trial
+  image: images/photo.jpg
+  group: featured
+  #link: 
+  description: 
+  #repo: 
+  tags:
+    - air-sea exchange
+    - carbon dioxide removal
+    - numerical modeling
+    - NOAA funded
+    
+- title: Multiparameter Carbon Sensors
+  subtitle: SEA-CO2: Scalable, Multiparameter Chip-Size Carbon Sensors
+  group: featured
+  image: images/photo.jpg
+  link: https://www.whoi.edu/press-room/news-release/whoi-doe-mcdr-funding/
+  description: Boomlab is collaborating with U. Penn, U. Michigan and Analog Devices to develop carbon new sensing capabilities 
+  repo: 
+  tags:
+    - sensors
+    - carbon dioxide removal
+    - Arpa-e funded
 
 - title: EXPORTS
   subtitle: EXport Processes in the Ocean from Remote Sensing (EXPORTS)
@@ -50,31 +75,6 @@
     - arctic
     - air-sea exchange
     - NSF funded
-
-- title: OAE Gliders
-  subtitle: Assessing Carbon Dioxide Removal and Ecosystem Response for an Ocean Alkalinity Enhancement Field Trial
-  image: images/photo.jpg
-  group: featured
-  #link: 
-  description: 
-  #repo: 
-  tags:
-    - air-sea exchange
-    - carbon dioxide removal
-    - numerical modeling
-    - NOAA funded
-    
-- title: Multiparameter Carbon Sensors
-  subtitle: SEA-CO2: Scalable, Multiparameter Chip-Size Carbon Sensors
-  group: featured
-  image: images/photo.jpg
-  link: https://www.whoi.edu/press-room/news-release/whoi-doe-mcdr-funding/
-  description: Boomlab is collaborating with U. Penn, U. Michigan and Analog Devices to develop carbon new sensing capabilities 
-  repo: 
-  tags:
-    - sensors
-    - carbon dioxide removal
-    - Arpa-e funded
 
 
 
