@@ -42,9 +42,9 @@
 - title: ChemYak 
   subtitle: An autonomous surface vehicle equipped with sensor to measure dissolved greenhouse gases in coastal enviroments
   image: images/chemyak.jpg
-  link: https://github.com/
+  #link: https://github.com/
   description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  repo: 
+  #repo: 
   tags:
     - sensors
     - arctic
@@ -55,9 +55,9 @@
   subtitle: Assessing Carbon Dioxide Removal and Ecosystem Response for an Ocean Alkalinity Enhancement Field Trial
   image: images/photo.jpg
   group: featured
-  link: 
+  #link: 
   description: 
-  repo: 
+  #repo: 
   tags:
     - air-sea exchange
     - carbon dioxide removal
