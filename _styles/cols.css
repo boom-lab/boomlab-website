@@ -20,12 +20,12 @@
   margin-bottom: 0 !important;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 750px) {
   .cols {
     --repeat: min(2, var(--cols));
   }
 }
-@media (max-width: 1000px) {
+@media (max-width: 500px) {
   .cols {
     --repeat: min(1, var(--cols));
   }
