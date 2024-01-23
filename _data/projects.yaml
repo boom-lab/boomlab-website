@@ -13,6 +13,7 @@
     - air-sea exchange
     - oxygen
     - ocean observing
+    - NSF funded
 
 - title: EXPORTS
   subtitle: EXport Processes in the Ocean from Remote Sensing (EXPORTS)
@@ -20,11 +21,11 @@
   image: https://oceanexports.org/images/logo-EXPORTS-white.png
   link: https://oceanexports.org/
   description: EXPORTS) is a large-scale NASA-led field campaign that will provide critical information for quantifying the export and fate of upper ocean net primary production (NPP) using satellite observations and state of the art ocean technologies.
-
   tags:
     - biological carbon pump
     - ocean observing
     - primary productivity
+    - NASA funded
 
 - title: GOHSNAP
   subtitle: Gases in the Overturning and Horizontal circulation of the Subpolar North Atlantic Program
@@ -36,6 +37,7 @@
     - air-sea exchange
     - oxygen
     - solubility carbon pump
+    - NSF funded
 
 - title: ChemYak 
   subtitle: An autonomous surface vehicle equipped with sensor to measure dissolved greenhouse gases in coastal enviroments
@@ -44,21 +46,27 @@
   description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   repo: 
   tags:
-    - software
+    - sensors
+    - arctic
+    - air-sea exchange
+    - NSF funded
 
-- title: Assessing Carbon Dioxide Removal and Ecosystem Response for an Ocean Alkalinity Enhancement Field Trial
-  subtitle: NOPP mCDR project monitoring OAE experiment with Spray Gliders
+- title: OAE Gliders
+  subtitle: Assessing Carbon Dioxide Removal and Ecosystem Response for an Ocean Alkalinity Enhancement Field Trial
   image: images/photo.jpg
+  group: featured
   link: 
-  description: The Nicholson lab will
+  description: 
   repo: 
   tags:
     - air-sea exchange
     - carbon dioxide removal
     - numerical modeling
+    - NOAA funded
     
-- title: Scalable, Multiparameter Chip-Size Carbon Sensors
-  subtitle: Arpa-e funded project to develop innovative sensors for mCDR applications
+- title: Multiparameter Carbon Sensors
+  subtitle: SEA-CO2: Scalable, Multiparameter Chip-Size Carbon Sensors
+  group: featured
   image: images/photo.jpg
   link: https://www.whoi.edu/press-room/news-release/whoi-doe-mcdr-funding/
   description: 
@@ -66,6 +74,7 @@
   tags:
     - sensors
     - carbon dioxide removal
+    - Arpa-e funded
 
 
 
@@ -79,3 +88,4 @@
     - air-sea exchange
     - solubility carbon pump
     - numerical modeling
+    - NSF funded
