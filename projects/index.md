@@ -2,7 +2,7 @@
 title: Projects
 nav:
   order: 2
-  tooltip: Software, datasets, and more
+  tooltip: See what boomlabers are up to!
 ---
 
 # {% include icon.html icon="fa-solid fa-wrench" %}Projects
