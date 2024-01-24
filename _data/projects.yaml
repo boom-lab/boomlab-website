@@ -17,9 +17,9 @@
     
 - title: OAE Gliders
   subtitle: Assessing Carbon Dioxide Removal and Ecosystem Response for an Ocean Alkalinity Enhancement Field Trial
-  image: images/photo.jpg
+  image: images/proj_oae_gliders.png
   group: featured
-  #link: 
+  link: https://www.whoi.edu/press-room/news-release/whoi-projects-awarded-funding-to-support-research-and-development-of-marine-carbon-dioxide-removal/
   description: 
   #repo: 
   tags:
@@ -30,8 +30,8 @@
     
 - title: Multiparameter Carbon Sensors
   subtitle: SEA-CO2 - Scalable, Multiparameter Chip-Size Carbon Sensors
-  group: featured
-  image: images/photo.jpg
+  #group: featured
+  image: images/proj_arpae.png
   link: https://www.whoi.edu/press-room/news-release/whoi-doe-mcdr-funding/
   description: Boomlab is collaborating with U. Penn, U. Michigan and Analog Devices to develop carbon new sensing capabilities 
   repo: 
