@@ -69,10 +69,10 @@
 
   <meta name="author" content="colette-kelly">
   <meta property="og:type" content="article">
-  <meta property="og:updated_time" content="2024-03-07T18:55:58+00:00">
+  <meta property="og:updated_time" content="2024-03-12T15:31:17+00:00">
   <meta property="article:published_time" content="2023-10-03T00:00:00+00:00">
-  <meta property="article:modified_time" content="2024-03-07T18:55:58+00:00">
-  <meta name="revised" content="2024-03-07T18:55:58+00:00">
+  <meta property="article:modified_time" content="2024-03-12T15:31:17+00:00">
+  <meta name="revised" content="2024-03-12T15:31:17+00:00">
 
 
 <script type="application/ld+json">
@@ -82,7 +82,7 @@
       "@type": "BlogPosting",
       "author": { "@type": "Person", "name": "Poseidon basics" },
       "datePublished": "2023-10-03T00:00:00+00:00",
-      "dateModified": "2024-03-07T18:55:58+00:00",
+      "dateModified": "2024-03-12T15:31:17+00:00",
     
     "name": "Poseidon basics",
     "description": "Woods Hole Oceanographic Institution. The Biogeochemical Ocean Observing and Modeling Lab at the Woods Hole Oeanographic Institution",
@@ -463,7 +463,7 @@
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>March 07, 2024</span>
+      <span>March 12, 2024</span>
     </span>
   
 </div>
@@ -573,7 +573,7 @@ Open a Terminal on your local machine and run:
 <ol>
   <li>Module load Anaconda
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2 ~]<span class="nv">$ </span>module load anaconda3/2021.11
+<div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2 ~]<span class="nv">$ </span>module load miniconda/23.11
 </code></pre></div>    </div>
   </li>
   <li>Create the virtual environment based on an environment.yml file
@@ -582,7 +582,16 @@ Open a Terminal on your local machine and run:
 </code></pre></div>    </div>
     <p>(You can also activate the virtual environment and install packages individually)</p>
   </li>
+  <li>Running this command seems to help with Jupyter Notebook login issues
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@pn136 ~]<span class="nv">$ </span><span class="nb">.</span> <span class="nv">$CONDA_PREFIX</span>/etc/profile.d/conda.sh
+</code></pre></div>    </div>
+  </li>
   <li>Activate the virtual environment
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2]<span class="nv">$ </span>conda activate &lt;env-name&gt;
+</code></pre></div>    </div>
+    <p>OR</p>
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2]<span class="nv">$ </span><span class="nb">source </span>activate &lt;env-name&gt;
 </code></pre></div>    </div>
