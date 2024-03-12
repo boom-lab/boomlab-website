@@ -15,7 +15,7 @@ colette$ ssh <whoi.ID>@poseidon.whoi.edu
 ### 2. Module load Anaconda
 To use conda or any other software on Poseidon, you need to load the associated module first. The anaconda3/2021.11 module contains a recent version of conda. The anaconda/5.1 module contains a much older version of conda, which will make solving environments and adding packages extremely slow.
 ```bash
-[colette.kelly@poseidon-l2 ~]$ module load anaconda3/2021.11
+[colette.kelly@poseidon-l2 ~]$ module load miniconda/23.11
 ```
 
 ### 3. Activate conda environment
@@ -59,3 +59,17 @@ You'll need to restart your Jupyter Notebook session to be able to use the new p
 
 ### 9. Shut down Jupyter Notebook
 Make sure you shut down the Jupyter Notebook (either control-C in Terminal or with the Jupyter GUI), otherwise you might run into issues re-opening a port.
+
+### Troubleshooting
+
+If, in creating the SSH tunnel, you get the error
+```bash
+bind: Address already in use
+```
+...or you can't log into Jupyter with your Jupyte Notebook password, try running ". $CONDA_PREFIX/etc/profile.d/conda.sh #" after loading the miniconda module:
+```bash
+srun -N 1 -n 1 --mem=1000 --time=00:30:00 --pty bash
+module load miniconda
+. $CONDA_PREFIX/etc/profile.d/conda.sh # initialize conda environment
+conda activate <env-name>
+```

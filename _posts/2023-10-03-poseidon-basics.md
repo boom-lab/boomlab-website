@@ -78,7 +78,7 @@ There are a few steps you need to take before you can run Python code that relie
 ### Creating a virtual environment with conda
 1. Module load Anaconda
 ```bash
-[colette.kelly@poseidon-l2 ~]$ module load anaconda3/2021.11
+[colette.kelly@poseidon-l2 ~]$ module load miniconda/23.11
 ```
 2. Create the virtual environment based on an environment.yml file
 ```bash
@@ -86,7 +86,16 @@ There are a few steps you need to take before you can run Python code that relie
 ```
 (You can also activate the virtual environment and install packages individually)
 
-3. Activate the virtual environment
+3. Running this command seems to help with Jupyter Notebook login issues
+```bash
+[colette.kelly@pn136 ~]$ . $CONDA_PREFIX/etc/profile.d/conda.sh
+```
+
+4. Activate the virtual environment
+```bash
+[colette.kelly@poseidon-l2]$ conda activate <env-name>
+```
+OR
 ```bash
 [colette.kelly@poseidon-l2]$ source activate <env-name>
 ```
