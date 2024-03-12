@@ -12,8 +12,8 @@ Open a Terminal window on your local machine and type:
 colette$ ssh <whoi.ID>@poseidon.whoi.edu
 ```
 
-### 2. Module load Anaconda
-To use conda or any other software on Poseidon, you need to load the associated module first. The anaconda3/2021.11 module contains a recent version of conda. The anaconda/5.1 module contains a much older version of conda, which will make solving environments and adding packages extremely slow.
+### 2. Module load conda
+To use conda or any other software on Poseidon, you need to load the associated module first. The miniconda/23.11 module contains a recent version of conda. The anaconda/5.1 module contains a much older version of conda, which will make solving environments and adding packages extremely slow.
 ```bash
 [colette.kelly@poseidon-l2 ~]$ module load miniconda/23.11
 ```

@@ -76,7 +76,7 @@ colette$ scp <whoiID>@poseidon.whoi.edu:/vortexfs1/home/<whoiID>/<remote-filenam
 There are a few steps you need to take before you can run Python code that relies on 3rd-party packages (Pandas, Numpy, etc.) on Poseidon. The best way to install and manage these 3rd-party packages is to create a virtual environment for each project you're working on (more info on virtual environments [here](https://github.com/stanfordpython/python-handouts/blob/master/virtual-environments.md)). Below are instructions for creating a virtual environment and installing packages with conda and with Pip, the built-in Python package manager.
 
 ### Creating a virtual environment with conda
-1. Module load Anaconda
+1. Module load miniconda
 ```bash
 [colette.kelly@poseidon-l2 ~]$ module load miniconda/23.11
 ```
