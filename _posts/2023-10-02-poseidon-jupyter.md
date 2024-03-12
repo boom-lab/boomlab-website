@@ -66,7 +66,7 @@ If, in creating the SSH tunnel, you get the error
 ```bash
 bind: Address already in use
 ```
-...or you can't log into Jupyter with your Jupyte Notebook password, try running ". $CONDA_PREFIX/etc/profile.d/conda.sh #" after loading the miniconda module:
+...or you get the error "invalid login" when you try to log into Jupyter with your Jupyter Notebook password, try running ". $CONDA_PREFIX/etc/profile.d/conda.sh #" after loading the miniconda module:
 ```bash
 srun -N 1 -n 1 --mem=1000 --time=00:30:00 --pty bash
 module load miniconda
