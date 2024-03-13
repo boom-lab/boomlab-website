@@ -9,14 +9,14 @@ aliases:
   - Ellen R. Park
 links:
   home-page: https://boom.science
-  orcid: 0000-0000-0000-0001
+  orcid: 0000-0001-5808-9958
 ---
 
-Ellen is a fourth-year PhD student in chemical oceanography in the MIT-WHOI Joint Program. Broadly, her research uses Biogeochemical Argo floats to better understand carbon and oxygen cycles in the North Atlantic.
+Ellen is a fourth-year PhD student in chemical oceanography in the MIT-WHOI Joint Program. Broadly, her research uses Biogeochemical Argo floats to better understand carbon and oxygen cycling.
 
 More specifically, her thesis work explores:
 - oxygen dynamics in the Labrador Sea
-- the biological carbon pump in the North Atlantic
+- estimating biological carbon pump parameters in the global ocean
 - quantification of sensor dynamic response time
 
 Ellen's research also leverages the power of machine learning to help maximize the utility of observational datasets.
