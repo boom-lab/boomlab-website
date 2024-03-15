@@ -86,10 +86,11 @@ There are a few steps you need to take before you can run Python code that relie
 ```
 (You can also activate the virtual environment and install packages individually)
 
-3. Running this command seems to help with Jupyter Notebook login issues
+3. The following command initializes the conda environment:
 ```bash
-[colette.kelly@pn136 ~]$ . $CONDA_PREFIX/etc/profile.d/conda.sh
+[colette.kelly@pn136 ~]$ .$CONDA_PREFIX/etc/profile.d/conda.sh
 ```
+You can also do `conda init` but that modifies your .bashrc file, which creates potential conflicts if you want to try different conda environments or use any Poseidon module beyond the one you used to run `conda init`.
 
 4. Activate the virtual environment
 ```bash
