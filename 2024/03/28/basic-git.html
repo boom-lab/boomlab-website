@@ -46,31 +46,31 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Shared HPC network drive | nicholson boom-lab</title>
+<title>Basic version control and collaboration with git | nicholson boom-lab</title>
 
 <link rel="icon" href="/images/icon.png">
 
-<meta name="title" content="Shared HPC network drive">
+<meta name="title" content="Basic version control and collaboration with git">
 <meta name="description" content="Woods Hole Oceanographic Institution. The Biogeochemical Ocean Observing and Modeling Lab at the Woods Hole Oeanographic Institution">
 
-<meta property="og:title" content="Shared HPC network drive">
+<meta property="og:title" content="Basic version control and collaboration with git">
 <meta property="og:site_title" content="nicholson boom-lab">
 <meta property="og:description" content="Woods Hole Oceanographic Institution. The Biogeochemical Ocean Observing and Modeling Lab at the Woods Hole Oeanographic Institution">
 <meta property="og:url" content="">
 <meta property="og:image" content="/images/share.jpg">
 <meta property="og:locale" content="en_US">
 
-<meta property="twitter:title" content="Shared HPC network drive">
+<meta property="twitter:title" content="Basic version control and collaboration with git">
 <meta property="twitter:description" content="Woods Hole Oceanographic Institution. The Biogeochemical Ocean Observing and Modeling Lab at the Woods Hole Oeanographic Institution">
 <meta property="twitter:url" content="">
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:image" content="/images/share.jpg">
 
 
-  <meta name="author" content="david-nicholson">
+  <meta name="author" content="colette-kelly">
   <meta property="og:type" content="article">
   <meta property="og:updated_time" content="2024-03-28T19:44:28+00:00">
-  <meta property="article:published_time" content="2023-02-23T00:00:00+00:00">
+  <meta property="article:published_time" content="2024-03-28T00:00:00+00:00">
   <meta property="article:modified_time" content="2024-03-28T19:44:28+00:00">
   <meta name="revised" content="2024-03-28T19:44:28+00:00">
 
@@ -80,13 +80,13 @@
     "@context": "https://schema.org",
     
       "@type": "BlogPosting",
-      "author": { "@type": "Person", "name": "Shared HPC network drive" },
-      "datePublished": "2023-02-23T00:00:00+00:00",
+      "author": { "@type": "Person", "name": "Basic version control and collaboration with git" },
+      "datePublished": "2024-03-28T00:00:00+00:00",
       "dateModified": "2024-03-28T19:44:28+00:00",
     
-    "name": "Shared HPC network drive",
+    "name": "Basic version control and collaboration with git",
     "description": "Woods Hole Oceanographic Institution. The Biogeochemical Ocean Observing and Modeling Lab at the Woods Hole Oeanographic Institution",
-    "headline": "Shared HPC network drive",
+    "headline": "Basic version control and collaboration with git",
     "publisher": {
       "@type": "Organization",
       "logo": { "@type": "ImageObject", "url": "/images/icon.png" }
@@ -410,7 +410,7 @@
   
 
   <section class="background" data-size="page">
-    <h1 class="center">Shared HPC network drive</h1>
+    <h1 class="center">Basic version control and collaboration with git</h1>
 
 <div class="post-info">
   
@@ -419,27 +419,27 @@
       
 
 <div class="portrait-wrapper">
-  <a href="/members/david-nicholson.html" class="portrait" data-style="tiny" aria-label="David (Roo) Nicholson">
-    <img src="/images/people/Nicholson.jpg" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+  <a href="/members/colette-kelly.html" class="portrait" data-style="tiny" aria-label="Colette Kelly">
+    <img src="https://nitrogen.stanford.edu/sites/g/files/sbiybj20311/files/styles/medium_square/public/media/person/colettelkelly1604361295658.jpg?h=98492e8c&itok=QAGlgsTR" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
 
     
       <span class="portrait-text">
         
           <span class="portrait-name">
-            David (Roo) Nicholson
+            Colette Kelly
           </span>
         
         
         
           <span class="portrait-role">
             
-            <i class="icon fa-solid fa-person-drowning"></i>
-            <span>Principal Investigator</span>
+            <i class="icon fa-solid fa-glasses"></i>
+            <span>Postdoctoral Researcher</span>
           </span>
         
         
           <span class="portrait-pronouns">
-            He/Him
+            They/Them
           </span>
         
       </span>
@@ -456,15 +456,10 @@
   
     <span data-tooltip="Originally published on">
       <i class="icon fa-regular fa-calendar"></i>
-      <span>February 23, 2023</span>
+      <span>March 28, 2024</span>
     </span>
   
 
-  
-    <span data-tooltip="Last updated on">
-      <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>March 28, 2024</span>
-    </span>
   
 </div>
 
@@ -501,64 +496,117 @@
 -->
 
 
-<h1 id="storage-on-the-whoi-vast-drive">Storage on the WHOI VAST drive</h1>
-<p>Our lab has 100 Tb dedicated space on the WHOI VAST SSD storage drive. Permissions for current lab members should be in place, but contact Roo if you need access</p>
+<h1 id="basic-version-control-and-collaboration-with-git">Basic version control and collaboration with git</h1>
+<p>Check out <a href="https://swcarpentry.github.io/git-novice/">this website</a> for a lot more detail and explanation!</p>
 
-<h2 id="connecting-to-vast">Connecting to VAST</h2>
-<h3 id="option-1-smb-share">Option 1: smb share</h3>
-<p>You can directly mount the shared drive to your laptop. MacOS instructions below</p>
-
+<h3 id="clone-a-github-repository-and-start-a-new-branch-based-on-an-existing-one">clone a GitHub repository and start a new branch based on an existing one</h3>
 <ol>
-  <li>With Finder open, <kbd>Ctrl</kbd>+<kbd>k</kbd> to “Connect to Server”</li>
-  <li>server address: <code class="language-plaintext highlighter-rouge">smb://vast:/proj/boom</code>
-</li>
-  <li>Once mounted, the volume is accessible directly at <code class="language-plaintext highlighter-rouge">/Volumes/boom/</code>
-</li>
-</ol>
-
-<h3 id="option-2-from-poseidon">Option 2: from Poseidon</h3>
-<ol>
-  <li>ssh to <code class="language-plaintext highlighter-rouge">yourusername@poseidon.whoi.edu</code>
-</li>
   <li>
-<code class="language-plaintext highlighter-rouge">cd /proj/boom</code>
-*probably need to be inside WHOI firewall
-Also, many useful datasets (era5, cmip6, etc.) are available on <code class="language-plaintext highlighter-rouge">/proj/cmip6/data</code>
-</li>
+    <p>Navigate to the directory where you want to clone this repository. You can use the <code class="language-plaintext highlighter-rouge">cd</code> command to change directories.</p>
+  </li>
+  <li>Clone the GitHub repository using the <code class="language-plaintext highlighter-rouge">git clone</code> command. Replace <code class="language-plaintext highlighter-rouge">https://github.com/boom-lab/n2o-py.git</code> with the URL of the GitHub repository you want to clone.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>git clone https://github.com/boom-lab/n2o-py.git
+</code></pre></div>    </div>
+  </li>
+  <li>Change your current directory to the cloned repository.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>n2o-py
+</code></pre></div>    </div>
+  </li>
+  <li>Check out the existing branch ckelly using the git checkout command.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>git checkout ckelly
+</code></pre></div>    </div>
+  </li>
+  <li>Create a new branch based on the existing “ckelly” branch using the <code class="language-plaintext highlighter-rouge">git checkout -b</code> command. Replace <code class="language-plaintext highlighter-rouge">new-branch-name</code> with the desired name for your new branch.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>git checkout <span class="nt">-b</span> new-branch-name
+</code></pre></div>    </div>
+    <p>You are now on the new branch. You can start making changes, committing them, and pushing them to the repository as needed.</p>
+  </li>
+  <li>
+    <p>Make changes to your files using any text editor or IDE available on the cluster.</p>
+  </li>
+  <li>Add your changes to the staging area using the <code class="language-plaintext highlighter-rouge">git add</code> command.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>git add <span class="nt">--all</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Commit your changes using the <code class="language-plaintext highlighter-rouge">git commit</code> command.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>git commit <span class="nt">-m</span> <span class="s2">"Your commit message here"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Push the new branch to the GitHub repository using the <code class="language-plaintext highlighter-rouge">git push</code> command. Replace <code class="language-plaintext highlighter-rouge">new-branch-name</code> with the name of your new branch.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>git push origin new-branch-name
+</code></pre></div>    </div>
+  </li>
 </ol>
 
-<h3 id="option-3-globus">Option 3: Globus</h3>
+<p>You have now successfully cloned a GitHub repository and started a new branch based on the existing branch ckelly. You can continue working on your branch and collaborate by pushing your changes to the repository.</p>
 
-<p><a href="https://whoi-it.whoi.edu/globus-file-transfer-at-whoi/">Overview of Globus @ WHOI</a> - Basically you log into Globus via <a href="https://app.globus.org"></a> with your WHOI account, then search for and connect to the “WHOI Vast Proj Space” collection - you’ll see the boom directory and other Vast proj directories within and can connect and transfer between any that you have permissions for.</p>
+<h3 id="stage-commit-and-push-changes">stage, commit, and push changes</h3>
+<p>Replace <code class="language-plaintext highlighter-rouge">branch-name</code> with the name of your branch.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nt">--all</span>
+git commit <span class="nt">--all</span> <span class="nt">-m</span> <span class="s2">"your commit message here"</span>
+git push origin branch-name
+</code></pre></div></div>
 
-<h2 id="organization">Organization</h2>
-<p>We are just setting this up, so the below may change…</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
-├── data
-│   ├── gdac
-│   │   ├── aoml  [8570 entries exceeds filelimit, not opening dir]
-│   │   ├── bodc
-│   │   ├── coriolis
-│   │   ├── csio
-│   │   ├── csiro
-│   │   ├── incois
-│   │   ├── jma
-│   │   ├── kma
-│   │   ├── kordi
-│   │   ├── meds
-│   │   └── nmdis
-│   └── osu
-│       └── orca.science.oregonstate.edu
-│           └── data
-│               └── 1x2
-│                   └── monthly
-│                       └── cafe.modis.r2018
-│                           └── hdf  [20 entries exceeds filelimit, not opening dir]
-|    └── **add new datasets here...**
-└── users
-    └── dnicholson
-    └── **create your dir here...**
+<h3 id="view-current-local-and-remote-branches">view current local and remote branches</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l1 n2o-py]<span class="nv">$ </span>git branch <span class="nt">-a</span>
+<span class="k">*</span> ckelly
+  dnich-floats
+  master
+  remotes/origin/HEAD -&gt; origin/master
+  remotes/origin/ckelly
+  remotes/origin/dnich-floats
+  remotes/origin/master
+  remotes/origin/predict
+</code></pre></div></div>
 
+<h3 id="delete-a-branch">delete a branch</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l1 n2o-py]<span class="nv">$ </span>git branch <span class="nt">-d</span> branchname
+</code></pre></div></div>
+
+<h3 id="switch-to-a-different-branch">switch to a different branch</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l1 n2o-py]<span class="nv">$ </span>git checkout dnich-floats
+Switched to branch <span class="s1">'dnich-floats'</span>
+</code></pre></div></div>
+
+<h3 id="fetch-latest-changes-from-remote-repository">fetch latest changes from remote repository</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2 n2o-py]<span class="nv">$ </span>git fetch origin
+From https://github.com/boom-lab/n2o-py
+   ce5a8e4..055751d  master     -&gt; origin/master
+</code></pre></div></div>
+
+<h3 id="view-changes-on-branch-ckelly-from-the-remote-repository">view changes on branch ckelly from the remote repository</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l1 n2o-py]<span class="nv">$ </span>git log <span class="nt">--graph</span> <span class="nt">--oneline</span> origin/ckelly
+<span class="k">*</span> 0db96ac include .env file <span class="k">in </span>version control
+<span class="k">*</span>   2d42910 try making a commit after resolving conflicts
+|<span class="se">\ </span> 
+| <span class="k">*</span> 41124ab Update environment.yml
+<span class="k">*</span> | 6c005ed <span class="nb">test </span>change
+<span class="k">*</span> | fce698e add model output <span class="k">for </span>training on surface data only
+<span class="k">*</span> | 8a3411f add user-specific output directory to RF notebook
+</code></pre></div></div>
+
+<h3 id="merge-changes-from-branch-ckelly-into-your-branch">merge changes from branch ckelly into your branch</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l1 n2o-py]<span class="nv">$ </span>git merge origin/ckelly
+</code></pre></div></div>
+
+<h3 id="create-local-master-branch-to-track-changes-on-the-remote-master-branch">create local ‘master’ branch to track changes on the remote master branch</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2 n2o-py]<span class="nv">$ </span>git checkout master
+Branch master <span class="nb">set </span>up to track remote branch master from origin.
+Switched to a new branch <span class="s1">'master'</span>
+<span class="o">[</span>colette.kelly@poseidon-l2 n2o-py]<span class="nv">$ </span>git branch <span class="nt">--set-upstream-to</span><span class="o">=</span>origin/master master
+Branch master <span class="nb">set </span>up to track remote branch master from origin.
+</code></pre></div></div>
+
+<h3 id="check-to-make-sure-changes-on-remote-master-branch-have-been-merged-to-local-master-branch">check to make sure changes on remote master branch have been merged to local master branch</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2 n2o-py]<span class="nv">$ </span>git merge origin/master
+Already up-to-date.
 </code></pre></div></div>
   </section>
 
@@ -578,17 +626,12 @@ Also, many useful datasets (era5, cmip6, etc.) are available on <code class="lan
   <span>
     
       <i class="icon fa-solid fa-angle-left"></i> Previous post<br>
-      <a href="/2021/09/30/example-post-2.html">
-        Example post 2
+      <a href="/2023/10/03/poseidon-basics.html">
+        Poseidon basics
       </a>
     
   </span>
   <span>
-    
-      Next post <i class="icon fa-solid fa-angle-right"></i><br>
-      <a href="/2023/10/02/poseidon-jupyter.html">
-        Running Jupyter Notebooks on Poseidon
-      </a>
     
   </span>
 </div>

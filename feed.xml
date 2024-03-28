@@ -1,11 +1,114 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2024-03-15T19:19:33+00:00</updated><id>/feed.xml</id><title type="html">nicholson boom-lab</title><subtitle>The Biogeochemical Ocean Observing and Modeling Lab at the Woods Hole Oeanographic Institution</subtitle><entry><title type="html">Poseidon basics</title><link href="/2023/10/03/poseidon-basics.html" rel="alternate" type="text/html" title="Poseidon basics" /><published>2023-10-03T00:00:00+00:00</published><updated>2024-03-15T19:18:15+00:00</updated><id>/2023/10/03/poseidon-basics</id><content type="html" xml:base="/2023/10/03/poseidon-basics.html"><![CDATA[<h1 id="using-python-on-poseidon">Using Python on Poseidon</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2024-03-28T19:46:28+00:00</updated><id>/feed.xml</id><title type="html">nicholson boom-lab</title><subtitle>The Biogeochemical Ocean Observing and Modeling Lab at the Woods Hole Oeanographic Institution</subtitle><entry><title type="html">Basic version control and collaboration with git</title><link href="/2024/03/28/basic-git.html" rel="alternate" type="text/html" title="Basic version control and collaboration with git" /><published>2024-03-28T00:00:00+00:00</published><updated>2024-03-28T19:44:28+00:00</updated><id>/2024/03/28/basic-git</id><content type="html" xml:base="/2024/03/28/basic-git.html"><![CDATA[<h1 id="basic-version-control-and-collaboration-with-git">Basic version control and collaboration with git</h1>
+<p>Check out <a href="https://swcarpentry.github.io/git-novice/">this website</a> for a lot more detail and explanation!</p>
+
+<h3 id="clone-a-github-repository-and-start-a-new-branch-based-on-an-existing-one">clone a GitHub repository and start a new branch based on an existing one</h3>
+<ol>
+  <li>
+    <p>Navigate to the directory where you want to clone this repository. You can use the <code class="language-plaintext highlighter-rouge">cd</code> command to change directories.</p>
+  </li>
+  <li>Clone the GitHub repository using the <code class="language-plaintext highlighter-rouge">git clone</code> command. Replace <code class="language-plaintext highlighter-rouge">https://github.com/boom-lab/n2o-py.git</code> with the URL of the GitHub repository you want to clone.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/boom-lab/n2o-py.git
+</code></pre></div>    </div>
+  </li>
+  <li>Change your current directory to the cloned repository.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>n2o-py
+</code></pre></div>    </div>
+  </li>
+  <li>Check out the existing branch ckelly using the git checkout command.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout ckelly
+</code></pre></div>    </div>
+  </li>
+  <li>Create a new branch based on the existing “ckelly” branch using the <code class="language-plaintext highlighter-rouge">git checkout -b</code> command. Replace <code class="language-plaintext highlighter-rouge">new-branch-name</code> with the desired name for your new branch.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout <span class="nt">-b</span> new-branch-name
+</code></pre></div>    </div>
+    <p>You are now on the new branch. You can start making changes, committing them, and pushing them to the repository as needed.</p>
+  </li>
+  <li>
+    <p>Make changes to your files using any text editor or IDE available on the cluster.</p>
+  </li>
+  <li>Add your changes to the staging area using the <code class="language-plaintext highlighter-rouge">git add</code> command.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nt">--all</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Commit your changes using the <code class="language-plaintext highlighter-rouge">git commit</code> command.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit <span class="nt">-m</span> <span class="s2">"Your commit message here"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Push the new branch to the GitHub repository using the <code class="language-plaintext highlighter-rouge">git push</code> command. Replace <code class="language-plaintext highlighter-rouge">new-branch-name</code> with the name of your new branch.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin new-branch-name
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>You have now successfully cloned a GitHub repository and started a new branch based on the existing branch ckelly. You can continue working on your branch and collaborate by pushing your changes to the repository.</p>
+
+<h3 id="stage-commit-and-push-changes">stage, commit, and push changes</h3>
+<p>Replace <code class="language-plaintext highlighter-rouge">branch-name</code> with the name of your branch.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nt">--all</span>
+git commit <span class="nt">--all</span> <span class="nt">-m</span> <span class="s2">"your commit message here"</span>
+git push origin branch-name
+</code></pre></div></div>
+
+<h3 id="view-current-local-and-remote-branches">view current local and remote branches</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l1 n2o-py]<span class="nv">$ </span>git branch <span class="nt">-a</span>
+<span class="k">*</span> ckelly
+  dnich-floats
+  master
+  remotes/origin/HEAD -&gt; origin/master
+  remotes/origin/ckelly
+  remotes/origin/dnich-floats
+  remotes/origin/master
+  remotes/origin/predict
+</code></pre></div></div>
+
+<h3 id="delete-a-branch">delete a branch</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l1 n2o-py]<span class="nv">$ </span>git branch <span class="nt">-d</span> branchname
+</code></pre></div></div>
+
+<h3 id="switch-to-a-different-branch">switch to a different branch</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l1 n2o-py]<span class="nv">$ </span>git checkout dnich-floats
+Switched to branch <span class="s1">'dnich-floats'</span>
+</code></pre></div></div>
+
+<h3 id="fetch-latest-changes-from-remote-repository">fetch latest changes from remote repository</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2 n2o-py]<span class="nv">$ </span>git fetch origin
+From https://github.com/boom-lab/n2o-py
+   ce5a8e4..055751d  master     -&gt; origin/master
+</code></pre></div></div>
+
+<h3 id="view-changes-on-branch-ckelly-from-the-remote-repository">view changes on branch ckelly from the remote repository</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l1 n2o-py]<span class="nv">$ </span>git log <span class="nt">--graph</span> <span class="nt">--oneline</span> origin/ckelly
+<span class="k">*</span> 0db96ac include .env file <span class="k">in </span>version control
+<span class="k">*</span>   2d42910 try making a commit after resolving conflicts
+|<span class="se">\ </span> 
+| <span class="k">*</span> 41124ab Update environment.yml
+<span class="k">*</span> | 6c005ed <span class="nb">test </span>change
+<span class="k">*</span> | fce698e add model output <span class="k">for </span>training on surface data only
+<span class="k">*</span> | 8a3411f add user-specific output directory to RF notebook
+</code></pre></div></div>
+
+<h3 id="merge-changes-from-branch-ckelly-into-your-branch">merge changes from branch ckelly into your branch</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l1 n2o-py]<span class="nv">$ </span>git merge origin/ckelly
+</code></pre></div></div>
+
+<h3 id="create-local-master-branch-to-track-changes-on-the-remote-master-branch">create local ‘master’ branch to track changes on the remote master branch</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2 n2o-py]<span class="nv">$ </span>git checkout master
+Branch master <span class="nb">set </span>up to track remote branch master from origin.
+Switched to a new branch <span class="s1">'master'</span>
+<span class="o">[</span>colette.kelly@poseidon-l2 n2o-py]<span class="nv">$ </span>git branch <span class="nt">--set-upstream-to</span><span class="o">=</span>origin/master master
+Branch master <span class="nb">set </span>up to track remote branch master from origin.
+</code></pre></div></div>
+
+<h3 id="check-to-make-sure-changes-on-remote-master-branch-have-been-merged-to-local-master-branch">check to make sure changes on remote master branch have been merged to local master branch</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2 n2o-py]<span class="nv">$ </span>git merge origin/master
+Already up-to-date.
+</code></pre></div></div>]]></content><author><name>colette-kelly</name></author><category term="lab," /><category term="how-to," /><category term="computing" /><summary type="html"><![CDATA[Basic version control and collaboration with git Check out this website for a lot more detail and explanation!]]></summary></entry><entry><title type="html">Poseidon basics</title><link href="/2023/10/03/poseidon-basics.html" rel="alternate" type="text/html" title="Poseidon basics" /><published>2023-10-03T00:00:00+00:00</published><updated>2024-03-28T19:44:28+00:00</updated><id>/2023/10/03/poseidon-basics</id><content type="html" xml:base="/2023/10/03/poseidon-basics.html"><![CDATA[<h1 id="using-python-on-poseidon">Using Python on Poseidon</h1>
 <p>Quick overview of connecting to and running Python scripts on Poseidon.</p>
 
 <p>Logging in:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>ssh &lt;WHOI ID&gt;@poseidon.whoi.edu
 </code></pre></div></div>
-
-<h2 id="slurm-basics">Slurm basics</h2>
+<h3 id="slurm">Slurm</h3>
 <p>Slurm is the resource manager on Poseidon. It lets you request computing resources and submit jobs to the cluster. You submit jobs with Sbatch scripts, which tell Slurm what computing resources you need, and then run the commands to activate virtual environments and run Python scripts (example <a href="https://github.com/boom-lab/poseidon-data/blob/main/cds/get_era5.sh">here</a>). Slurm also lets you start an interactive session from which you can run Jupyter Notebooks (more info <a href="https://boom.science/2023/10/02/poseidon-jupyter.html">here</a>).</p>
 
 <p>Start a <code class="language-plaintext highlighter-rouge">bash</code> interactive session on a compute node with one core for 20 minutes:</p>
@@ -42,27 +145,6 @@ Job Wall-clock <span class="nb">time</span>: 00:22:15
 Memory Utilized: 903.89 MB
 Memory Efficiency: 44.14% of 2.00 GB
 </code></pre></div></div>
-
-<h2 id="syncing-files-to-poseidon">Syncing files to Poseidon</h2>
-<p>There are lots of ways to sync files between Poseidon and your local machine. My preferred way is to clone Github repositories directly into my home directory on Poseidon. This gives you all the benefits of git (version control, branches) so you can undo changes if you mess things up.</p>
-
-<p>A really simple way to sync files is with secure copy. Instructions are below because the Poseidon documentation is a bit out of date as of writing (10/3/23).</p>
-
-<ol>
-  <li>Secure copy a file from local machine to Poseidon <br />
-Open a Terminal on your local machine and run:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>scp &lt;local-filename&gt; &lt;whoiID&gt;@poseidon.whoi.edu:/vortexfs1/home/&lt;whoiID&gt;/&lt;remote-filename&gt;
-</code></pre></div>    </div>
-  </li>
-  <li>Secure copy a file from Poseidon to local machine <br />
-Open a Terminal on your local machine and run:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>scp &lt;whoiID&gt;@poseidon.whoi.edu:/vortexfs1/home/&lt;whoiID&gt;/&lt;remote-filename&gt; &lt;local-filename&gt;
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<h2 id="running-python-code-with-3rd-party-packages-on-poseidon">Running Python code with 3rd-party packages on Poseidon</h2>
-<p>There are a few steps you need to take before you can run Python code that relies on 3rd-party packages (Pandas, Numpy, etc.) on Poseidon. The best way to install and manage these 3rd-party packages is to create a virtual environment for each project you’re working on (more info on virtual environments <a href="https://github.com/stanfordpython/python-handouts/blob/master/virtual-environments.md">here</a>). Below are instructions for creating a virtual environment and installing packages with conda and with Pip, the built-in Python package manager.</p>
 
 <h3 id="creating-a-virtual-environment-with-conda">Creating a virtual environment with conda</h3>
 <ol>
@@ -123,7 +205,25 @@ Open a Terminal on your local machine and run:
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@pn055 ~]<span class="nv">$ </span>python3 get_era5.py
 </code></pre></div></div>
 
-<p>If you’re running the python code with a batch script, include a line to activate the virtual environment before the command to run the Python script, as in this <a href="https://github.com/boom-lab/poseidon-data/blob/main/examples/python3rdparty.sh">example</a>.</p>]]></content><author><name>colette-kelly</name></author><category term="lab," /><category term="how-to," /><category term="computing" /><summary type="html"><![CDATA[Using Python on Poseidon Quick overview of connecting to and running Python scripts on Poseidon.]]></summary></entry><entry><title type="html">Running Jupyter Notebooks on Poseidon</title><link href="/2023/10/02/poseidon-jupyter.html" rel="alternate" type="text/html" title="Running Jupyter Notebooks on Poseidon" /><published>2023-10-02T00:00:00+00:00</published><updated>2024-03-15T19:18:15+00:00</updated><id>/2023/10/02/poseidon-jupyter</id><content type="html" xml:base="/2023/10/02/poseidon-jupyter.html"><![CDATA[<h1 id="running-jupyter-notebooks-remotely-on-poseidon">Running Jupyter Notebooks Remotely on Poseidon</h1>
+<p>If you’re running the python code with a batch script, include a line to activate the virtual environment before the command to run the Python script, as in this <a href="https://github.com/boom-lab/poseidon-data/blob/main/examples/python3rdparty.sh">example</a>.</p>
+
+<h3 id="syncing-files-to-poseidon">Syncing files to Poseidon</h3>
+<p>There are lots of ways to sync files between Poseidon and your local machine. My preferred way is to clone Github repositories directly into my home directory on Poseidon. This gives you all the benefits of git (version control, branches) so you can undo changes if you mess things up.</p>
+
+<p>A really simple way to sync files is with secure copy. Instructions are below because the Poseidon documentation is a bit out of date as of writing (10/3/23).</p>
+
+<ol>
+  <li>Secure copy a file from local machine to Poseidon <br />
+Open a Terminal on your local machine and run:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>scp &lt;local-filename&gt; &lt;whoiID&gt;@poseidon.whoi.edu:/vortexfs1/home/&lt;whoiID&gt;/&lt;remote-filename&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>Secure copy a file from Poseidon to local machine <br />
+Open a Terminal on your local machine and run:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>scp &lt;whoiID&gt;@poseidon.whoi.edu:/vortexfs1/home/&lt;whoiID&gt;/&lt;remote-filename&gt; &lt;local-filename&gt;
+</code></pre></div>    </div>
+  </li>
+</ol>]]></content><author><name>colette-kelly</name></author><category term="lab," /><category term="how-to," /><category term="computing" /><summary type="html"><![CDATA[Using Python on Poseidon Quick overview of connecting to and running Python scripts on Poseidon.]]></summary></entry><entry><title type="html">Running Jupyter Notebooks on Poseidon</title><link href="/2023/10/02/poseidon-jupyter.html" rel="alternate" type="text/html" title="Running Jupyter Notebooks on Poseidon" /><published>2023-10-02T00:00:00+00:00</published><updated>2024-03-28T19:44:28+00:00</updated><id>/2023/10/02/poseidon-jupyter</id><content type="html" xml:base="/2023/10/02/poseidon-jupyter.html"><![CDATA[<h1 id="running-jupyter-notebooks-remotely-on-poseidon">Running Jupyter Notebooks Remotely on Poseidon</h1>
 <p>Based on <a href="https://alexanderlabwhoi.github.io/post/2019-03-08_jpn_slurm/">this blog post</a> from the Alexander Lab.</p>
 
 <h3 id="1-connect-to-poseidon">1: Connect to Poseidon</h3>
@@ -131,37 +231,37 @@ Open a Terminal on your local machine and run:
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>ssh &lt;whoi.ID&gt;@poseidon.whoi.edu
 </code></pre></div></div>
 
-<h3 id="2-module-load-conda">2. Module load conda</h3>
-<p>To use conda or any other software on Poseidon, you need to load the associated module first. The miniconda/23.11 module contains a recent version of conda. The anaconda/5.1 module contains a much older version of conda, which will make solving environments and adding packages extremely slow.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2 ~]<span class="nv">$ </span>module load miniconda/23.11
+<h3 id="2-start-interactive-session-on-a-compute-node">2. Start interactive session on a compute node</h3>
+<p>Replace <code class="language-plaintext highlighter-rouge">--mem=1000</code> with how much memory you’re requesting. You need at least 1 GB memory to work with data from one float. The session will time out if you go over the requested memory. Replace <code class="language-plaintext highlighter-rouge">--time=00:30:00</code> with how much time you need.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l1 ~]<span class="nv">$ </span>srun <span class="nt">-N</span> 1 <span class="nt">-n</span> 1 <span class="nt">--mem</span><span class="o">=</span>1000 <span class="nt">--time</span><span class="o">=</span>00:30:00 <span class="nt">--pty</span> bash
 </code></pre></div></div>
 
-<h3 id="3-activate-conda-environment">3. Activate conda environment</h3>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2 ~]<span class="nv">$ </span><span class="nb">source </span>activate &lt;env-name&gt;
+<h3 id="3-module-load-miniconda">3. Module load miniconda</h3>
+<p>To use conda or any other software on Poseidon, you need to load the associated module first.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@pn023 ~]<span class="nv">$ </span>module load miniconda/23.11
 </code></pre></div></div>
 
-<h3 id="4-start-interactive-session-on-a-compute-node">4. Start interactive session on a compute node</h3>
-<p>You need at least 1 GB memory to work with data from one float; more (2 GB+) for working with a region’s worth. The session will time out if you go over the requested memory.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>conda-env<span class="o">)</span> srun <span class="nt">-N</span> 1 <span class="nt">-n</span> 1 <span class="nt">--mem</span><span class="o">=</span>1000 <span class="nt">--time</span><span class="o">=</span>00:30:00 <span class="nt">--pty</span> bash
+<h3 id="4-initialize-conda-environment">4. Initialize conda environment</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@pn023 ~]<span class="nv">$ </span><span class="nb">.</span> <span class="nv">$CONDA_PREFIX</span>/etc/profile.d/conda.sh
 </code></pre></div></div>
 
-<h3 id="5-run-export-xdg_runtime_dir">5. run “export XDG_RUNTIME_DIR=”</h3>
-<p>You should only need to do this once:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@pn026 ~]<span class="nv">$ </span><span class="nb">export </span><span class="nv">XDG_RUNTIME_DIR</span><span class="o">=</span><span class="s2">""</span>
+<h3 id="5-activate-conda-environment">5. Activate conda environment</h3>
+<p>Replace <code class="language-plaintext highlighter-rouge">envname</code> with the name of your environment:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@pn023 ~]<span class="nv">$ </span>conda activate envname
 </code></pre></div></div>
 
 <h3 id="6-launch-jupyter-notebook-without-a-browser-window">6. Launch Jupyter Notebook without a browser window</h3>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@pn026 ~]<span class="nv">$ </span>jupyter notebook <span class="nt">--no-browser</span> <span class="nt">--port</span><span class="o">=</span>8888
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>envname<span class="o">)</span> <span class="o">[</span>colette.kelly@pn023 ~]<span class="nv">$ </span>jupyter notebook <span class="nt">--no-browser</span> <span class="nt">--port</span><span class="o">=</span>8888
 </code></pre></div></div>
 
 <h3 id="7-create-an-ssh-tunnel">7. Create an SSH tunnel</h3>
-<p>Open a new Terminal window on your local machine and type the following. Replace “pn026” with whatever node the interactive session is running on.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>ssh <span class="nt">-t</span> <span class="nt">-t</span> &lt;whoi.ID&gt;@poseidon.whoi.edu <span class="nt">-L</span> 8888:localhost:8888 ssh pn026 <span class="nt">-L</span> 8888:localhost:8888
+<p>Open a new Terminal window on your local machine and type the following. Replace <code class="language-plaintext highlighter-rouge">colette.kelly</code> with your username. Replace <code class="language-plaintext highlighter-rouge">pn023</code> with whatever node the interactive session is running on.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> CowardlyLion:~ colette<span class="nv">$ </span>ssh <span class="nt">-t</span> <span class="nt">-t</span> colette.kelly@poseidon.whoi.edu <span class="nt">-L</span> 8888:localhost:8888 ssh pn023 <span class="nt">-L</span> 8888:localhost:8888
 </code></pre></div></div>
 
 <h3 id="8-open-jupyter-notebook-in-a-browser-window">8. Open Jupyter Notebook in a browser window</h3>
 <p>Copy-past the url that begins with “http://localhost:8888/tree?token=” into a browser window. Or,
-if Jupyter passwork is configured, just enter “localhost:8888” in a browser window.</p>
+if Jupyter passwork is configured, just enter <code class="language-plaintext highlighter-rouge">localhost:8888</code> in a browser window.</p>
 
 <p>You can set configure a Jupyter password by entering the following in a terminal:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jupyter notebook password
@@ -172,17 +272,27 @@ if Jupyter passwork is configured, just enter “localhost:8888” in a browser 
 <h3 id="9-shut-down-jupyter-notebook">9. Shut down Jupyter Notebook</h3>
 <p>Make sure you shut down the Jupyter Notebook (either control-C in Terminal or with the Jupyter GUI), otherwise you might run into issues re-opening a port.</p>
 
-<h3 id="troubleshooting">Troubleshooting</h3>
+<h1 id="troubleshooting">Troubleshooting</h1>
 
-<p>If, in creating the SSH tunnel, you get the error</p>
+<p>If, in creating the SSH tunnel, you get the error:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">bind</span>: Address already <span class="k">in </span>use
 </code></pre></div></div>
-<p>…or you get the error “invalid login” when you try to log into Jupyter with your Jupyter Notebook password, try running “. $CONDA_PREFIX/etc/profile.d/conda.sh #” after loading the miniconda module:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>srun <span class="nt">-N</span> 1 <span class="nt">-n</span> 1 <span class="nt">--mem</span><span class="o">=</span>1000 <span class="nt">--time</span><span class="o">=</span>00:30:00 <span class="nt">--pty</span> bash
-module load miniconda
-<span class="nb">.</span> <span class="nv">$CONDA_PREFIX</span>/etc/profile.d/conda.sh <span class="c"># initialize conda environment</span>
-conda activate &lt;env-name&gt;
-</code></pre></div></div>]]></content><author><name>colette-kelly</name></author><category term="lab," /><category term="how-to," /><category term="computing" /><summary type="html"><![CDATA[Running Jupyter Notebooks Remotely on Poseidon Based on this blog post from the Alexander Lab.]]></summary></entry><entry><title type="html">Shared HPC network drive</title><link href="/2023/02/23/vast-howto.html" rel="alternate" type="text/html" title="Shared HPC network drive" /><published>2023-02-23T00:00:00+00:00</published><updated>2024-03-15T19:18:15+00:00</updated><id>/2023/02/23/vast-howto</id><content type="html" xml:base="/2023/02/23/vast-howto.html"><![CDATA[<h1 id="storage-on-the-whoi-vast-drive">Storage on the WHOI VAST drive</h1>
+<h3 id="1-shut-down-the-existing-notebook-either-ctrl-c-in-terminal-or-with-the-jupyter-gui-disconnect-the-ssh-tunnel-with-logout-and-ctrl-c">1. Shut down the existing notebook (either ctrl-C. in Terminal or with the Jupyter GUI). Disconnect the ssh tunnel with ‘logout’ and ctrl-C.</h3>
+
+<h3 id="2-in-the-first-terminal-window-start-a-new-notebook-with-a-different-port">2. In the first terminal window, start a new notebook with a different port</h3>
+<p>You can do this by replacing <code class="language-plaintext highlighter-rouge">8888</code> with a different number. E.g.,</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>envname<span class="o">)</span> <span class="o">[</span>colette.kelly@pn023 ~]<span class="nv">$ </span>jupyter notebook <span class="nt">--no-browser</span> <span class="nt">--port</span><span class="o">=</span>8889
+</code></pre></div></div>
+
+<h3 id="3-in-the-second-terminal-window-start-a-tunnel-to-the-new-port">3. In the second terminal window, start a tunnel to the new port</h3>
+<p>Replace <code class="language-plaintext highlighter-rouge">8888</code> with the new number, e.g.:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> CowardlyLion:~ colette<span class="nv">$ </span>ssh <span class="nt">-t</span> <span class="nt">-t</span> colette.kelly@poseidon.whoi.edu <span class="nt">-L</span> 8889:localhost:8889 ssh pn023 <span class="nt">-L</span> 8889:localhost:8889
+</code></pre></div></div>
+
+<h3 id="4-open-jupyter-notebook-in-a-browser-window">4. Open Jupyter Notebook in a browser window</h3>
+<p>You can either copy the notebook URL or enter <code class="language-plaintext highlighter-rouge">localhost:8889</code> in a browser window, making sure the number matches the port number from above.</p>
+
+<p>You may need to iterate through 1-4 above a few times until you find an open port.</p>]]></content><author><name>colette-kelly</name></author><category term="lab," /><category term="how-to," /><category term="computing" /><summary type="html"><![CDATA[Running Jupyter Notebooks Remotely on Poseidon Based on this blog post from the Alexander Lab.]]></summary></entry><entry><title type="html">Shared HPC network drive</title><link href="/2023/02/23/vast-howto.html" rel="alternate" type="text/html" title="Shared HPC network drive" /><published>2023-02-23T00:00:00+00:00</published><updated>2024-03-28T19:44:28+00:00</updated><id>/2023/02/23/vast-howto</id><content type="html" xml:base="/2023/02/23/vast-howto.html"><![CDATA[<h1 id="storage-on-the-whoi-vast-drive">Storage on the WHOI VAST drive</h1>
 <p>Our lab has 100 Tb dedicated space on the WHOI VAST SSD storage drive. Permissions for current lab members should be in place, but contact Roo if you need access</p>
 
 <h2 id="connecting-to-vast">Connecting to VAST</h2>
@@ -235,4 +345,4 @@ Also, many useful datasets (era5, cmip6, etc.) are available on <code class="lan
     └── dnicholson
     └── **create your dir here...**
 
-</code></pre></div></div>]]></content><author><name>david-nicholson</name></author><category term="lab," /><category term="how-to," /><category term="computing" /><summary type="html"><![CDATA[Storage on the WHOI VAST drive Our lab has 100 Tb dedicated space on the WHOI VAST SSD storage drive. Permissions for current lab members should be in place, but contact Roo if you need access]]></summary></entry><entry><title type="html">Example post 2</title><link href="/2021/09/30/example-post-2.html" rel="alternate" type="text/html" title="Example post 2" /><published>2021-09-30T00:00:00+00:00</published><updated>2024-03-15T19:18:15+00:00</updated><id>/2021/09/30/example-post-2</id><content type="html" xml:base="/2021/09/30/example-post-2.html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>]]></content><author><name>jane-smith</name></author><summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]]></summary></entry><entry><title type="html">Example post 1</title><link href="/2019/01/07/example-post-1.html" rel="alternate" type="text/html" title="Example post 1" /><published>2019-01-07T00:00:00+00:00</published><updated>2024-03-15T19:18:15+00:00</updated><id>/2019/01/07/example-post-1</id><content type="html" xml:base="/2019/01/07/example-post-1.html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>]]></content><author><name>sarah-johnson</name></author><category term="biology" /><category term="medicine" /><category term="big data" /><summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name>david-nicholson</name></author><category term="lab," /><category term="how-to," /><category term="computing" /><summary type="html"><![CDATA[Storage on the WHOI VAST drive Our lab has 100 Tb dedicated space on the WHOI VAST SSD storage drive. Permissions for current lab members should be in place, but contact Roo if you need access]]></summary></entry><entry><title type="html">Example post 2</title><link href="/2021/09/30/example-post-2.html" rel="alternate" type="text/html" title="Example post 2" /><published>2021-09-30T00:00:00+00:00</published><updated>2024-03-28T19:44:28+00:00</updated><id>/2021/09/30/example-post-2</id><content type="html" xml:base="/2021/09/30/example-post-2.html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>]]></content><author><name>jane-smith</name></author><summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]]></summary></entry><entry><title type="html">Example post 1</title><link href="/2019/01/07/example-post-1.html" rel="alternate" type="text/html" title="Example post 1" /><published>2019-01-07T00:00:00+00:00</published><updated>2024-03-28T19:44:28+00:00</updated><id>/2019/01/07/example-post-1</id><content type="html" xml:base="/2019/01/07/example-post-1.html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>]]></content><author><name>sarah-johnson</name></author><category term="biology" /><category term="medicine" /><category term="big data" /><summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.]]></summary></entry></feed>

@@ -69,10 +69,10 @@
 
   <meta name="author" content="colette-kelly">
   <meta property="og:type" content="article">
-  <meta property="og:updated_time" content="2024-03-15T19:18:15+00:00">
+  <meta property="og:updated_time" content="2024-03-28T19:44:28+00:00">
   <meta property="article:published_time" content="2023-10-02T00:00:00+00:00">
-  <meta property="article:modified_time" content="2024-03-15T19:18:15+00:00">
-  <meta name="revised" content="2024-03-15T19:18:15+00:00">
+  <meta property="article:modified_time" content="2024-03-28T19:44:28+00:00">
+  <meta name="revised" content="2024-03-28T19:44:28+00:00">
 
 
 <script type="application/ld+json">
@@ -82,7 +82,7 @@
       "@type": "BlogPosting",
       "author": { "@type": "Person", "name": "Running Jupyter Notebooks on Poseidon" },
       "datePublished": "2023-10-02T00:00:00+00:00",
-      "dateModified": "2024-03-15T19:18:15+00:00",
+      "dateModified": "2024-03-28T19:44:28+00:00",
     
     "name": "Running Jupyter Notebooks on Poseidon",
     "description": "Woods Hole Oceanographic Institution. The Biogeochemical Ocean Observing and Modeling Lab at the Woods Hole Oeanographic Institution",
@@ -463,7 +463,7 @@
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>March 15, 2024</span>
+      <span>March 28, 2024</span>
     </span>
   
 </div>
@@ -509,37 +509,37 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>ssh &lt;whoi.ID&gt;@poseidon.whoi.edu
 </code></pre></div></div>
 
-<h3 id="2-module-load-conda">2. Module load conda</h3>
-<p>To use conda or any other software on Poseidon, you need to load the associated module first. The miniconda/23.11 module contains a recent version of conda. The anaconda/5.1 module contains a much older version of conda, which will make solving environments and adding packages extremely slow.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2 ~]<span class="nv">$ </span>module load miniconda/23.11
+<h3 id="2-start-interactive-session-on-a-compute-node">2. Start interactive session on a compute node</h3>
+<p>Replace <code class="language-plaintext highlighter-rouge">--mem=1000</code> with how much memory you’re requesting. You need at least 1 GB memory to work with data from one float. The session will time out if you go over the requested memory. Replace <code class="language-plaintext highlighter-rouge">--time=00:30:00</code> with how much time you need.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l1 ~]<span class="nv">$ </span>srun <span class="nt">-N</span> 1 <span class="nt">-n</span> 1 <span class="nt">--mem</span><span class="o">=</span>1000 <span class="nt">--time</span><span class="o">=</span>00:30:00 <span class="nt">--pty</span> bash
 </code></pre></div></div>
 
-<h3 id="3-activate-conda-environment">3. Activate conda environment</h3>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@poseidon-l2 ~]<span class="nv">$ </span><span class="nb">source </span>activate &lt;env-name&gt;
+<h3 id="3-module-load-miniconda">3. Module load miniconda</h3>
+<p>To use conda or any other software on Poseidon, you need to load the associated module first.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@pn023 ~]<span class="nv">$ </span>module load miniconda/23.11
 </code></pre></div></div>
 
-<h3 id="4-start-interactive-session-on-a-compute-node">4. Start interactive session on a compute node</h3>
-<p>You need at least 1 GB memory to work with data from one float; more (2 GB+) for working with a region’s worth. The session will time out if you go over the requested memory.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>conda-env<span class="o">)</span> srun <span class="nt">-N</span> 1 <span class="nt">-n</span> 1 <span class="nt">--mem</span><span class="o">=</span>1000 <span class="nt">--time</span><span class="o">=</span>00:30:00 <span class="nt">--pty</span> bash
+<h3 id="4-initialize-conda-environment">4. Initialize conda environment</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@pn023 ~]<span class="nv">$ </span><span class="nb">.</span> <span class="nv">$CONDA_PREFIX</span>/etc/profile.d/conda.sh
 </code></pre></div></div>
 
-<h3 id="5-run-export-xdg_runtime_dir">5. run “export XDG_RUNTIME_DIR=”</h3>
-<p>You should only need to do this once:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@pn026 ~]<span class="nv">$ </span><span class="nb">export </span><span class="nv">XDG_RUNTIME_DIR</span><span class="o">=</span><span class="s2">""</span>
+<h3 id="5-activate-conda-environment">5. Activate conda environment</h3>
+<p>Replace <code class="language-plaintext highlighter-rouge">envname</code> with the name of your environment:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@pn023 ~]<span class="nv">$ </span>conda activate envname
 </code></pre></div></div>
 
 <h3 id="6-launch-jupyter-notebook-without-a-browser-window">6. Launch Jupyter Notebook without a browser window</h3>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@pn026 ~]<span class="nv">$ </span>jupyter notebook <span class="nt">--no-browser</span> <span class="nt">--port</span><span class="o">=</span>8888
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>envname<span class="o">)</span> <span class="o">[</span>colette.kelly@pn023 ~]<span class="nv">$ </span>jupyter notebook <span class="nt">--no-browser</span> <span class="nt">--port</span><span class="o">=</span>8888
 </code></pre></div></div>
 
 <h3 id="7-create-an-ssh-tunnel">7. Create an SSH tunnel</h3>
-<p>Open a new Terminal window on your local machine and type the following. Replace “pn026” with whatever node the interactive session is running on.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>ssh <span class="nt">-t</span> <span class="nt">-t</span> &lt;whoi.ID&gt;@poseidon.whoi.edu <span class="nt">-L</span> 8888:localhost:8888 ssh pn026 <span class="nt">-L</span> 8888:localhost:8888
+<p>Open a new Terminal window on your local machine and type the following. Replace <code class="language-plaintext highlighter-rouge">colette.kelly</code> with your username. Replace <code class="language-plaintext highlighter-rouge">pn023</code> with whatever node the interactive session is running on.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> CowardlyLion:~ colette<span class="nv">$ </span>ssh <span class="nt">-t</span> <span class="nt">-t</span> colette.kelly@poseidon.whoi.edu <span class="nt">-L</span> 8888:localhost:8888 ssh pn023 <span class="nt">-L</span> 8888:localhost:8888
 </code></pre></div></div>
 
 <h3 id="8-open-jupyter-notebook-in-a-browser-window">8. Open Jupyter Notebook in a browser window</h3>
 <p>Copy-past the url that begins with “http://localhost:8888/tree?token=” into a browser window. Or,
-if Jupyter passwork is configured, just enter “localhost:8888” in a browser window.</p>
+if Jupyter passwork is configured, just enter <code class="language-plaintext highlighter-rouge">localhost:8888</code> in a browser window.</p>
 
 <p>You can set configure a Jupyter password by entering the following in a terminal:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jupyter notebook password
@@ -550,17 +550,27 @@ if Jupyter passwork is configured, just enter “localhost:8888” in a browser 
 <h3 id="9-shut-down-jupyter-notebook">9. Shut down Jupyter Notebook</h3>
 <p>Make sure you shut down the Jupyter Notebook (either control-C in Terminal or with the Jupyter GUI), otherwise you might run into issues re-opening a port.</p>
 
-<h3 id="troubleshooting">Troubleshooting</h3>
+<h1 id="troubleshooting">Troubleshooting</h1>
 
-<p>If, in creating the SSH tunnel, you get the error</p>
+<p>If, in creating the SSH tunnel, you get the error:</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">bind</span>: Address already <span class="k">in </span>use
 </code></pre></div></div>
-<p>…or you get the error “invalid login” when you try to log into Jupyter with your Jupyter Notebook password, try running “. $CONDA_PREFIX/etc/profile.d/conda.sh #” after loading the miniconda module:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>srun <span class="nt">-N</span> 1 <span class="nt">-n</span> 1 <span class="nt">--mem</span><span class="o">=</span>1000 <span class="nt">--time</span><span class="o">=</span>00:30:00 <span class="nt">--pty</span> bash
-module load miniconda
-<span class="nb">.</span> <span class="nv">$CONDA_PREFIX</span>/etc/profile.d/conda.sh <span class="c"># initialize conda environment</span>
-conda activate &lt;env-name&gt;
+<h3 id="1-shut-down-the-existing-notebook-either-ctrl-c-in-terminal-or-with-the-jupyter-gui-disconnect-the-ssh-tunnel-with-logout-and-ctrl-c">1. Shut down the existing notebook (either ctrl-C. in Terminal or with the Jupyter GUI). Disconnect the ssh tunnel with ‘logout’ and ctrl-C.</h3>
+
+<h3 id="2-in-the-first-terminal-window-start-a-new-notebook-with-a-different-port">2. In the first terminal window, start a new notebook with a different port</h3>
+<p>You can do this by replacing <code class="language-plaintext highlighter-rouge">8888</code> with a different number. E.g.,</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>envname<span class="o">)</span> <span class="o">[</span>colette.kelly@pn023 ~]<span class="nv">$ </span>jupyter notebook <span class="nt">--no-browser</span> <span class="nt">--port</span><span class="o">=</span>8889
 </code></pre></div></div>
+
+<h3 id="3-in-the-second-terminal-window-start-a-tunnel-to-the-new-port">3. In the second terminal window, start a tunnel to the new port</h3>
+<p>Replace <code class="language-plaintext highlighter-rouge">8888</code> with the new number, e.g.:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> CowardlyLion:~ colette<span class="nv">$ </span>ssh <span class="nt">-t</span> <span class="nt">-t</span> colette.kelly@poseidon.whoi.edu <span class="nt">-L</span> 8889:localhost:8889 ssh pn023 <span class="nt">-L</span> 8889:localhost:8889
+</code></pre></div></div>
+
+<h3 id="4-open-jupyter-notebook-in-a-browser-window">4. Open Jupyter Notebook in a browser window</h3>
+<p>You can either copy the notebook URL or enter <code class="language-plaintext highlighter-rouge">localhost:8889</code> in a browser window, making sure the number matches the port number from above.</p>
+
+<p>You may need to iterate through 1-4 above a few times until you find an open port.</p>
   </section>
 
   
