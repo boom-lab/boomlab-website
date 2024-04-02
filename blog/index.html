@@ -565,6 +565,11 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
   
 
   
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>April 02, 2024</span>
+    </span>
+  
 </div>
 
 
@@ -658,7 +663,7 @@ Check out this website for a lot more detail and explanation!
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>March 28, 2024</span>
+      <span>April 02, 2024</span>
     </span>
   
 </div>
@@ -752,7 +757,7 @@ Quick overview of connecting to and running Python scripts on Poseidon.
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>March 28, 2024</span>
+      <span>April 02, 2024</span>
     </span>
   
 </div>
@@ -783,7 +788,7 @@ Quick overview of connecting to and running Python scripts on Poseidon.
 
   
   
-  <p data-search="Running Jupyter Notebooks Remotely on PoseidonBased on this blog post from the Alexander Lab 1  Connect to PoseidonOpen a Terminal window on your local machine and type colette  ssh  lt whoi ID gt  poseidon whoi edu2  Start interactive session on a compute nodeReplace   mem 1000 with how much memory you re requesting  You need at least 1 GB memory to work with data from one float  The session will time out if you go over the requested memory  Replace   time 00 30 00 with how much time you need  colette kelly poseidon l1     srun  N 1  n 1   mem 1000   time 00 30 00   pty bash3  Module load minicondaTo use conda or any other software on Poseidon  you need to load the associated module first  colette kelly pn023     module load miniconda 23 114  Initialize conda environment colette kelly pn023        CONDA PREFIX etc profile d conda sh5  Activate conda environmentReplace envname with the name of your environment  colette kelly pn023     conda activate envname6  Launch Jupyter Notebook without a browser window envname   colette kelly pn023     jupyter notebook   no browser   port 88887  Create an SSH tunnelOpen a new Terminal window on your local machine and type the following  Replace colette kelly with your username  Replace pn023 with whatever node the interactive session is running on  base  CowardlyLion   colette  ssh  t  t colette kelly poseidon whoi edu  L 8888 localhost 8888 ssh pn023  L 8888 localhost 88888  Open Jupyter Notebook in a browser windowCopy past the url that begins with  http   localhost 8888 tree token   into a browser window  Or if Jupyter passwork is configured  just enter localhost 8888 in a browser window You can set configure a Jupyter password by entering the following in a terminal jupyter notebook passwordYou ll need to restart your Jupyter Notebook session to be able to use the new password 9  Shut down Jupyter NotebookMake sure you shut down the Jupyter Notebook  either control C in Terminal or with the Jupyter GUI   otherwise you might run into issues re opening a port TroubleshootingIf  in creating the SSH tunnel  you get the error bind  Address already in use1  Shut down the existing notebook  either ctrl C  in Terminal or with the Jupyter GUI   Disconnect the ssh tunnel with  logout  and ctrl C 2  In the first terminal window  start a new notebook with a different portYou can do this by replacing 8888 with a different number  E g   envname   colette kelly pn023     jupyter notebook   no browser   port 88893  In the second terminal window  start a tunnel to the new portReplace 8888 with the new number  e g   base  CowardlyLion   colette  ssh  t  t colette kelly poseidon whoi edu  L 8889 localhost 8889 ssh pn023  L 8889 localhost 88894  Open Jupyter Notebook in a browser windowYou can either copy the notebook URL or enter localhost 8889 in a browser window  making sure the number matches the port number from above You may need to iterate through 1 4 above a few times until you find an open port ">
+  <p data-search="Running Jupyter Notebooks Remotely on PoseidonBased on this blog post from the Alexander Lab 1  Connect to PoseidonOpen a Terminal window on your local machine and type colette  ssh  lt whoi ID gt  poseidon whoi edu2  Start interactive session on a compute nodeReplace   mem 1000 with how much memory you re requesting  You need at least 1 GB memory to work with data from one float  The session will time out if you go over the requested memory  Replace   time 00 30 00 with how much time you need  colette kelly poseidon l1     srun  N 1  n 1   mem 1000   time 00 30 00   pty bashTo list how much memory is available on each node  run sinfo  N  l3  Module load minicondaTo use conda or any other software on Poseidon  you need to load the associated module first  colette kelly pn023     module load miniconda 23 114  Initialize conda environment colette kelly pn023        CONDA PREFIX etc profile d conda sh5  Activate conda environmentReplace envname with the name of your environment  colette kelly pn023     conda activate envname6  Launch Jupyter Notebook without a browser window envname   colette kelly pn023     jupyter notebook   no browser   port 8888You ll need to use a port number that isn t already in use  To check which ports are already in use  run ss  tuln7  Create an SSH tunnelOpen a new Terminal window on your local machine and type the following  Replace colette kelly with your username  Replace pn023 with whatever node the interactive session is running on  base  CowardlyLion   colette  ssh  t  t colette kelly poseidon whoi edu  L 8888 localhost 8888 ssh pn023  L 8888 localhost 88888  Open Jupyter Notebook in a browser windowCopy past the url that begins with  http   localhost 8888 tree token   into a browser window  Or if Jupyter passwork is configured  just enter localhost 8888 in a browser window You can set configure a Jupyter password by entering the following in a terminal jupyter notebook passwordYou ll need to restart your Jupyter Notebook session to be able to use the new password 9  Shut down Jupyter NotebookMake sure you shut down the Jupyter Notebook  either control C in Terminal or with the Jupyter GUI   otherwise you might run into issues re opening a port TroubleshootingIf  in creating the SSH tunnel  you get the error bind  Address already in use1  Shut down the existing notebook  either ctrl C  in Terminal or with the Jupyter GUI   Disconnect the ssh tunnel with  logout  and ctrl C 2  In the first terminal window  start a new notebook with a different portYou can do this by replacing 8888 with a different number  E g   envname   colette kelly pn023     jupyter notebook   no browser   port 88893  In the second terminal window  start a tunnel to the new portReplace 8888 with the new number  e g   base  CowardlyLion   colette  ssh  t  t colette kelly poseidon whoi edu  L 8889 localhost 8889 ssh pn023  L 8889 localhost 88894  Open Jupyter Notebook in a browser windowYou can either copy the notebook URL or enter localhost 8889 in a browser window  making sure the number matches the port number from above You may need to iterate through 1 4 above a few times until you find an open port ">
     Running Jupyter Notebooks Remotely on Poseidon
 Based on this blog post from the Alexander Lab.
 
@@ -846,7 +851,7 @@ Based on this blog post from the Alexander Lab.
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>March 28, 2024</span>
+      <span>April 02, 2024</span>
     </span>
   
 </div>
@@ -915,7 +920,7 @@ Our lab has 100 Tb dedicated space on the WHOI VAST SSD storage drive. Permissio
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>March 28, 2024</span>
+      <span>April 02, 2024</span>
     </span>
   
 </div>
@@ -967,7 +972,7 @@ Our lab has 100 Tb dedicated space on the WHOI VAST SSD storage drive. Permissio
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>March 28, 2024</span>
+      <span>April 02, 2024</span>
     </span>
   
 </div>
