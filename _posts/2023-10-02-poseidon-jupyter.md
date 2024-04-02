@@ -17,6 +17,10 @@ Replace `--mem=1000` with how much memory you're requesting. You need at least 1
 ```bash
 [colette.kelly@poseidon-l1 ~]$ srun -N 1 -n 1 --mem=1000 --time=00:30:00 --pty bash
 ```
+To list how much memory is available on each node, run:
+```bash
+sinfo -N -l
+```
 
 ### 3. Module load miniconda
 To use conda or any other software on Poseidon, you need to load the associated module first. 
@@ -38,6 +42,10 @@ Replace `envname` with the name of your environment:
 ### 6. Launch Jupyter Notebook without a browser window
 ```bash
 (envname) [colette.kelly@pn023 ~]$ jupyter notebook --no-browser --port=8888
+```
+You'll need to use a port number that isn't already in use. To check which ports are already in use, run:
+```bash
+ss -tuln
 ```
 
 ### 7. Create an SSH tunnel
