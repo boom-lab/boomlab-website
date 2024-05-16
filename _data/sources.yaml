@@ -2,6 +2,9 @@
 #  image: https://iiif.elifesciences.org/lax:32822%2Felife-32822-fig8-v3.tif/full/863,/0/default.webp
 
 # match pubs to logos
+- id: doi:10.1029/2024GL108866
+  image: images/air-sea.png
+  
 - id: doi:10.1525/elementa.2021.00107
   image: images/exports_logo.png
 

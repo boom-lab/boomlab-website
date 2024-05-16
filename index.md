@@ -28,7 +28,7 @@ Check out the latest publications from the BOOMLAB team!
 
 {%
   include feature.html
-  image="images/photo.jpg"
+  image="images/exports_fig.png"
   link="research"
   title="Our Research"
   text=text
@@ -51,7 +51,7 @@ Our current research is advancing understanding of ocean biogeochemistry through
 
 {%
   include feature.html
-  image="images/NAVIS-1920.jpg"
+  image="images/NAVIS-1920.jpeg"
   link="projects"
   title="Our Projects"
   flip=true
