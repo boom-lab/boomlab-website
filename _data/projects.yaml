@@ -1,3 +1,15 @@
+- title: Multiparameter Carbon Sensors
+  subtitle: SEA-CO2 - Scalable, Multiparameter Chip-Size Carbon Sensors
+  group: featured
+  image: images/proj_arpae.png
+  link: https://www.whoi.edu/press-room/news-release/whoi-doe-mcdr-funding/
+  description: Boomlab is collaborating with U. Penn, U. Michigan and Analog Devices to develop carbon new sensing capabilities 
+  repo: 
+  tags:
+    - sensors
+    - carbon dioxide removal
+    - Arpa-e funded
+
 - title: GO-BGC
   subtitle: The Global Ocean Biogeochemical Array
   group: featured
@@ -27,18 +39,6 @@
     - carbon dioxide removal
     - numerical modeling
     - NOAA funded
-    
-- title: Multiparameter Carbon Sensors
-  subtitle: SEA-CO2 - Scalable, Multiparameter Chip-Size Carbon Sensors
-  #group: featured
-  image: images/proj_arpae.png
-  link: https://www.whoi.edu/press-room/news-release/whoi-doe-mcdr-funding/
-  description: Boomlab is collaborating with U. Penn, U. Michigan and Analog Devices to develop carbon new sensing capabilities 
-  repo: 
-  tags:
-    - sensors
-    - carbon dioxide removal
-    - Arpa-e funded
 
 - title: EXPORTS
   subtitle: EXport Processes in the Ocean from Remote Sensing (EXPORTS)
@@ -68,7 +68,7 @@
   subtitle: An autonomous surface vehicle equipped with sensor to measure dissolved greenhouse gases in coastal enviroments
   image: images/chemyak.jpg
   #link: https://github.com/
-  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  description: In collaboration with Anna Michel at WHOI, we have adapted a new autonomous surface vehicle to measure dissolved greenhouse gases in coastal environments. Field deployments in Cambridge Bay, Nunavut, in the Canadian Arctic, have demonstrated the utility of this platform for high-resolution mapping of air-sea exchange.
   #repo: 
   tags:
     - sensors
@@ -82,7 +82,7 @@
   subtitle: a subtitle
   image: images/noble_gases.png
   #link: https://github.com/
-  description: Lorem ipsum _dolor sit amet_, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  description: This project uses noble gas tracers to investigate the rates and processes governing gas exchange in the ocean.
   repo: dnicholson/gas_toolbox
   tags:
     - air-sea exchange
