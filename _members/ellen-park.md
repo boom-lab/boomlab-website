@@ -10,14 +10,15 @@ aliases:
 links:
   home-page: https://boom.science
   orcid: 0000-0001-5808-9958
+  google-scholar: buOKKkEAAAAJ&hl
 ---
 
-Ellen is a fourth-year PhD student in chemical oceanography in the MIT-WHOI Joint Program. Broadly, her research uses Biogeochemical Argo floats to better understand carbon and oxygen cycling.
+Ellen joined the BOOMLAB in 2020, and she is a PhD candidate in chemical oceanography in the MIT-WHOI Joint Program. Broadly, her research uses [Biogeochemical Argo](https://biogeochemical-argo.org/) (BGC-Argo) floats to better understand carbon and oxygen cycling.
 
 More specifically, her thesis work explores:
-- oxygen dynamics in the Labrador Sea
-- estimating biological carbon pump parameters in the global ocean
-- quantification of sensor dynamic response time
+- quantifying biological carbon pump parameters in the global ocean from the BGC-Argo float array
+- characterizing the dynamic response time of oxygen optodes for profiling float applications
+- oxygen dynamics in the Labrador Sea, as a part of the Gases in the Overturning and Horizontal circulation of the Subpolar North Atlantic Program [(GOHSNAP)](https://tos.org/oceanography/article/linking-oxygen-and-carbon-uptake-with-the-meridional-overturning-circulation-using-a-transport-mooring-array)
 
 Ellen's research also leverages the power of machine learning to help maximize the utility of observational datasets.
 
