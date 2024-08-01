@@ -1,7 +1,7 @@
 ---
 name: Amanda Pinson
 image: images/people/Pinson.jpg
-role: graduate student
+role: PhD student
 aliases:
   - A. Pinson
 pronouns:
