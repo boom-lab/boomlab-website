@@ -1,7 +1,7 @@
 ---
 name: Amanda Pinson
 image: images/people/Pinson.jpg
-role: PhD student
+role: phd
 aliases:
   - A. Pinson
 pronouns:
@@ -13,4 +13,4 @@ links:
   github: 
 ---
 
-Amanda Pinson...
+Amanda Pinson joined the BOOMLAB as a PhD student in 2024 as part of the MIT-WHOI Joint Program. She's broadly interested in using autonomous underwater vehicles, like gliders, to learn about carbon cycling in the ocean. 
