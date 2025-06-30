@@ -1,5 +1,79 @@
 # DO NOT EDIT, GENERATED AUTOMATICALLY
 
+- id: doi:10.21203/rs.3.rs-6378208/v1
+  title: Low-pressure storms drive nitrous oxide emissions in the Southern Ocean
+  authors:
+  - Colette Kelly
+  - Bonnie Chang
+  - Andrea Emmanuelli
+  - Ellen Park
+  - Alison Macdonald
+  - David Nicholson
+  publisher: Springer Science and Business Media LLC
+  date: '2025-04-30'
+  link: https://doi.org/g9hcpq
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.5194/egusphere-egu25-13071
+  title: Influence of entrainment on the mean and seasonal variability in the Denmark
+    Strait Overflow Water (DSOW) properties in the West Irminger Sea
+  authors:
+  - Hiroki Nagao
+  - Isabela Le Bras
+  - Una Miller
+  - Jaime Palter
+  - Amy Bower
+  - Heather Furey
+  - Greg Koman
+  - Dariia Atamanchuk
+  - Kristen Fogaren
+  - David Nicholson
+  - Ellen Park
+  - Hilary Palevsky
+  - Meg Yoder
+  publisher: Copernicus GmbH
+  date: '2025-03-18'
+  link: https://doi.org/g88ksb
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.5194/egusphere-egu25-13025
+  title: Observations of a direct boundary current ventilation pathway
+  authors:
+  - Isabela Le Bras
+  - Una Miller
+  - Jaime Palter
+  - Fiamma Straneo
+  - Dariia Atamanchuk
+  - Kristen Fogaren
+  - Hiroki Nagao
+  - David (Roo) Nicholson
+  - Ellen Park
+  - Hilary Palevsky
+  - Meg Yoder
+  publisher: Copernicus GmbH
+  date: '2025-03-18'
+  link: https://doi.org/g88ksc
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1002/lno.70002
+  title: Autonomous observations enhance our ability to observe the biological carbon
+    pump across diverse carbon export regimes
+  authors:
+  - Shawnee Traylor
+  - David P. Nicholson
+  - Samantha J. Clevenger
+  - Ken O. Buesseler
+  - Eric D'Asaro
+  - Craig M. Lee
+  publisher: Limnology and Oceanography
+  date: '2025-02-28'
+  link: https://doi.org/g88ksd
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
 - id: doi:10.5194/egusphere-egu24-2714
   title: Isotopic Analysis of Dissolved CO2 and CH4 in a Coastal Permafrost Zone
   authors:
@@ -12,7 +86,7 @@
   - Anna P. M. Michel
   - David P. Nicholson
   publisher: Copernicus GmbH
-  date: '2024-03-08'
+  date: '2025-01-20'
   link: https://doi.org/gtmcs3
   orcid: 0000-0003-2653-9349
   plugin: orcid.py
@@ -528,9 +602,9 @@
   plugin: orcid.py
   file: orcid.yaml
 - id: doi:10.5194/bg-2017-428-supplement
-  title: Supplementary material to &amp;quot;Changes in gross oxygen production, net
-    oxygen production, and air-water gas exchange during seasonal ice melt in the
-    Bras d'Or Lake, a Canadian estuary&amp;quot;
+  title: Supplementary material to "Changes in gross oxygen production, net oxygen
+    production, and air-water gas exchange during seasonal ice melt in the Bras d'Or
+    Lake, a Canadian estuary"
   authors:
   - Cara C. Manning
   - Rachel H. R. Stanley
@@ -706,8 +780,8 @@
   plugin: orcid.py
   file: orcid.yaml
 - id: doi:10.5194/bg-8-2993-2011
-  title: 'Comment on: &amp;quot;Technical note: Consistent calculation of aquatic
-    gross production from oxygen triple isotope measurements&amp;quot; by Kaiser (2011)'
+  title: 'Comment on: "Technical note: Consistent calculation of aquatic gross production
+    from oxygen triple isotope measurements" by Kaiser (2011)'
   authors:
   - D. P. Nicholson
   publisher: Biogeosciences
