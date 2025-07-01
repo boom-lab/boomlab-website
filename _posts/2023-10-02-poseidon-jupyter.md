@@ -13,9 +13,9 @@ colette$ ssh <whoi.ID>@poseidon.whoi.edu
 ```
 
 ### 2. Start interactive session on a compute node
-Replace `--mem=1000` with how much memory you're requesting. You need at least 1 GB memory to work with data from one float. The session will time out if you go over the requested memory. Replace `--time=00:30:00` with how much time you need.
+Replace `-N 1` with how many nodes you're requesting, `-n 16` with how many cores per node (up to 36), and `--mem=16GB` with how much memory per core (up to 192GB). The session will time out if you go over the requested memory. Replace `--time=00:30:00` with how much time you need.
 ```bash
-[colette.kelly@poseidon-l1 ~]$ srun -N 1 -n 1 --mem=1000 --time=00:30:00 --pty bash
+[colette.kelly@poseidon-l1 ~]$ srun -N 1 -n 16 --mem=1000 --time=00:30:00 --pty bash
 ```
 To list how much memory is available on each node, run:
 ```bash
@@ -46,6 +46,10 @@ Replace `envname` with the name of your environment:
 You'll need to use a port number that isn't already in use. To check which ports are already in use, run:
 ```bash
 ss -tuln
+```
+To launch Jupyter Lab instead, the prompt is almost exactly the same:
+```bash
+(envname) [colette.kelly@pn023 ~]$ jupyter notebook --no-browser --port=8888
 ```
 
 ### 7. Create an SSH tunnel
