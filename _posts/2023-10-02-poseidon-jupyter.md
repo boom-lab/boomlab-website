@@ -49,7 +49,7 @@ ss -tuln
 ```
 To launch Jupyter Lab instead, the prompt is almost exactly the same:
 ```bash
-(envname) [colette.kelly@pn023 ~]$ jupyter notebook --no-browser --port=8888
+(envname) [colette.kelly@pn023 ~]$ jupyter lab --no-browser --port=8888
 ```
 
 ### 7. Create an SSH tunnel
