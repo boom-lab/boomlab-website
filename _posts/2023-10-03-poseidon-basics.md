@@ -6,6 +6,8 @@ tags: lab, how-to, computing
 # Using Python on Poseidon
 Quick overview of connecting to and running Python scripts on Poseidon.
 
+Before you do anything, you will need to *request an account on Poseidon* with an IS help ticket.
+
 Logging in:
 ```bash
 colette$ ssh <WHOI ID>@poseidon.whoi.edu

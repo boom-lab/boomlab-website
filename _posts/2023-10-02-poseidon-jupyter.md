@@ -51,6 +51,10 @@ To launch Jupyter Lab instead, the prompt is almost exactly the same:
 ```bash
 (envname) [colette.kelly@pn023 ~]$ jupyter lab --no-browser --port=8888
 ```
+If your Jupyter Notebook isn't loading in your browser window, try:
+```bash
+(envname) [colette.kelly@pn023 ~]$ jupyter server --no-browser --port=8890 --ServerApp.default_url=/tree
+```
 
 ### 7. Create an SSH tunnel
 Open a new Terminal window on your local machine and type the following. Replace `colette.kelly` with your username. Replace `pn023` with whatever node the interactive session is running on.
