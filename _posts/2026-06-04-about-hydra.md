@@ -1,4 +1,6 @@
-# Hydra — WHOI's New HPC Computing Cluster
+# IS announcement: Hydra — WHOI's New HPC Computing Cluster
+
+This is a repeat of the IS announcement that went out via WHOI Headlines about the new Hydra computer cluster. We have copied it here for a quick reference.
 
 > **WHOI Information Services** is excited to announce the launch of **Hydra**, a new high-performance computing (HPC) cluster that will replace the current Poseidon cluster.
 
