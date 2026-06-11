@@ -514,6 +514,99 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 <div class="post-excerpt">
   
   
+  <a href="/2026/06/10/getting-started-with-hydra.html">Getting started with Hydra</a>
+
+  <div class="post-info">
+  
+    
+    
+      
+
+<div class="portrait-wrapper">
+  <a href="/members/colette-kelly.html" class="portrait" data-style="tiny" aria-label="Colette Kelly">
+    <img src="https://nitrogen.stanford.edu/sites/g/files/sbiybj20311/files/styles/medium_square/public/media/person/colettelkelly1604361295658.jpg?h=98492e8c&itok=QAGlgsTR" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-text">
+        
+          <span class="portrait-name">
+            Colette Kelly
+          </span>
+        
+        
+        
+          <span class="portrait-role">
+            
+            <i class="icon fa-solid fa-glasses"></i>
+            <span>Postdoctoral Researcher</span>
+          </span>
+        
+        
+          <span class="portrait-pronouns">
+            They/Them
+          </span>
+        
+      </span>
+    
+  </a>
+</div>
+
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>June 10, 2026</span>
+    </span>
+  
+
+  
+    <span data-tooltip="Last updated on">
+      <i class="icon fa-solid fa-clock-rotate-left"></i>
+      <span>June 11, 2026</span>
+    </span>
+  
+</div>
+
+
+  
+
+
+  <div class="tags" data-link="/blog">
+    
+      <a href="/blog?search=%22tag:%20lab%22" class="tag" data-tooltip='Show items with the tag "lab"'>
+        lab
+      </a>
+    
+      <a href="/blog?search=%22tag:%20how-to%22" class="tag" data-tooltip='Show items with the tag "how-to"'>
+        how-to
+      </a>
+    
+      <a href="/blog?search=%22tag:%20computing%22" class="tag" data-tooltip='Show items with the tag "computing"'>
+        computing
+      </a>
+    
+  </div>
+
+
+
+
+
+  
+  
+  <p data-search="Getting started with Hydra  A quick guide to using Python and Jupyter Notebooks on WHOI s new computer cluster  Hydra  For more info about Hydra  see the IS department s announcement   About HydraFor a broader intro to HPC with SLURM and copying files to from the cluster   HPC BasicsOverview  Get an account on Hydra  Log onto Hydra  Create a conda virtual environment  Activate a conda virtual environment  Install new packages  Start an interactive session  Start a Jupyter Notebook  Shut down a Jupyter NotebookGet an account on HydraSubmit a ServiceNow ticket to request an account and migrate your existing workflows   Submit a migration requestIS will set up your new account with all of your existing home directories from Poseidon  The directories on Hydra mirror those on Poseidon  so files you continue working on in Poseidon will automatically update on Hydra Log onto Hydracolette  ssh  lt WHOI ID gt  hydra whoi eduUse the same password as your other WHOI accounts  This will open something like                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Welcome to the Hydra Cluster at WHOI Please do not run anything on the login nodes and submit all jobs to SLURM  All runningjobs processes on the login nodes may be terminated without notice                                                                                    Apptainer  Singularity  is now in the default path   no  module load singularity  is needed  SCRATCH no longer provides any performance advantage  Paths and base environment have changed from Poseidon   please review modules and your  bashrc file                                                                                    Last login  Wed Jun 10 16 38 14 2026 from 10 130 128 135 colette kelly hydra l2    Create a conda virtual environmentLike Poseidon  Hydra provides Python through conda  Check which versions are available  colette kelly hydra l2     module spider condaLoad miniconda  recommended  25 9   colette kelly hydra l2     module load miniconda 25 9The quickest way to set up an environment is from an existing environment yml file  You can find an example here  colette kelly hydra l2 ml argo n2o   conda env create  f environment ymlAccept the terms of service when prompted Do you accept the Terms of Service  ToS  for https   repo anaconda com pkgs main    a ccept  r eject  v iew   aDo you accept the Terms of Service  ToS  for https   repo anaconda com pkgs r    a ccept  r eject  v iew   aComplex environments can take a few minutes to solve  When it finishes successfully  you ll see   To activate this environment  use         conda activate ml argo n2o   To deactivate an active environment  use         conda deactivateYou only need to create the environment once Activate a conda virtual environmentDo NOT run conda init   it modifies your  bashrc in ways that cause problems  Instead  source the conda shell script each time you log in  colette kelly hydra l2        CONDA PREFIX etc profile d conda shThen activate the environment  colette kelly hydra l2     conda activate ml argo n2oYour prompt will now show the environment name as a prefix  ml argo n2o   colette kelly hydra l2    Install new packagesActivate the virtual environment first  then run conda install  ml argo n2o   colette kelly hydra l2     conda install  c conda forge joblibStart an interactive sessionBefore running any code or starting a Jupyter Notebook  request an interactive session on a compute node  colette kelly hydra l2     srun  N 1  n 16   mem 50GB   partition compute   time 01 00 00   pty bashYour prompt will update to show which compute node you ve been assigned  e g   cn056   colette kelly cn056     Start a Jupyter NotebookOn the compute node  load miniconda and activate your environment  colette kelly cn056     module load miniconda 25 9 colette kelly cn056        CONDA PREFIX etc profile d conda sh colette kelly cn056     conda activate ml argo n2oStart Jupyter with   no browser  Pick a port number   you ll need a fresh one each session after restarting your computer  e g   8890  8891  8892      ml argo n2o   colette kelly cn056     jupyter notebook   no browser   port 8895In a separate terminal window  open an SSH tunnel from your local machine to the notebook colette  ssh  t  t colette kelly hydra whoi edu  L 8895 localhost 8895 ssh cn056  L 8895 localhost 8895Replace cn056 with your assigned compute node  A successful tunnel looks like Last login  Wed Jun 10 20 49 11 2026 from 10 151 0 4 colette kelly cn056     If you see bind  address already in use  choose a different port   that one was already used in a previous session since your last restart  This applies to both Poseidon and Hydra sessions Open a browser and go to http   localhost 8895 tree  replace 8895 with your port   Enter your Jupyter password if prompted Shut down a Jupyter NotebookFrom the Jupyter interface  go to File   Shut Down Check for active SLURM sessions and cancel them so they re not running idle  ml argo n2o   colette kelly cn056     squeue  u colette kelly             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST REASON              43336   compute     bash colette   R      24 21      1 cn056 ml argo n2o   colette kelly cn056     scancel 43336The tunnel window will close on its own  colette kelly cn056     Connection to cn056 closed by remote host Connection to cn056 closed Connection to hydra whoi edu closed Log out of the login node in your first window  colette kelly hydra l2     logoutConnection to hydra whoi edu closed ">
+    Getting started with Hydra 🐉
+
+  </p>
+</div>
+
+<div class="post-excerpt">
+  
+  
   <a href="/2026/06/04/about-hydra.html">About Hydra</a>
 
   <div class="post-info">
@@ -532,7 +625,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 05, 2026</span>
+      <span>June 11, 2026</span>
     </span>
   
 </div>
@@ -611,7 +704,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 05, 2026</span>
+      <span>June 11, 2026</span>
     </span>
   
 </div>
@@ -707,7 +800,7 @@ Check out this website for a lot more detail and explanation!
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 05, 2026</span>
+      <span>June 11, 2026</span>
     </span>
   
 </div>
@@ -801,7 +894,7 @@ Quick overview of connecting to and running Python scripts on Poseidon.
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 05, 2026</span>
+      <span>June 11, 2026</span>
     </span>
   
 </div>
@@ -895,7 +988,7 @@ Based on this blog post from the Alexander Lab.
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 05, 2026</span>
+      <span>June 11, 2026</span>
     </span>
   
 </div>
@@ -964,7 +1057,7 @@ Our lab has 100 Tb dedicated space on the WHOI VAST SSD storage drive. Permissio
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 05, 2026</span>
+      <span>June 11, 2026</span>
     </span>
   
 </div>
@@ -1016,7 +1109,7 @@ Our lab has 100 Tb dedicated space on the WHOI VAST SSD storage drive. Permissio
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 05, 2026</span>
+      <span>June 11, 2026</span>
     </span>
   
 </div>
