@@ -81,30 +81,29 @@ Last login: Wed Jun 10 16:38:14 2026 from 10.130.128.135
 
 ## Set up passwordless SSH (one-time)
 
-The recommended way to tunnel into a Jupyter Notebook (see [Start a Jupyter Notebook](#start-a-jupyter-notebook)) uses SSH **ProxyJump**, which needs key-based authentication to the compute nodes. The compute nodes don't accept your password from your laptop directly — only the login nodes do — so set up an SSH key once on your **local machine** to authenticate everywhere on the cluster.
+To connect from your local computer to a Jupyter Notebook running on Hydra, you need to set up a tunnal from your computer. I recommend using SSH **ProxyJump**, which uses key-based authentication to the compute nodes.
 
-First, check whether you already have a key:
+First, set up an SSH key once on your **local machine** to authenticate everywhere on the cluster. Check whether you already have a key:
 
 ```bash
 colette$ ls ~/.ssh/*.pub
 ```
 
-If you see a `.pub` file (e.g., `id_ed25519.pub`), skip ahead to installing it. Otherwise, generate one. Press Enter to accept the default file location. The passphrase is optional — it encrypts the private key on your laptop so it's useless if copied; leave it empty for fully passwordless logins:
+If you see a `.pub` file (e.g., `id_ed25519.pub`), you don't need to generate a key. If nothing prints out when you run ```ls ~/.ssh/*.pub```, generate one with:
 
 ```bash
 colette$ ssh-keygen -t ed25519
 ```
+Press Enter to accept the default file location. The passphrase is optional — it encrypts the private key on your laptop so it's useless if copied; leave it empty for fully passwordless logins. This creates two files in `~/.ssh`: `id_ed25519` (the **private** key that stays on your laptop) and `id_ed25519.pub` (the **public** key that goes to Hydra).
 
-This creates two files in `~/.ssh`: `id_ed25519` (the **private** key — stays on your laptop, never moves) and `id_ed25519.pub` (the **public** key — goes to Hydra).
-
-Install the public key into your Hydra home directory. Because your home directory is shared across the login and compute nodes, this single key works on all of them:
+Install the public key into your Hydra home directory. Because your home directory is shared across the login and compute nodes, this single key works on all of them. If you already had a `.pub` file from the step above, replace `id_ed25519.pub` below with that file. And of course, replace "colette.kelly" with your own username:
 
 ```bash
 colette$ cat ~/.ssh/id_ed25519.pub | ssh colette.kelly@hydra.whoi.edu \
   'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys'
 ```
 
-Enter your WHOI password when prompted — this is the last time you'll need it for tunneling.
+Enter your WHOI password when prompted. You will only need to enter it this one time.
 
 ---
 
@@ -116,7 +115,7 @@ Like Poseidon, Hydra provides Python through conda. Check which versions are ava
 [colette.kelly@hydra-l2 ~]$ module spider conda
 ```
 
-Load miniconda (recommended: 25.9):
+Load your miniconda module of choice (I recommended miniconda/25.9):
 
 ```bash
 [colette.kelly@hydra-l2 ~]$ module load miniconda/25.9
@@ -211,13 +210,13 @@ On the compute node, load miniconda and activate your environment:
 [colette.kelly@cn056 ~]$ conda activate ml-argo-n2o
 ```
 
-Start Jupyter with `--no-browser`. Pick a port number (e.g., `8890`, `8891`, `8892`, ...) — if a port is ever busy, just pick another:
+Start Jupyter with `--no-browser`. Pick a port number (e.g., `8890`, `8891`, `8892`, ...):
 
 ```bash
 (ml-argo-n2o) [colette.kelly@cn056 ~]$ jupyter notebook --no-browser --port=8895
 ```
 
-In a **separate terminal window**, open an SSH tunnel from your local machine to the notebook. The recommended method uses **ProxyJump** (`-J`) to connect straight through the login node to your compute node (this requires the [one-time SSH key setup](#set-up-passwordless-ssh-one-time)):
+In a **separate terminal window**, open an SSH tunnel from your local machine to the notebook. There are a couple of ways to do this, but I recommend using **ProxyJump** (`-J`) to connect straight through the login node to your compute node (if this is your first time doing this, first complete the [one-time SSH key setup](#set-up-passwordless-ssh-one-time)):
 
 ```bash
 colette$ ssh -L 8895:localhost:8895 -J colette.kelly@hydra.whoi.edu colette.kelly@cn056
@@ -230,19 +229,19 @@ Last login: Wed Jun 10 20:49:11 2026 from 10.151.0.4
 [colette.kelly@cn056 ~]$ 
 ```
 
-**Why ProxyJump?** It opens a listening port only on your laptop — the login node just relays the connection. The older nested method (below) *also* opens a port on the shared login node, which can fail with `Address already in use` even on your first session of the day, because another user or a leftover process is holding that port on the login node. Restarting your laptop doesn't free it, so the error is confusing. ProxyJump avoids this entirely.
+I recommend **ProxyJump** because it opens a listening port only on your laptop, and the login node relays the connection. The alternative method (below) *also* opens a port on the shared login node, but it can can fail if another user or a leftover process is holding that port on the login node. Restarting your laptop doesn't necessarily free up the port. ProxyJump avoids this issue.
 
 Open a browser and go to `http://localhost:8895/tree` (replace `8895` with your port). Enter your Jupyter password if prompted.
 
 ### Backup: nested SSH tunnel
 
-If ProxyJump doesn't work — for example, if key-based authentication to the compute nodes isn't available — fall back to the original nested tunnel. Each hop authenticates from inside the cluster, so it works without an SSH key, but it does open a port on the login node:
+If ProxyJump doesn't work, you can open a nested tunnel the Jupyter Notebook running on Hydra. This works without an SSH key, but it requires an unused port on the login node:
 
 ```bash
 colette$ ssh -t -t colette.kelly@hydra.whoi.edu -L 8895:localhost:8895 ssh cn056 -L 8895:localhost:8895
 ```
 
-Replace `cn056` with your assigned compute node. If you see `bind: Address already in use`, the login node's copy of that port is taken — pick a different, higher port (e.g., `8917`), restart Jupyter on that port, and retry the tunnel. This applies to both Poseidon and Hydra sessions.
+Replace `cn056` with your assigned compute node. If you see `bind: Address already in use`, the login node's copy of that port is taken (you've already used it today, or someone else is using it), so just pick a different, higher port (e.g., `8917`). Restart Jupyter on that port, and retry the tunnel.
 
 ---
 
