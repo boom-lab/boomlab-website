@@ -69,10 +69,10 @@
 
   <meta name="author" content="colette-kelly">
   <meta property="og:type" content="article">
-  <meta property="og:updated_time" content="2026-06-11T01:24:13+00:00">
+  <meta property="og:updated_time" content="2026-06-12T18:50:44+00:00">
   <meta property="article:published_time" content="2026-06-10T00:00:00+00:00">
-  <meta property="article:modified_time" content="2026-06-11T01:24:13+00:00">
-  <meta name="revised" content="2026-06-11T01:24:13+00:00">
+  <meta property="article:modified_time" content="2026-06-12T18:50:44+00:00">
+  <meta name="revised" content="2026-06-12T18:50:44+00:00">
 
 
 <script type="application/ld+json">
@@ -82,7 +82,7 @@
       "@type": "BlogPosting",
       "author": { "@type": "Person", "name": "Getting started with Hydra" },
       "datePublished": "2026-06-10T00:00:00+00:00",
-      "dateModified": "2026-06-11T01:24:13+00:00",
+      "dateModified": "2026-06-12T18:50:44+00:00",
     
     "name": "Getting started with Hydra",
     "description": "Woods Hole Oceanographic Institution. The Biogeochemical Ocean Observing and Modeling Lab at the Woods Hole Oeanographic Institution",
@@ -463,7 +463,7 @@
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 11, 2026</span>
+      <span>June 12, 2026</span>
     </span>
   
 </div>
@@ -518,6 +518,7 @@
 <ul>
   <li><a href="#get-an-account-on-hydra">Get an account on Hydra</a></li>
   <li><a href="#log-onto-hydra">Log onto Hydra</a></li>
+  <li><a href="#set-up-passwordless-ssh-one-time">Set up passwordless SSH (one-time)</a></li>
   <li><a href="#create-a-conda-virtual-environment">Create a conda virtual environment</a></li>
   <li><a href="#activate-a-conda-virtual-environment">Activate a conda virtual environment</a></li>
   <li><a href="#install-new-packages">Install new packages</a></li>
@@ -573,6 +574,32 @@ Paths and base environment have changed from Poseidon - please review modules an
 Last login: Wed Jun 10 16:38:14 2026 from 10.130.128.135
 [colette.kelly@hydra-l2 ~]$
 </code></pre></div></div>
+
+<hr>
+
+<h2 id="set-up-passwordless-ssh-one-time">Set up passwordless SSH (one-time)</h2>
+
+<p>The recommended way to tunnel into a Jupyter Notebook (see <a href="#start-a-jupyter-notebook">Start a Jupyter Notebook</a>) uses SSH <strong>ProxyJump</strong>, which needs key-based authentication to the compute nodes. The compute nodes don’t accept your password from your laptop directly — only the login nodes do — so set up an SSH key once on your <strong>local machine</strong> to authenticate everywhere on the cluster.</p>
+
+<p>First, check whether you already have a key:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span><span class="nb">ls</span> ~/.ssh/<span class="k">*</span>.pub
+</code></pre></div></div>
+
+<p>If you see a <code class="language-plaintext highlighter-rouge">.pub</code> file (e.g., <code class="language-plaintext highlighter-rouge">id_ed25519.pub</code>), skip ahead to installing it. Otherwise, generate one. Press Enter to accept the default file location. The passphrase is optional — it encrypts the private key on your laptop so it’s useless if copied; leave it empty for fully passwordless logins:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> ed25519
+</code></pre></div></div>
+
+<p>This creates two files in <code class="language-plaintext highlighter-rouge">~/.ssh</code>: <code class="language-plaintext highlighter-rouge">id_ed25519</code> (the <strong>private</strong> key — stays on your laptop, never moves) and <code class="language-plaintext highlighter-rouge">id_ed25519.pub</code> (the <strong>public</strong> key — goes to Hydra).</p>
+
+<p>Install the public key into your Hydra home directory. Because your home directory is shared across the login and compute nodes, this single key works on all of them:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span><span class="nb">cat</span> ~/.ssh/id_ed25519.pub | ssh colette.kelly@hydra.whoi.edu <span class="se">\</span>
+  <span class="s1">'mkdir -p ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys &amp;&amp; chmod 700 ~/.ssh &amp;&amp; chmod 600 ~/.ssh/authorized_keys'</span>
+</code></pre></div></div>
+
+<p>Enter your WHOI password when prompted — this is the last time you’ll need it for tunneling.</p>
 
 <hr>
 
@@ -667,25 +694,34 @@ Do you accept the Terms of Service (ToS) for https://repo.anaconda.com/pkgs/r?
 <span class="o">[</span>colette.kelly@cn056 ~]<span class="nv">$ </span>conda activate ml-argo-n2o
 </code></pre></div></div>
 
-<p>Start Jupyter with <code class="language-plaintext highlighter-rouge">--no-browser</code>. Pick a port number — you’ll need a fresh one each session after restarting your computer (e.g., <code class="language-plaintext highlighter-rouge">8890</code>, <code class="language-plaintext highlighter-rouge">8891</code>, <code class="language-plaintext highlighter-rouge">8892</code>, …):</p>
+<p>Start Jupyter with <code class="language-plaintext highlighter-rouge">--no-browser</code>. Pick a port number (e.g., <code class="language-plaintext highlighter-rouge">8890</code>, <code class="language-plaintext highlighter-rouge">8891</code>, <code class="language-plaintext highlighter-rouge">8892</code>, …) — if a port is ever busy, just pick another:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>ml-argo-n2o<span class="o">)</span> <span class="o">[</span>colette.kelly@cn056 ~]<span class="nv">$ </span>jupyter notebook <span class="nt">--no-browser</span> <span class="nt">--port</span><span class="o">=</span>8895
 </code></pre></div></div>
 
-<p>In a <strong>separate terminal window</strong>, open an SSH tunnel from your local machine to the notebook:</p>
+<p>In a <strong>separate terminal window</strong>, open an SSH tunnel from your local machine to the notebook. The recommended method uses <strong>ProxyJump</strong> (<code class="language-plaintext highlighter-rouge">-J</code>) to connect straight through the login node to your compute node (this requires the <a href="#set-up-passwordless-ssh-one-time">one-time SSH key setup</a>):</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>ssh <span class="nt">-t</span> <span class="nt">-t</span> colette.kelly@hydra.whoi.edu <span class="nt">-L</span> 8895:localhost:8895 ssh cn056 <span class="nt">-L</span> 8895:localhost:8895
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>ssh <span class="nt">-L</span> 8895:localhost:8895 <span class="nt">-J</span> colette.kelly@hydra.whoi.edu colette.kelly@cn056
 </code></pre></div></div>
 
-<p>Replace <code class="language-plaintext highlighter-rouge">cn056</code> with your assigned compute node. A successful tunnel looks like:</p>
+<p>Replace <code class="language-plaintext highlighter-rouge">cn056</code> with your assigned compute node and <code class="language-plaintext highlighter-rouge">8895</code> with your port. With your SSH key in place, this connects without a password. A successful tunnel looks like:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Last login: Wed Jun 10 20:49:11 2026 from 10.151.0.4
 [colette.kelly@cn056 ~]$ 
 </code></pre></div></div>
 
-<p>If you see <code class="language-plaintext highlighter-rouge">bind: address already in use</code>, choose a different port — that one was already used in a previous session since your last restart. This applies to both Poseidon and Hydra sessions.</p>
+<p><strong>Why ProxyJump?</strong> It opens a listening port only on your laptop — the login node just relays the connection. The older nested method (below) <em>also</em> opens a port on the shared login node, which can fail with <code class="language-plaintext highlighter-rouge">Address already in use</code> even on your first session of the day, because another user or a leftover process is holding that port on the login node. Restarting your laptop doesn’t free it, so the error is confusing. ProxyJump avoids this entirely.</p>
 
 <p>Open a browser and go to <code class="language-plaintext highlighter-rouge">http://localhost:8895/tree</code> (replace <code class="language-plaintext highlighter-rouge">8895</code> with your port). Enter your Jupyter password if prompted.</p>
+
+<h3 id="backup-nested-ssh-tunnel">Backup: nested SSH tunnel</h3>
+
+<p>If ProxyJump doesn’t work — for example, if key-based authentication to the compute nodes isn’t available — fall back to the original nested tunnel. Each hop authenticates from inside the cluster, so it works without an SSH key, but it does open a port on the login node:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>ssh <span class="nt">-t</span> <span class="nt">-t</span> colette.kelly@hydra.whoi.edu <span class="nt">-L</span> 8895:localhost:8895 ssh cn056 <span class="nt">-L</span> 8895:localhost:8895
+</code></pre></div></div>
+
+<p>Replace <code class="language-plaintext highlighter-rouge">cn056</code> with your assigned compute node. If you see <code class="language-plaintext highlighter-rouge">bind: Address already in use</code>, the login node’s copy of that port is taken — pick a different, higher port (e.g., <code class="language-plaintext highlighter-rouge">8917</code>), restart Jupyter on that port, and retry the tunnel. This applies to both Poseidon and Hydra sessions.</p>
 
 <hr>
 
@@ -710,10 +746,10 @@ Connection to cn056 closed.
 Connection to hydra.whoi.edu closed.
 </code></pre></div></div>
 
-<p>Log out of the login node in your first window:</p>
+<p>If you used the ProxyJump tunnel, just close that terminal window (or type <code class="language-plaintext highlighter-rouge">logout</code>) to tear it down:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@hydra-l2 ~]<span class="nv">$ </span><span class="nb">logout
-</span>Connection to hydra.whoi.edu closed.
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@cn056 ~]<span class="nv">$ </span><span class="nb">logout
+</span>Connection to cn056 closed.
 </code></pre></div></div>
   </section>
 
