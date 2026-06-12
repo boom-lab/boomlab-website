@@ -19,6 +19,7 @@ For a broader intro to HPC with SLURM and copying files to/from the cluster:
 
 - [Get an account on Hydra](#get-an-account-on-hydra)
 - [Log onto Hydra](#log-onto-hydra)
+- [Set up passwordless SSH (one-time)](#set-up-passwordless-ssh-one-time)
 - [Create a conda virtual environment](#create-a-conda-virtual-environment)
 - [Activate a conda virtual environment](#activate-a-conda-virtual-environment)
 - [Install new packages](#install-new-packages)
@@ -75,6 +76,35 @@ Paths and base environment have changed from Poseidon - please review modules an
 Last login: Wed Jun 10 16:38:14 2026 from 10.130.128.135
 [colette.kelly@hydra-l2 ~]$
 ```
+
+---
+
+## Set up passwordless SSH (one-time)
+
+The recommended way to tunnel into a Jupyter Notebook (see [Start a Jupyter Notebook](#start-a-jupyter-notebook)) uses SSH **ProxyJump**, which needs key-based authentication to the compute nodes. The compute nodes don't accept your password from your laptop directly — only the login nodes do — so set up an SSH key once on your **local machine** to authenticate everywhere on the cluster.
+
+First, check whether you already have a key:
+
+```bash
+colette$ ls ~/.ssh/*.pub
+```
+
+If you see a `.pub` file (e.g., `id_ed25519.pub`), skip ahead to installing it. Otherwise, generate one. Press Enter to accept the default file location. The passphrase is optional — it encrypts the private key on your laptop so it's useless if copied; leave it empty for fully passwordless logins:
+
+```bash
+colette$ ssh-keygen -t ed25519
+```
+
+This creates two files in `~/.ssh`: `id_ed25519` (the **private** key — stays on your laptop, never moves) and `id_ed25519.pub` (the **public** key — goes to Hydra).
+
+Install the public key into your Hydra home directory. Because your home directory is shared across the login and compute nodes, this single key works on all of them:
+
+```bash
+colette$ cat ~/.ssh/id_ed25519.pub | ssh colette.kelly@hydra.whoi.edu \
+  'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys'
+```
+
+Enter your WHOI password when prompted — this is the last time you'll need it for tunneling.
 
 ---
 
@@ -181,28 +211,38 @@ On the compute node, load miniconda and activate your environment:
 [colette.kelly@cn056 ~]$ conda activate ml-argo-n2o
 ```
 
-Start Jupyter with `--no-browser`. Pick a port number — you'll need a fresh one each session after restarting your computer (e.g., `8890`, `8891`, `8892`, ...):
+Start Jupyter with `--no-browser`. Pick a port number (e.g., `8890`, `8891`, `8892`, ...) — if a port is ever busy, just pick another:
 
 ```bash
 (ml-argo-n2o) [colette.kelly@cn056 ~]$ jupyter notebook --no-browser --port=8895
 ```
 
-In a **separate terminal window**, open an SSH tunnel from your local machine to the notebook:
+In a **separate terminal window**, open an SSH tunnel from your local machine to the notebook. The recommended method uses **ProxyJump** (`-J`) to connect straight through the login node to your compute node (this requires the [one-time SSH key setup](#set-up-passwordless-ssh-one-time)):
 
 ```bash
-colette$ ssh -t -t colette.kelly@hydra.whoi.edu -L 8895:localhost:8895 ssh cn056 -L 8895:localhost:8895
+colette$ ssh -L 8895:localhost:8895 -J colette.kelly@hydra.whoi.edu colette.kelly@cn056
 ```
 
-Replace `cn056` with your assigned compute node. A successful tunnel looks like:
+Replace `cn056` with your assigned compute node and `8895` with your port. With your SSH key in place, this connects without a password. A successful tunnel looks like:
 
 ```
 Last login: Wed Jun 10 20:49:11 2026 from 10.151.0.4
 [colette.kelly@cn056 ~]$ 
 ```
 
-If you see `bind: address already in use`, choose a different port — that one was already used in a previous session since your last restart. This applies to both Poseidon and Hydra sessions.
+**Why ProxyJump?** It opens a listening port only on your laptop — the login node just relays the connection. The older nested method (below) *also* opens a port on the shared login node, which can fail with `Address already in use` even on your first session of the day, because another user or a leftover process is holding that port on the login node. Restarting your laptop doesn't free it, so the error is confusing. ProxyJump avoids this entirely.
 
 Open a browser and go to `http://localhost:8895/tree` (replace `8895` with your port). Enter your Jupyter password if prompted.
+
+### Backup: nested SSH tunnel
+
+If ProxyJump doesn't work — for example, if key-based authentication to the compute nodes isn't available — fall back to the original nested tunnel. Each hop authenticates from inside the cluster, so it works without an SSH key, but it does open a port on the login node:
+
+```bash
+colette$ ssh -t -t colette.kelly@hydra.whoi.edu -L 8895:localhost:8895 ssh cn056 -L 8895:localhost:8895
+```
+
+Replace `cn056` with your assigned compute node. If you see `bind: Address already in use`, the login node's copy of that port is taken — pick a different, higher port (e.g., `8917`), restart Jupyter on that port, and retry the tunnel. This applies to both Poseidon and Hydra sessions.
 
 ---
 
@@ -230,9 +270,9 @@ Connection to cn056 closed.
 Connection to hydra.whoi.edu closed.
 ```
 
-Log out of the login node in your first window:
+If you used the ProxyJump tunnel, just close that terminal window (or type `logout`) to tear it down:
 
 ```bash
-[colette.kelly@hydra-l2 ~]$ logout
-Connection to hydra.whoi.edu closed.
+[colette.kelly@cn056 ~]$ logout
+Connection to cn056 closed.
 ```
