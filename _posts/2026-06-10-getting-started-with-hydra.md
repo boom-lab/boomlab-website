@@ -249,29 +249,17 @@ Replace `cn056` with your assigned compute node. If you see `bind: Address alrea
 
 From the Jupyter interface, go to **File → Shut Down**.
 
-Check for active SLURM sessions and cancel them so they're not running idle:
+In the Terminal window from which you started the Jupyter Notebook, just type `exit` to end the interactive session, the `logout` to close your session on Hydra:
 
 ```bash
-(ml-argo-n2o) [colette.kelly@cn056 ~]$ squeue -u colette.kelly
-             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-             43336   compute     bash colette.  R      24:21      1 cn056
-```
-
-```bash
-(ml-argo-n2o) [colette.kelly@cn056 ~]$ scancel 43336
+(ml-argo-n2o) [colette.kelly@cn056 ~]$ exit
+[colette.kelly@hydra-l2 ~]$ logout
+Connection to hydra.whoi.edu closed.
 ```
 
 The tunnel window will close on its own:
 
-```
-[colette.kelly@cn056 ~]$ Connection to cn056 closed by remote host.
-Connection to cn056 closed.
-Connection to hydra.whoi.edu closed.
-```
-
-If you used the ProxyJump tunnel, just close that terminal window (or type `logout`) to tear it down:
-
 ```bash
-[colette.kelly@cn056 ~]$ logout
+[colette.kelly@cn056 ~]$ Connection to cn056 closed by remote host.
 Connection to cn056 closed.
 ```
