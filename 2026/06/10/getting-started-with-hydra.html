@@ -69,10 +69,10 @@
 
   <meta name="author" content="colette-kelly">
   <meta property="og:type" content="article">
-  <meta property="og:updated_time" content="2026-06-15T20:06:57+00:00">
+  <meta property="og:updated_time" content="2026-06-16T16:48:42+00:00">
   <meta property="article:published_time" content="2026-06-10T00:00:00+00:00">
-  <meta property="article:modified_time" content="2026-06-15T20:06:57+00:00">
-  <meta name="revised" content="2026-06-15T20:06:57+00:00">
+  <meta property="article:modified_time" content="2026-06-16T16:48:42+00:00">
+  <meta name="revised" content="2026-06-16T16:48:42+00:00">
 
 
 <script type="application/ld+json">
@@ -82,7 +82,7 @@
       "@type": "BlogPosting",
       "author": { "@type": "Person", "name": "Getting started with Hydra" },
       "datePublished": "2026-06-10T00:00:00+00:00",
-      "dateModified": "2026-06-15T20:06:57+00:00",
+      "dateModified": "2026-06-16T16:48:42+00:00",
     
     "name": "Getting started with Hydra",
     "description": "Woods Hole Oceanographic Institution. The Biogeochemical Ocean Observing and Modeling Lab at the Woods Hole Oeanographic Institution",
@@ -463,7 +463,7 @@
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 15, 2026</span>
+      <span>June 16, 2026</span>
     </span>
   
 </div>
@@ -712,6 +712,14 @@ Do you accept the Terms of Service (ToS) for https://repo.anaconda.com/pkgs/r?
 <p>I recommend <strong>ProxyJump</strong> because it opens a listening port only on your laptop, and the login node relays the connection. The alternative method (below) <em>also</em> opens a port on the shared login node, but it can can fail if another user or a leftover process is holding that port on the login node. Restarting your laptop doesn’t necessarily free up the port. ProxyJump avoids this issue.</p>
 
 <p>Open a browser and go to <code class="language-plaintext highlighter-rouge">http://localhost:8895/tree</code> (replace <code class="language-plaintext highlighter-rouge">8895</code> with your port). Enter your Jupyter password if prompted.</p>
+
+<h3 id="if-you-get-this-warning">If you get this warning:</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>colette<span class="nv">$ </span>ssh <span class="nt">-L</span> 8895:localhost:8895 <span class="nt">-J</span> colette.kelly@hydra.whoi.edu colette.kelly@cn056
+The authenticity of host <span class="s1">'cn073 (&lt;no hostip for proxy command&gt;)'</span> can<span class="s1">'t be established.
+[...]
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+</span></code></pre></div></div>
+<p>Just type “yes”.</p>
 
 <h3 id="backup-nested-ssh-tunnel">Backup: nested SSH tunnel</h3>
 
