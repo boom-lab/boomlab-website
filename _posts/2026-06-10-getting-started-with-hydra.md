@@ -233,6 +233,15 @@ I recommend **ProxyJump** because it opens a listening port only on your laptop,
 
 Open a browser and go to `http://localhost:8895/tree` (replace `8895` with your port). Enter your Jupyter password if prompted.
 
+### If you get this warning:
+```bash
+colette$ ssh -L 8895:localhost:8895 -J colette.kelly@hydra.whoi.edu colette.kelly@cn056
+The authenticity of host 'cn073 (<no hostip for proxy command>)' can't be established.
+[...]
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+Just type "yes".
+
 ### Backup: nested SSH tunnel
 
 If ProxyJump doesn't work, you can open a nested tunnel the Jupyter Notebook running on Hydra. This works without an SSH key, but it requires an unused port on the login node:
