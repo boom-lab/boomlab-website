@@ -40,7 +40,7 @@ Here are the third party references I used when figuring this out:
 
 I have several Random Forest models that predict nitrous oxide (N₂O) from things like temperature, salinity, oxygen, and nitrate. I tried using these models to predict N₂O on a large feature dataset, using traditional CPU resources on Hydra. The result: disaster. Well not quite... but even with the backend parallel processing built into Scikit-Learn's Random Forest Inference Regressor running on 16 parallel cores, it took four minutes for one model (out of four) to do the prediction on a single month of data (out of a 384-month dataset). Why? Each random forest model has 600 decision trees, and each month of data includes 20 million rows. Here's that example:
 
-```Python
+```python
 import numpy as np
 import pandas as pd
 import xarray as xr
@@ -294,7 +294,7 @@ Now I start an interactive session on the GPU node and load an RF model:
 [colette.kelly@gpu003 ~]$ conda activate nvforest
 (nvforest) [colette.kelly@gpu003 ~]$ ipython
 ```
-```Python
+```python
 import joblib, nvforest
 
 skl = joblib.load("/user/colette.kelly/ml-argo-n2o/model1_rf_full.joblib")
