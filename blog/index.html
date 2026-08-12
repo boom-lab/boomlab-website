@@ -505,11 +505,107 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
         computing
       </a>
     
+      <a href="/blog/?search=%22tag:%20gpu%22" class="tag" data-tooltip='Show items with the tag "gpu"'>
+        gpu
+      </a>
+    
   </div>
 
 <div class="search-info"></div>
 
 <h3 id="2026">2026</h3>
+
+<div class="post-excerpt">
+  
+  
+  <a href="/2026/08/12/use-the-gpus-on-hydra.html">Use the GPUs on Hydra</a>
+
+  <div class="post-info">
+  
+    
+    
+      
+
+<div class="portrait-wrapper">
+  <a href="/members/colette-kelly.html" class="portrait" data-style="tiny" aria-label="Colette Kelly">
+    <img src="https://nitrogen.stanford.edu/sites/g/files/sbiybj20311/files/styles/medium_square/public/media/person/colettelkelly1604361295658.jpg?h=98492e8c&itok=QAGlgsTR" class="portrait-image" alt="member portrait" loading="lazy" onerror="this.src = '/images/fallback.svg'; this.onerror = null;">
+
+    
+      <span class="portrait-text">
+        
+          <span class="portrait-name">
+            Colette Kelly
+          </span>
+        
+        
+        
+          <span class="portrait-role">
+            
+            <i class="icon fa-solid fa-glasses"></i>
+            <span>Postdoctoral Researcher</span>
+          </span>
+        
+        
+          <span class="portrait-pronouns">
+            They/Them
+          </span>
+        
+      </span>
+    
+  </a>
+</div>
+
+    
+  
+
+  
+  
+
+  
+    <span data-tooltip="Originally published on">
+      <i class="icon fa-regular fa-calendar"></i>
+      <span>August 12, 2026</span>
+    </span>
+  
+
+  
+</div>
+
+
+  
+
+
+  <div class="tags" data-link="/blog">
+    
+      <a href="/blog?search=%22tag:%20lab%22" class="tag" data-tooltip='Show items with the tag "lab"'>
+        lab
+      </a>
+    
+      <a href="/blog?search=%22tag:%20how-to%22" class="tag" data-tooltip='Show items with the tag "how-to"'>
+        how-to
+      </a>
+    
+      <a href="/blog?search=%22tag:%20computing%22" class="tag" data-tooltip='Show items with the tag "computing"'>
+        computing
+      </a>
+    
+      <a href="/blog?search=%22tag:%20gpu%22" class="tag" data-tooltip='Show items with the tag "gpu"'>
+        gpu
+      </a>
+    
+  </div>
+
+
+
+
+
+  
+  
+  <p data-search="Use the GPUs on HydraThis resource covers what a GPU actually is  when and why you should use one  how to access a GPU node on Hydra  and how to build a conda environment with nvForest so you can run a trained scikit learn random forest on the GPU If you are new to high performing computing or have never used the Poseidon or Hydra computer clusters before  I recommend checking out my other blog posts on high performance computing   HPC basics  Getting started with HydraOverview  Why use a GPU  What is a GPU   When  and when not  to use a GPU  Start an interactive session on a GPU node  Check the GPU you got  Set up a conda environment with nvForest  Add cuDF and CuPy  optional  data on the GPU   A tiny example  scikit learn   GPUForestInferenceRegressor  From one forest to millions of rows  the CPU GPU boundary  Scale it up  all four GPUs on one node  Reading the results  seff and the payoffWhy use a GPU I have several Random Forest models that predict nitrous oxide  N2O  from thigns like temperature  salinity  oxygen  and nitrate  I tried using these models to predict N2O on a large feature dataset  using traditional CPU resources on Hydra  The result  disaster  Well not quite  but even with the backend parallel processing built into Scikit Learn s Random Forest Inference Regressor running on 16 parallel cores  it took four minutes for one model  out of four  to do the prediction on a single month of data  out of a 384 month dataset   Why  Each random forest model has 600 decision trees  and each month of data includes 20 million rows  Here s that example tab   pd read parquet f  FEATURE DIR  features  year   month 02d  parquet  sub   tab  tab  pres    gt  PMIN   amp   tab  pres    lt  PMAX  sub flat index pres SA CT o2 no3 AOU0 0 2 5 35 926041 21 980213 220 591110 0 237462  4 0662061 1 2 5 35 921921 21 993288 220 561722 0 236455  4 0798232 2 2 5 35 915161 21 993517 220 585419 0 238403  4 0939503 3 2 5 35 912014 21 846651 221 111893 0 268081  4 0597674 4 2 5 35 904461 21 846907 221 126190 0 270777  4 063333                               20452731 22457595 1975 0 35 313015 3 343683 258 761871 18 643993 60 65547220452732 22457596 1975 0 35 313972 3 336914 258 803680 18 642286 60 66408920452733 22457597 1975 0 35 314999 3 336901 258 716064 18 648146 60 74929420452734 22457598 1975 0 35 315697 3 338968 258 554932 18 659927 60 89261620452735 22457599 1975 0 35 316238 3 344537 258 351166 18 674530 61 05166220452736 rows   7 columnsmodel id   1cols   MODEL FEATURES model id   set up Numpy array to do predictions on  use  sub    gt  so the N2O predictions will only be made for the selected pressure rangeX   np ascontiguousarray sub cols  to numpy dtype F32    load RF modelsmodels    mid  load f  user colette kelly ml argo n2o model mid  rf full joblib   for mid in  1 2 3 4  model   models model id model n jobs   16print f  backend  model  model id   sklearn   type model    name         expect RandomForestRegressor backend  model 1  sklearn  RandomForestRegressor   timeit  let sklearn s backend parallelization do the worky   np asarray model predict X   dtype   F32 4min 19s   7 01 s per loop  mean   std  dev  of 7 runs  1 loop each ">
+    Use the GPUs on Hydra
+
+  </p>
+</div>
 
 <div class="post-excerpt">
   
@@ -567,7 +663,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 16, 2026</span>
+      <span>August 12, 2026</span>
     </span>
   
 </div>
@@ -625,7 +721,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 16, 2026</span>
+      <span>August 12, 2026</span>
     </span>
   
 </div>
@@ -704,7 +800,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 16, 2026</span>
+      <span>August 12, 2026</span>
     </span>
   
 </div>
@@ -800,7 +896,7 @@ Check out this website for a lot more detail and explanation!
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 16, 2026</span>
+      <span>August 12, 2026</span>
     </span>
   
 </div>
@@ -894,7 +990,7 @@ Quick overview of connecting to and running Python scripts on Poseidon.
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 16, 2026</span>
+      <span>August 12, 2026</span>
     </span>
   
 </div>
@@ -988,7 +1084,7 @@ Based on this blog post from the Alexander Lab.
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 16, 2026</span>
+      <span>August 12, 2026</span>
     </span>
   
 </div>
@@ -1057,7 +1153,7 @@ Our lab has 100 Tb dedicated space on the WHOI VAST SSD storage drive. Permissio
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 16, 2026</span>
+      <span>August 12, 2026</span>
     </span>
   
 </div>
@@ -1109,7 +1205,7 @@ Our lab has 100 Tb dedicated space on the WHOI VAST SSD storage drive. Permissio
   
     <span data-tooltip="Last updated on">
       <i class="icon fa-solid fa-clock-rotate-left"></i>
-      <span>June 16, 2026</span>
+      <span>August 12, 2026</span>
     </span>
   
 </div>
