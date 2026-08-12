@@ -69,10 +69,10 @@
 
   <meta name="author" content="colette-kelly">
   <meta property="og:type" content="article">
-  <meta property="og:updated_time" content="2026-08-12T18:52:32+00:00">
+  <meta property="og:updated_time" content="2026-08-12T20:38:11+00:00">
   <meta property="article:published_time" content="2026-08-12T00:00:00+00:00">
-  <meta property="article:modified_time" content="2026-08-12T18:52:32+00:00">
-  <meta name="revised" content="2026-08-12T18:52:32+00:00">
+  <meta property="article:modified_time" content="2026-08-12T20:38:11+00:00">
+  <meta name="revised" content="2026-08-12T20:38:11+00:00">
 
 
 <script type="application/ld+json">
@@ -82,7 +82,7 @@
       "@type": "BlogPosting",
       "author": { "@type": "Person", "name": "Use the GPUs on Hydra" },
       "datePublished": "2026-08-12T00:00:00+00:00",
-      "dateModified": "2026-08-12T18:52:32+00:00",
+      "dateModified": "2026-08-12T20:38:11+00:00",
     
     "name": "Use the GPUs on Hydra",
     "description": "Woods Hole Oceanographic Institution. The Biogeochemical Ocean Observing and Modeling Lab at the Woods Hole Oeanographic Institution",
@@ -502,12 +502,18 @@
 
 <h1 id="use-the-gpus-on-hydra">Use the GPUs on Hydra</h1>
 
-<p>This resource covers what a GPU actually is, when and why you should use one, how to access a GPU node on Hydra, and how to build a conda environment with <strong>nvForest</strong> so you can run a trained scikit-learn random forest on the GPU.</p>
+<p>This resource covers what a GPU actually is, when and why you should use one, how to access a GPU node on Hydra, and how to build a conda environment with nvForest so you can run a trained scikit-learn random forest on the GPU.</p>
 
 <p>If you are new to high-performing computing or have never used the Poseidon or Hydra computer clusters before, I recommend checking out my other blog posts on high-performance computing:</p>
 
-<p>🔗 <strong><a href="https://boom.science/2023/10/03/poseidon-basics.html">HPC basics</a></strong>
-🔗 <strong><a href="https://boom.science/2026/06/10/getting-started-with-hydra.html">Getting started with Hydra</a></strong></p>
+<p>🔗 <a href="https://boom.science/2023/10/03/poseidon-basics.html">HPC basics</a>
+🔗 <a href="https://boom.science/2026/06/10/getting-started-with-hydra.html">Getting started with Hydra</a></p>
+
+<p>Here are the third party references I used when figuring this out:</p>
+
+<p>🔗 <a href="https://docs.rapids.ai/api/nvforest/stable/">nvForest docs</a>
+🔗 <a href="https://docs.rapids.ai/install/">RAPIDS install guide</a>
+🔗 <a href="https://docs.rapids.ai/platform-support/">RAPIDS platform support</a></p>
 
 <h2 id="overview">Overview</h2>
 
@@ -520,50 +526,466 @@
   <li><a href="#set-up-a-conda-environment-with-nvforest">Set up a conda environment with nvForest</a></li>
   <li><a href="#add-cudf-and-cupy-optional-data-on-the-gpu">Add cuDF and CuPy (optional: data on the GPU)</a></li>
   <li><a href="#a-tiny-example-scikit-learn--gpuforestinferenceregressor">A tiny example: scikit-learn → GPUForestInferenceRegressor</a></li>
-  <li><a href="#from-one-forest-to-millions-of-rows-the-cpugpu-boundary">From one forest to millions of rows: the CPU/GPU boundary</a></li>
-  <li><a href="#scale-it-up-all-four-gpus-on-one-node">Scale it up: all four GPUs on one node</a></li>
-  <li><a href="#reading-the-results-seff-and-the-payoff">Reading the results: seff and the payoff</a></li>
+  <li><a href="#the-cpugpu-boundary">The CPU/GPU boundary</a></li>
+  <li><a href="#scale-to-all-four-gpus">Scale to all four GPUs</a></li>
+  <li><a href="#the-payoff">The payoff</a></li>
 </ul>
 
 <hr>
 
 <h2 id="why-use-a-gpu">Why use a GPU?</h2>
 
-<p>I have several Random Forest models that predict nitrous oxide (N2O) from thigns like temperature, salinity, oxygen, and nitrate. I tried using these models to predict N2O on a large feature dataset, using traditional CPU resources on Hydra. The result: disaster. Well not quite… but even with the backend parallel processing built into Scikit-Learn’s Random Forest Inference Regressor running on 16 parallel cores, it took four minutes for one model (out of four) to do the prediction on a single month of data (out of a 384-month dataset). Why? Each random forest model has 600 decision trees, and each month of data includes 20 million rows. Here’s that example:</p>
+<p>I have several Random Forest models that predict nitrous oxide (N₂O) from things like temperature, salinity, oxygen, and nitrate. I tried using these models to predict N₂O on a large feature dataset, using traditional CPU resources on Hydra. The result: disaster. Well not quite… but even with the backend parallel processing built into Scikit-Learn’s Random Forest Inference Regressor running on 16 parallel cores, it took four minutes for one model (out of four) to do the prediction on a single month of data (out of a 384-month dataset). Why? Each random forest model has 600 decision trees, and each month of data includes 20 million rows. Here’s that example:</p>
 
-<pre><code class="language-Python">tab = pd.read_parquet(f"{FEATURE_DIR}/features_{year}_{month:02d}.parquet")
+<pre><code class="language-Python">import numpy as np
+import pandas as pd
+import xarray as xr
+import gsw
+from joblib import load
+
+TPATH = "/proj/boom/data/argo_rfromv22_temp"
+SPATH = "/proj/boom/data/argo_rfromv22_sal"
+O2PATH = "/proj/boom/data/gobai-highres-o2"
+NO3PATH = "/proj/boom/data/gobai-highres-no3"
+
+FEATURE_DIR = "/proj/boom/data/highres_features"
+PRED_DIR = "/proj/boom/data/highres_n2o_pred/etphighres"
+MODEL_DIR = "/user/colette.kelly/ml-argo-n2o"
+
+# lat-lon slices for the eastern tropical Pacific
+LAT = slice(-30,25)
+LON = slice(360 - 180, 360 - 70)
+
+# pressure window for prediction - set to something small for testing
+PMIN, PMAX = 0.0, 5000.0
+
+# model features
+# needs to match the feature order each RF was trained on
+MODEL_FEATURES = {
+    1: ["AOU", "CT", "SA", "no3"],
+    2: ["o2", "CT", "SA", "no3"],
+    3: ["AOU", "CT", "SA"],
+    4: ["o2", "CT", "SA"]}
+
+F32 = np.float32
+
+year = 2024
+month = 1
+
+tab = pd.read_parquet(f"{FEATURE_DIR}/features_{year}_{month:02d}.parquet")
 sub = tab[(tab["pres"] &gt; PMIN) &amp; (tab["pres"] &lt; PMAX)]
-sub
-	flat_index	pres	SA	CT	o2	no3	AOU
-0	0	2.5	35.926041	21.980213	220.591110	0.237462	-4.066206
-1	1	2.5	35.921921	21.993288	220.561722	0.236455	-4.079823
-2	2	2.5	35.915161	21.993517	220.585419	0.238403	-4.093950
-3	3	2.5	35.912014	21.846651	221.111893	0.268081	-4.059767
-4	4	2.5	35.904461	21.846907	221.126190	0.270777	-4.063333
-...	...	...	...	...	...	...	...
-20452731	22457595	1975.0	35.313015	3.343683	258.761871	18.643993	60.655472
-20452732	22457596	1975.0	35.313972	3.336914	258.803680	18.642286	60.664089
-20452733	22457597	1975.0	35.314999	3.336901	258.716064	18.648146	60.749294
-20452734	22457598	1975.0	35.315697	3.338968	258.554932	18.659927	60.892616
-20452735	22457599	1975.0	35.316238	3.344537	258.351166	18.674530	61.051662
-20452736 rows × 7 columns
 
 model_id = 1
 cols = MODEL_FEATURES[model_id]
+
 # set up Numpy array to do predictions on
 # use "sub" -&gt; so the N2O predictions will only be made for the selected pressure range
 X = np.ascontiguousarray(sub[cols].to_numpy(dtype=F32))
+X.shape
+
 # load RF models
 models = {mid: load(f"/user/colette.kelly/ml-argo-n2o/model{mid}_rf_full.joblib") for mid in (1,2,3,4)}
+
 model = models[model_id]
-model.n_jobs = 16
+model.n_jobs = -1
 print(f"[backend] model {model_id}: sklearn ({type(model).__name__})") # expect RandomForestRegressor
-[backend] model 1: sklearn (RandomForestRegressor)
-%%timeit
-# let sklearn's backend parallelization do the work
-y = np.asarray(model.predict(X), dtype = F32)
-4min 19s ± 7.01 s per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+%timeit y = np.asarray(model.predict(X), dtype=F32)
+
+6min 15s ± 2.6 s per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </code></pre>
+
+<hr>
+
+<h2 id="what-is-a-gpu">What is a GPU?</h2>
+
+<p>So, time to turn to a GPU. <a href="https://boom.science/2026/06/04/about-hydra.html">WHOI’s new computer cluster Hydra</a> has some amazing resources, including a GPU node. Here’s that actually means:</p>
+
+<p>The traditional compute nodes on Hydra have 48 powerful CPUs (central processing units) per node that are great at sequential logic: “do this, then check that, then decide what’s next.”” The GPU node on Hydra has 4 NVDIA GPUs (graphics processing units), each of which has <em>thousands</em> of small, simple cores that are great at doing the <em>same operation across a huge amount of data at once</em>.</p>
+
+<p>A commonly-used analogy: a CPU is a kitchen full of expert chefs each cooking a multi-course meal from start to finish. A GPU is a <em>stadium</em>-full  (actually though) of line cooks all chopping onions at the same time. So is your problem, cook this fancy multi-course meal? Or chop 10 million onions the same way? If you’re doing something highly parallelizable, the GPU is the correct path.</p>
+
+<p>The one catch: a GPU has its <em>own memory</em>, separate from the computer’s main (host) memory. Your data has to be copied from host memory into GPU (device) memory and the results copied back. So you should avoid shuttling data across that boundary, and only use a GPU if the computational savings from parallelizing on a GPU are greater than the cost of copying data back and forth.</p>
+
+<hr>
+
+<h2 id="when-and-when-not-to-use-a-gpu">When (and when not) to use a GPU</h2>
+
+<p>Good fits for a GPU:</p>
+
+<ul>
+  <li>Training or running machine-learning models on lots of data</li>
+  <li>Large array / linear-algebra math (big matrix ops, FFTs)</li>
+  <li>DataFrame operations on large tables via <a href="https://docs.rapids.ai/">RAPIDS</a> (cuDF / CuPy)</li>
+  <li>Anything “embarrassingly parallel” — the same simple operation over millions of elements</li>
+</ul>
+
+<p>My use case: applying trained random forest models to <em>~20 million rows</em> of gridded ocean data to predict N₂O. On a CPU this was painfully slow and kept running out of memory; on the GPU the same inference finishes in seconds.</p>
+
+<p>Skip the GPU for:</p>
+
+<ul>
+  <li>Small data, because the host↔device copy dominates and you gain nothing</li>
+  <li>Serial, branchy logic that can’t be parallelized</li>
+  <li>I/O-bound work: reading/writing files, downloading data, conda installs</li>
+  <li>Plain pandas on a modest table</li>
+</ul>
+
+<p>A GPU can actually be <em>slower</em> once you count the transfer overhead.</p>
+
+<h3 id="gpu-etiquette">GPU etiquette</h3>
+
+<p>GPU nodes are a scarce, shared resource. Only request one for work that actually uses the GPU. Do your feature engineering, file wrangling, and environment installs on a regular <code class="language-plaintext highlighter-rouge">compute</code> node and save the <code class="language-plaintext highlighter-rouge">gpu</code> partition for the inference itself.</p>
+
+<hr>
+
+<h2 id="start-an-interactive-session-on-a-gpu-node">Start an interactive session on a GPU node</h2>
+
+<p>Similar to <a href="https://boom.science/2026/06/10/getting-started-with-hydra.html">starting an interactive session on a traditional compute node</a>, but ask SLURM for the <code class="language-plaintext highlighter-rouge">gpu</code> partition and one GPU with <code class="language-plaintext highlighter-rouge">--gpus-per-node</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@hydra-l2 ~]<span class="nv">$ </span>srun <span class="nt">--partition</span><span class="o">=</span>gpu <span class="nt">--gpus-per-node</span><span class="o">=</span>1 <span class="nt">--mem</span><span class="o">=</span>32GB <span class="nt">--time</span><span class="o">=</span>00:30:00 <span class="nt">--pty</span> bash
+</code></pre></div></div>
+
+<p>Your prompt updates to the GPU node you were assigned:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@gpu003 ~]<span class="err">$</span>
+</code></pre></div></div>
+
+<p>A note on <code class="language-plaintext highlighter-rouge">--mem</code>: that’s <em>host</em> RAM, which is separate from the GPU’s own memory. Loading a single large random forest into host memory can take ~14 GB on its own, so make sure you’ve requested enough memory or the session will time out. You don’t need to size it to the GPU’s memory.</p>
+
+<hr>
+
+<h2 id="check-the-gpu-you-got">Check the GPU you got</h2>
+
+<p>It’s worth checking the GPU hardware to make sure you’re installing versions of libraries that are compatible with the hardware. This is a bit more involved on GPU than with a traditional compute node. Here’s what you need to do.</p>
+
+<p>Before installing anything, see what hardware you landed on:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@gpu003 ~]<span class="nv">$ </span>nvidia-smi <span class="nt">--query-gpu</span><span class="o">=</span>name,compute_cap,driver_version <span class="nt">--format</span><span class="o">=</span>csv
+name, compute_cap, driver_version
+NVIDIA H200, 9.0, 610.43.02
+</code></pre></div></div>
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">name</code> → NVIDIA H200. A current-generation (Hopper) datacenter GPU with ~141 GB of on-board memory.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">compute_cap</code> → 9.0. The GPU’s <em>compute capability</em> — its architecture / feature level. The RAPIDS ecosystem, which includes the <em>nvforest</em> library for RF inference, requires 7.0 or higher (Volta and newer).</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">driver_version</code> → 610.43.02. The NVIDIA driver installed on the node. The driver determines the newest CUDA version the node can run. RAPIDS 26.06 needs driver 525.60.13+ for its CUDA 12 build or 580.65.06+ for CUDA 13. RAPIDS ships separate builds for CUDA 12 and CUDA 13, and you have to install one your driver supports. We have <code class="language-plaintext highlighter-rouge">610</code> so we can use either.</li>
+</ul>
+
+<h3 id="sidebar-what-is-cuda">Sidebar: what is CUDA?</h3>
+
+<p>CUDA is NVIDIA’s platform for running general-purpose computation on their GPUs:</p>
+
+<ul>
+  <li>The driver is the system-level CUDA, installed by the cluster admins, that sets the <em>maximum</em> CUDA version the node can run.</li>
+  <li>The toolkit / runtime are the CUDA libraries your code actually links against. Conda installs this into your environment, so you control it.</li>
+</ul>
+
+<p>You just need to make sure that the driver is new enough for the toolkit you install. On our H200 with driver 610, we’re clear for either CUDA 12 or 13.</p>
+
+<hr>
+
+<h2 id="set-up-a-conda-environment-with-nvforest">Set up a conda environment with nvForest</h2>
+
+<p>nvForest is the RAPIDS library for fast decision-tree and forest inference on the GPU (it’s the successor to the now-deprecated <code class="language-plaintext highlighter-rouge">cuml.fil</code>). It imports an <em>already-trained</em> scikit-learn / XGBoost / LightGBM forest and runs its predictions on the GPU, so you don’t retrain anything.</p>
+
+<h3 id="step-1--see-whats-actually-available">Step 1 — see what’s actually available</h3>
+
+<p>Install everything on a regular compute node, not a GPU.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@hydra-l1 ~]<span class="nv">$ </span>srun <span class="nt">-N</span> 1 <span class="nt">-n</span> 1 <span class="nt">--mem</span><span class="o">=</span>50GB <span class="nt">--time</span><span class="o">=</span>01:00:00 <span class="nt">--partition</span><span class="o">=</span>compute <span class="nt">--pty</span> bash
+<span class="o">[</span>colette.kelly@cn059 ~]<span class="nv">$ </span>module load miniconda/25.9
+<span class="o">[</span>colette.kelly@cn059 ~]<span class="nv">$ </span><span class="nb">.</span> <span class="nv">$CONDA_PREFIX</span>/etc/profile.d/conda.sh
+<span class="o">[</span>colette.kelly@cn059 ~]<span class="nv">$ </span><span class="c"># See what channels conda already has configured — look for `defaults`</span>
+conda config <span class="nt">--show</span> channels
+channels:
+  - defaults
+<span class="o">[</span>colette.kelly@cn059 ~]<span class="nv">$ </span>conda search <span class="nt">-c</span> rapidsai <span class="nt">-c</span> conda-forge nvforest
+2 channel Terms of Service accepted
+Loading channels: <span class="k">done</span>
+<span class="c"># Name                       Version           Build  Channel             </span>
+nvforest                    26.04.00 cuda12_cp311_abi3_260408_e77480fb  rapidsai            
+nvforest                    26.04.00 cuda13_cp311_abi3_260408_e77480fb  rapidsai            
+nvforest                    26.06.00 cuda12_cp311_abi3_260604_a9216c61  rapidsai            
+nvforest                    26.06.00 cuda13_cp311_abi3_260604_a9216c61  rapidsai 
+</code></pre></div></div>
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">nvforest</code> is on the rapidsai channel, with 26.06.00 available</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">cuda12</code> = the CUDA 12 build;  <code class="language-plaintext highlighter-rouge">cuda13</code> = the CUDA 13 build</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">cp311</code> = built against CPython 3.11.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">abi3</code> is the key part — these are built against Python’s stable ABI, so a single build is forward-compatible across later 3.x. The giveaway is that there’s only one build per (version, CUDA) instead of separate cp311/cp312/cp313 rows. That means the package declares roughly python &gt;=3.11, and 26.06 supports Python 3.11 through 3.14, so python=3.12 resolves to that same cuda12_cp311_abi3 build. You’re not locked to 3.11.</li>
+</ul>
+
+<h3 id="step-2--create-the-environment">Step 2 — create the environment</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@cn059 ~]<span class="nv">$ CONDA_OVERRIDE_CUDA</span><span class="o">=</span>12.9 conda create <span class="nt">-n</span> nvforest <span class="se">\</span>
+  <span class="nt">--override-channels</span> <span class="nt">-c</span> rapidsai <span class="nt">-c</span> conda-forge <span class="se">\</span>
+  <span class="nt">--solver</span><span class="o">=</span>libmamba <span class="se">\</span>
+  <span class="nv">nvforest</span><span class="o">=</span>26.06.<span class="k">*</span> <span class="nv">python</span><span class="o">=</span>3.12 <span class="s1">'cuda-version&gt;=12.2,&lt;=12.9'</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>The CONDA_OVERRIDE_CUDA=12.9 matters because we’re solving on cn059, a regular compute node with no GPU driver visible — without it, conda can’t detect a CUDA driver and the solve gets confused.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">--override-channels</code> is needed because Hydra’s base conda has <em>only the <code class="language-plaintext highlighter-rouge">defaults</code> (Anaconda) channel</em> configured and RAPIDS packages are <em>not</em> built for <code class="language-plaintext highlighter-rouge">defaults</code>.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">-c rapidsai -c conda-forge -c nodefaults</code> are the channels that RAPIDS needs.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">--solver=libmamba</code> is a fast solver that handles big RAPIDS environments better than the classic solver and gives clearer errors.</p>
+  </li>
+  <li>
+    <p>Pin nvforest=26.06.00 for reproducibility, so you get the build you just inspected rather than whatever’s latest later.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">python=3.12</code> — if python=3.12 ever throws a solver complaint, drop to python=3.11 to match the build label.</p>
+  </li>
+  <li>
+    <p>The ‘cuda-version&gt;=12.2,&lt;=12.9’ pin selects the cuda12 build (the cuda12_cp311_abi3 row) over the cuda13 one. Hydra’s H200 + driver 610 would run either, but cuda12 keeps the surrounding conda-forge ecosystem on the better-trodden path.</p>
+  </li>
+</ul>
+
+<h3 id="step-3---add-other-packages">Step 3 - add other packages</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@cn059 ~]<span class="nv">$ </span>conda activate nvforest 
+<span class="o">(</span>nvforest<span class="o">)</span> <span class="o">[</span>colette.kelly@cn059 ~]<span class="nv">$ </span>conda <span class="nb">install </span>xarray pandas pyarrow scikit-learn netcdf4 matplotlib dask
+</code></pre></div></div>
+
+<hr>
+
+<h2 id="add-cudf-and-cupy-optional-data-on-the-gpu">Add cuDF and CuPy (optional: data on the GPU)</h2>
+
+<p>If you want to read your feature files <em>straight into GPU memory</em> instead of going through pandas on the host, add cuDF. CuPy almost certainly came in already as an nvForest dependency, so check first:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>nvforest<span class="o">)</span> <span class="o">[</span>colette.kelly@cn059 ~]<span class="nv">$ </span>conda list | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s1">'cudf|cupy'</span>
+cupy                             14.1.1   ...   conda-forge
+cupy-core                        14.1.1   ...   conda-forge
+</code></pre></div></div>
+
+<p>If only <code class="language-plaintext highlighter-rouge">cupy</code> shows up, add <code class="language-plaintext highlighter-rouge">cudf</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>nvforest<span class="o">)</span> <span class="o">[</span>colette.kelly@cn058 ~]<span class="nv">$ CONDA_OVERRIDE_CUDA</span><span class="o">=</span>12.9 conda <span class="nb">install</span> <span class="nt">-n</span> nvforest <span class="se">\</span>
+  <span class="nt">--override-channels</span> <span class="nt">-c</span> rapidsai <span class="nt">-c</span> conda-forge <span class="se">\</span>
+  <span class="nt">--solver</span><span class="o">=</span>libmamba <span class="se">\</span>
+  <span class="s1">'cudf=26.06.*'</span>
+</code></pre></div></div>
+
+<p>Warnings:</p>
+
+<ul>
+  <li>Don’t <code class="language-plaintext highlighter-rouge">pip install</code> cupy or cudf into a conda RAPIDS environment. Mixing Pip’s CUDA wheels and conda’s CUDA packages breaks things in confusing ways.</li>
+  <li>cuDF pins pandas to a supported range (e.g. <code class="language-plaintext highlighter-rouge">pandas &lt; 2.4</code>), so installing it may downgrade pandas. Ordinary feature-engineering code (building DataFrames, <code class="language-plaintext highlighter-rouge">to_parquet</code>) uses only stable pandas API and is unaffected.</li>
+</ul>
+
+<h3 id="verify">Verify</h3>
+
+<p>Activate the environment and confirm everything imports together:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>nvforest<span class="o">)</span> <span class="o">[</span>colette.kelly@cn059 ~]<span class="nv">$ </span>python <span class="nt">-c</span> <span class="s2">"import nvforest, cudf, cupy, sklearn; </span><span class="se">\</span><span class="s2">
+print('nvforest', '+ cudf', cudf.__version__, '+ cupy', cupy.__version__, '— all import OK')"</span>
+</code></pre></div></div>
+
+<hr>
+
+<h2 id="a-tiny-example-scikit-learn--gpuforestinferenceregressor">A tiny example: scikit-learn → GPUForestInferenceRegressor</h2>
+
+<p>Exit the interactive session on the compute node:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>nvforest<span class="o">)</span> <span class="o">[</span>colette.kelly@cn059 ~]<span class="nv">$ </span><span class="nb">exit
+exit</span>
+</code></pre></div></div>
+
+<p>Now I start an interactive session on the GPU node and load an RF model:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@hydra-l2 ~]<span class="nv">$ </span>srun <span class="nt">--partition</span><span class="o">=</span>gpu <span class="nt">--gpus-per-node</span><span class="o">=</span>1 <span class="nt">--time</span><span class="o">=</span>00:30:00 <span class="nt">--mem</span><span class="o">=</span>100GB <span class="nt">--pty</span> bash
+<span class="o">[</span>colette.kelly@gpu003 ~]<span class="nv">$ </span>module load miniconda/25.9
+<span class="o">[</span>colette.kelly@gpu003 ~]<span class="nv">$ </span><span class="nb">.</span> <span class="nv">$CONDA_PREFIX</span>/etc/profile.d/conda.sh
+<span class="o">[</span>colette.kelly@gpu003 ~]<span class="nv">$ </span>conda activate nvforest
+<span class="o">(</span>nvforest<span class="o">)</span> <span class="o">[</span>colette.kelly@gpu003 ~]<span class="nv">$ </span>ipython
+</code></pre></div></div>
+<pre><code class="language-Python">import joblib, nvforest
+
+skl = joblib.load("/user/colette.kelly/ml-argo-n2o/model1_rf_full.joblib")
+
+fm = nvforest.load_from_sklearn(skl, device = "gpu")
+
+print(type(fm).__name__)
+GPUForestInferenceRegressor
+
+import numpy as np
+
+X = np.random.rand(5, skl.n_features_in_).astype("float32")
+print(fm.predict(X))
+[[328.24543802]
+ [328.62658223]
+ [333.47100661]
+ [328.17146862]
+ [328.19903352]]
+
+</code></pre>
+
+<hr>
+
+<h2 id="the-cpugpu-boundary">the CPU/GPU boundary</h2>
+
+<p>The tiny example handed nvForest a NumPy array sitting in host memory. That works, but it copies the data across the host→device boundary on every call. But we  want the data to land in GPU memory in the first place. That’s what cuDF is for. It’s pandas’ API on the GPU, so the code barely changes:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cudf</span><span class="p">,</span> <span class="n">cupy</span> <span class="k">as</span> <span class="n">cp</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s">"AOU"</span><span class="p">,</span> <span class="s">"CT"</span><span class="p">,</span> <span class="s">"SA"</span><span class="p">,</span> <span class="s">"no3"</span><span class="p">]</span>        <span class="c1"># the features this forest was trained on
+</span><span class="n">FEATURE_DIR</span> <span class="o">=</span> <span class="s">"/proj/boom/data/highres_features"</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">2024</span>
+<span class="n">month</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">FEATURE_DIR</span><span class="si">}</span><span class="s">/features_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s">_</span><span class="si">{</span><span class="n">month</span><span class="si">:</span><span class="mi">02</span><span class="n">d</span><span class="si">}</span><span class="s">.parquet"</span>
+<span class="c1"># read the parquet straight into GPU memory, only the columns we need
+</span><span class="n">gdf</span> <span class="o">=</span> <span class="n">cudf</span><span class="p">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span> <span class="o">+</span> <span class="p">[</span><span class="s">"pres"</span><span class="p">,</span> <span class="s">"flat_index"</span><span class="p">])</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[(</span><span class="n">gdf</span><span class="p">[</span><span class="s">"pres"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">gdf</span><span class="p">[</span><span class="s">"pres"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">5000</span><span class="p">)]</span>     <span class="c1"># filter runs on the GPU
+</span>
+<span class="c1"># feature matrix: contiguous float32, still on the GPU
+</span><span class="n">Xg</span> <span class="o">=</span> <span class="n">cp</span><span class="p">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">gdf</span><span class="p">[</span><span class="n">cols</span><span class="p">].</span><span class="n">astype</span><span class="p">(</span><span class="s">"float32"</span><span class="p">).</span><span class="n">to_cupy</span><span class="p">())</span>
+
+ <span class="o">%</span><span class="n">timeit</span> <span class="n">yg</span> <span class="o">=</span> <span class="n">fm</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xg</span><span class="p">)</span> <span class="c1"># inference on the GPU; yg is a CuPy array
+</span> <span class="mi">344</span> <span class="n">ms</span> <span class="err">±</span> <span class="mi">118</span> <span class="n">μs</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="p">.</span> <span class="n">dev</span><span class="p">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">1</span> <span class="n">loop</span> <span class="n">each</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>⚠️ nvForest always returns a <em>device</em> array that lives on the GPU. You need to copy it back explicitly before you can write it:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">yg</span> <span class="o">=</span> <span class="n">fm</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xg</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">cp</span><span class="p">.</span><span class="n">asnumpy</span><span class="p">(</span><span class="n">yg</span><span class="p">).</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">cp.asnumpy</code> is also a synchronization point between where GPU does the math and CPU writes the file. For a fast pipeline: only copy back the small things you’ll actually write. Here, we do inference on 20 million rows on the GPU but only bring home the 1-D prediction vector.</p>
+
+<p>Finishing up:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">flat</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="s">"flat_index"</span><span class="p">].</span><span class="n">to_numpy</span><span class="p">()</span> <span class="c1"># move the cudf series to host numpy
+</span>
+<span class="n">TPATH</span> <span class="o">=</span> <span class="s">"/proj/boom/data/argo_rfromv22_temp"</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span><span class="p">,</span> <span class="n">xarray</span> <span class="k">as</span> <span class="n">xr</span>
+
+<span class="c1"># scatter + NetCDF write are host-side, since netCDF is a CPU library
+</span><span class="n">LAT</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">LON</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">360</span> <span class="o">-</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">360</span> <span class="o">-</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">src</span> <span class="o">=</span> <span class="n">xr</span><span class="p">.</span><span class="n">open_dataset</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">TPATH</span><span class="si">}</span><span class="s">/RFROMV22_TEMP_STABLE_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s">_</span><span class="si">{</span><span class="n">month</span><span class="si">:</span><span class="mi">02</span><span class="n">d</span><span class="si">}</span><span class="s">.nc"</span>
+<span class="p">).</span><span class="n">sel</span><span class="p">(</span><span class="n">latitude</span> <span class="o">=</span> <span class="n">LAT</span><span class="p">,</span> <span class="n">longitude</span> <span class="o">=</span> <span class="n">LON</span><span class="p">)[</span><span class="s">"ocean_temperature"</span><span class="p">]</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">full</span><span class="p">(</span><span class="n">src</span><span class="p">.</span><span class="n">size</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">out</span><span class="p">[</span><span class="n">flat</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="n">da</span> <span class="o">=</span> <span class="n">xr</span><span class="p">.</span><span class="n">DataArray</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">src</span><span class="p">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">dims</span> <span class="o">=</span> <span class="n">src</span><span class="p">.</span><span class="n">dims</span><span class="p">,</span> <span class="n">coords</span> <span class="o">=</span> <span class="n">src</span><span class="p">.</span><span class="n">coords</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"pN2O_model1"</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"n2o_model1_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s">_</span><span class="si">{</span><span class="n">month</span><span class="si">:</span><span class="mi">02</span><span class="n">d</span><span class="si">}</span><span class="s">.nc"</span>
+<span class="n">da</span><span class="p">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[predict </span><span class="si">{</span><span class="n">out</span><span class="si">}</span><span class="s"> predicted=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="si">:</span><span class="p">,</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr>
+
+<h2 id="scale-to-all-four-gpus">Scale to all four GPUs</h2>
+
+<p>One month of inference takes seconds. I have 384 of them (monthly, 1993–2024), and Hydra’s GPU node has four H200s. The obvious move is a SLURM job array. But check the partition first:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@hydra-l1 ~]<span class="nv">$ </span>scontrol show partition gpu | <span class="nb">grep</span> <span class="nt">-i</span> oversubscribe
+   ... <span class="nv">OverSubscribe</span><span class="o">=</span>NO
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">OverSubscribe=NO</code> means that one job owns the whole machine at a time. So do one job that grabs all four GPUs, and fan the work out over one worker process per GPU:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#SBATCH --partition=gpu</span>
+<span class="c">#SBATCH --nodes=1</span>
+<span class="c">#SBATCH --gpus-per-node=4</span>
+<span class="c">#SBATCH --cpus-per-task=96          # the whole node — see the thread note below</span>
+<span class="c">#SBATCH --time=01:00:00</span>
+
+<span class="nv">NWORKERS</span><span class="o">=</span>4
+<span class="nv">THREADS</span><span class="o">=</span><span class="k">$((</span> SLURM_CPUS_PER_TASK <span class="o">/</span> NWORKERS <span class="k">))</span>   <span class="c"># 96 / 4 = 24 cores each</span>
+
+<span class="nv">pids</span><span class="o">=()</span>
+<span class="k">for </span>w <span class="k">in </span>0 1 2 3<span class="p">;</span> <span class="k">do
+    </span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="k">${</span><span class="nv">w</span><span class="k">}</span> <span class="se">\</span>
+    <span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="k">${</span><span class="nv">THREADS</span><span class="k">}</span> <span class="nv">OPENBLAS_NUM_THREADS</span><span class="o">=</span><span class="k">${</span><span class="nv">THREADS</span><span class="k">}</span> <span class="nv">MKL_NUM_THREADS</span><span class="o">=</span><span class="k">${</span><span class="nv">THREADS</span><span class="k">}</span> <span class="se">\</span>
+    python3 run_worker.py <span class="nt">--worker</span> <span class="k">${</span><span class="nv">w</span><span class="k">}</span> <span class="nt">--nworkers</span> <span class="k">${</span><span class="nv">NWORKERS</span><span class="k">}</span> <span class="se">\</span>
+        <span class="o">&gt;</span> worker_<span class="k">${</span><span class="nv">SLURM_JOB_ID</span><span class="k">}</span>_gpu<span class="k">${</span><span class="nv">w</span><span class="k">}</span>.log 2&gt;&amp;1 &amp;
+    pids+<span class="o">=(</span><span class="nv">$!</span><span class="o">)</span>
+<span class="k">done
+
+</span><span class="nv">fail</span><span class="o">=</span>0
+<span class="k">for </span>pid <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">pids</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do </span><span class="nb">wait</span> <span class="s2">"</span><span class="k">${</span><span class="nv">pid</span><span class="k">}</span><span class="s2">"</span> <span class="o">||</span> <span class="nv">fail</span><span class="o">=</span>1<span class="p">;</span> <span class="k">done</span>   <span class="c"># reap all, remember failures</span>
+<span class="nb">exit</span> <span class="k">${</span><span class="nv">fail</span><span class="k">}</span>
+</code></pre></div></div>
+
+<p>Each worker takes a round-robin slice of the months (<code class="language-plaintext highlighter-rouge">months[worker::nworkers]</code>), loads the four forests onto its GPU once, and reuses them across all its months:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">months</span> <span class="o">=</span> <span class="n">all_months</span><span class="p">()[</span><span class="n">args</span><span class="p">.</span><span class="n">worker</span><span class="p">::</span><span class="n">args</span><span class="p">.</span><span class="n">nworkers</span><span class="p">]</span>             <span class="c1"># this GPU's ~96 months
+</span><span class="n">backends</span> <span class="o">=</span> <span class="p">{</span><span class="n">mid</span><span class="p">:</span> <span class="n">load_backend</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span> <span class="k">for</span> <span class="n">mid</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)}</span>   <span class="c1"># load once, reuse
+</span><span class="k">for</span> <span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">)</span> <span class="ow">in</span> <span class="n">months</span><span class="p">:</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">read_features</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">mid</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+        <span class="n">predict_and_write</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">gdf</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">backends</span><span class="p">[</span><span class="n">mid</span><span class="p">])</span>
+</code></pre></div></div>
+
+<h3 id="cuda_visible_devices">CUDA_VISIBLE_DEVICES</h3>
+
+<p>To see what you can actually reach, ask CUDA:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-c</span> <span class="s2">"import cupy; print(cupy.cuda.runtime.getDeviceCount())"</span>
+</code></pre></div></div>
+
+<h3 id="dont-let-four-workers-each-grab-all-96-cores">Don’t let four workers each grab all 96 cores</h3>
+
+<p>The GPUs do the inference, but the parquet decode and NetCDF write still runs on the CPU. We don’t want ~384 threads thrashing over 96 cores. The extra lines <code class="language-plaintext highlighter-rouge">OMP_NUM_THREADS</code> / <code class="language-plaintext highlighter-rouge">OPENBLAS_NUM_THREADS</code> / <code class="language-plaintext highlighter-rouge">MKL_NUM_THREADS</code>  gives each CPU worker a clean slice.</p>
+
+<hr>
+
+<h2 id="the-payoff">The payoff</h2>
+
+<p>When the batch job finishes, <code class="language-plaintext highlighter-rouge">seff</code> summarizes what it actually used:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>colette.kelly@hydra-l1 ~]<span class="nv">$ </span>seff 118272
+State: COMPLETED <span class="o">(</span><span class="nb">exit </span>code 0<span class="o">)</span>
+Cores per node: 96
+CPU Utilized: 00:16:24
+CPU Efficiency: 2.39% of 11:26:24 core-walltime
+Job Wall-clock <span class="nb">time</span>: 00:07:09
+Memory Utilized: 256.00 GB <span class="o">(</span>100.00% of 256.00 GB<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Two things:</p>
+
+<ul>
+  <li>CPU efficiency of 2.39% is OK. I reserved 96 cores for seven minutes but only spent 16 CPU-minutes, because the GPUs did the work. The cores were there so host-side I/O wouldn’t bottleneck, and it didn’t. If you see something similar, don’t “fix” this by shrinking the CPU request; on an exclusive node you own all 96 regardless.</li>
+  <li>Memory at exactly 100% is fine but not great. Landing precisely on the ceiling usually means I bumped up against it. On this node there is ~1 TB to play with, so there’s no reason to be frugal.</li>
+</ul>
+
+<p>The payoff is that the same <code class="language-plaintext highlighter-rouge">.predict()</code> call, ~20 million rows, model already loaded and data already in memory:</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>backend</th>
+      <th>time for one <code class="language-plaintext highlighter-rouge">.predict()</code>
+</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>scikit-learn, CPU</td>
+      <td>4 min 19 s</td>
+    </tr>
+    <tr>
+      <td>nvForest, one H200</td>
+      <td>0.34 s</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p>So that’s a roughly 750× speedup on identical work. So for the full job — four forests over 384 months — that’s about 31 billion predictions (20,452,736 grid points × 4 models × 384 months). What extrapolates to <em>days</em> of CPU inference finished in 7 minutes across the four H200s. That’s what makes using GPUs worth it.</p>
   </section>
 
   
