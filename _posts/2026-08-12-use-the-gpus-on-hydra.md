@@ -379,14 +379,30 @@ print(f"[predict {out} predicted={len(y):,}")
 
 ## Scale to all four GPUs
 
-One month of inference takes seconds. I have 384 of them (monthly, 1993–2024), and Hydra's GPU node has four H200s. The obvious move is a SLURM job array. But check the partition first:
+One month of inference takes seconds. I have 384 of them (monthly, 1993–2024), and Hydra's GPU node has four H200s. I could have either set up a SLURM job array or submitted one job that fanned tasks across the four GPUs. Before decided what to do, I checked the partition:
 
 ```bash
 [colette.kelly@hydra-l1 ~]$ scontrol show partition gpu | grep -i oversubscribe
    ... OverSubscribe=NO
 ```
 
-`OverSubscribe=NO` means that one job owns the whole machine at a time. So do one job that grabs all four GPUs, and fan the work out over one worker process per GPU:
+`OverSubscribe=NO` means that SLURM will never hand two jobs to the same core. The GPU node is still shareable, each job getting its own slice of cores, memory, and GPUs.
+
+> 🔬 Sydney gave me a way to check this. I opened one interactive GPU session, then requested a second from another terminal, which was assigned resources on the same node immediately, while the first was still running.
+
+So a job array (`--gpus-per-node=1` per task, throttled with `--array=0-383%4`) would run four single-GPU tasks side by side here and work fine. I still chose a single job that used all four GPUs and fanned the work out over one worker per GPU. The advantage of this is that a worker that holds a GPU for the whole run loads the four forests only once and reuses them, instead of reloading and re-converting them on every one-month task.
+
+### CUDA_VISIBLE_DEVICES
+
+Before submitting a job, you can ask CUDA which of the GPUs it can reach:
+
+```bash
+python -c "import cupy; print(cupy.cuda.runtime.getDeviceCount())"
+```
+
+### SLURM BATCH SCRIPT
+
+Here's a simplified version of the SLURM batch script I used to set up this job:
 
 ```bash
 #SBATCH --partition=gpu
@@ -423,14 +439,6 @@ for (year, month) in months:
         predict_and_write(year, month, gdf, mid, backends[mid])
 ```
 
-### CUDA_VISIBLE_DEVICES
-
-To see what you can actually reach, ask CUDA:
-
-```bash
-python -c "import cupy; print(cupy.cuda.runtime.getDeviceCount())"
-```
-
 ### Don't let four workers each grab all 96 cores
 
 The GPUs do the inference, but the parquet decode and NetCDF write still runs on the CPU. We don't want ~384 threads thrashing over 96 cores. The extra lines `OMP_NUM_THREADS` / `OPENBLAS_NUM_THREADS` / `MKL_NUM_THREADS`  gives each CPU worker a clean slice.
@@ -453,8 +461,8 @@ Memory Utilized: 256.00 GB (100.00% of 256.00 GB)
 
 Two things:
 
-- CPU efficiency of 2.39% is OK. I reserved 96 cores for seven minutes but only spent 16 CPU-minutes, because the GPUs did the work. The cores were there so host-side I/O wouldn't bottleneck, and it didn't. If you see something similar, don't "fix" this by shrinking the CPU request; on an exclusive node you own all 96 regardless.
-- Memory at exactly 100% is fine but not great. Landing precisely on the ceiling usually means I bumped up against it. On this node there is ~1 TB to play with, so there's no reason to be frugal.
+- CPU efficiency of 2.39% is OK for a GPU job. I reserved 96 cores for seven minutes but only spent 16 CPU-minutes, because the GPUs did the work — the cores are just there so host-side I/O (parquet decode, NetCDF writes) doesn't bottleneck. Don't reflexively "fix" the low number by shrinking the CPU request. But since the node is *shared*, not exclusive, good etiquette is to size `--cpus-per-task` to what you need without bottlenecking your code. This takes trial and error; it's helpful to play with job requests on the compute nodes to get a sense of how much computing power different tasks need.
+- Memory at exactly 100% is fine here but it does mean that I bumped against my `--mem=256G` ceiling. The node has a full ~1 TB of memory, so I could have requested more. Just don't reserve 1 TB "to be safe" on a shared node, but rather request what you'll actually use. Again, this is usually a matter of trial and error as you get used to high-performance computing.
 
 The payoff is that the same `.predict()` call, ~20 million rows, model already loaded and data already in memory:
 
@@ -464,4 +472,3 @@ The payoff is that the same `.predict()` call, ~20 million rows, model already l
 | nvForest, one H200 | 0.34 s |
 
 So that's a roughly 750× speedup on identical work. So for the full job — four forests over 384 months — that's about 31 billion predictions (20,452,736 grid points × 4 models × 384 months). What extrapolates to *days* of CPU inference finished in 7 minutes across the four H200s. That's what makes using GPUs worth it.
-
