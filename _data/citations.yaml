@@ -1,18 +1,41 @@
 # DO NOT EDIT, GENERATED AUTOMATICALLY
 
-- id: doi:10.1029/2025JC023822
-  title: Winter Mixing Controls Carbon Sequestration by the Biological Pump in the
-    Subpolar North Atlantic
+- id: doi:10.1038/s41561-026-02057-3
+  title: Central role of Labrador Sea convection for transport of oxygen into the
+    deep North Atlantic Ocean
   authors:
-  - K. E. Fogaren
-  - H. I. Palevsky
-  - M. Yoder
-  - D. P. Nicholson
-  - J. M. Cuevas
-  - L. Wanzer
-  publisher: 'Journal of Geophysical Research: Oceans'
-  date: '2026-05-01'
-  link: https://doi.org/hb5gdr
+  - Una Kim Miller
+  - Jaime Palter
+  - Ellen Park
+  - Dariia Atamanchuk
+  - Kristen Fogaren
+  - Yao Fu
+  - Johannes Karstensen
+  - Jannes Koelling
+  - Isabela Le Bras
+  - Hiroki Nagao
+  - David Nicholson
+  - Hilary Palevsky
+  - Meg Yoder
+  publisher: Nature Geoscience
+  date: '2026-08-17'
+  link: https://doi.org/hcf2ph
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.22541/essoar.176460522.25112894/v1
+  title: Winter mixing controls carbon sequestration by the biological pump in the
+    subpolar North Atlantic
+  authors:
+  - Kristen E Fogaren
+  - Hilary Ilana Palevsky
+  - Meg F Yoder
+  - David Nicholson
+  - Jose M Cuevas
+  - Lucy Wanzer
+  publisher: Wiley
+  date: '2025-12-01'
+  link: https://doi.org/hbdt5g
   orcid: 0000-0003-2653-9349
   plugin: orcid.py
   file: orcid.yaml
@@ -38,34 +61,71 @@
   orcid: 0000-0003-2653-9349
   plugin: orcid.py
   file: orcid.yaml
-- id: doi:10.1038/s41467-026-68744-2
-  title: Low-pressure storms drive nitrous oxide emissions in the Southern Ocean
+- id: doi:10.1088/1748-9326/ae3c37
+  title: 'Ocean oxygen data: how to measure, how to manage?'
   authors:
-  - Colette L. Kelly
-  - Bonnie X. Chang
-  - Andrea F. Emmanuelli
-  - Ellen R. Park
-  - Alison M. Macdonald
-  - David P. Nicholson
-  publisher: Nature Communications
-  date: '2026-01-26'
-  link: https://doi.org/hbncn4
+  - "V\xE9ronique Gar\xE7on"
+  - Kirsten Isensee
+  - Jeremy Sterling
+  - Nico Lange
+  - Pier Luigi Buttigieg
+  - Dariia Atamanchuk
+  - Andrew R Babbin
+  - Uday Bhaskar
+  - Luminita Buga
+  - Jan-Bart Calewaert
+  - Donald E Canfield
+  - Thierry Carval
+  - Lijing Cheng
+  - Sean Crowe
+  - Minhan Dai
+  - Taco de Bruin
+  - Hernan Garcia
+  - Alessandra Giorgetti
+  - "Marilaure Gr\xE9goire"
+  - Maria Hood
+  - Ken Johnson
+  - Steve Jones
+  - Kate Larkin
+  - Siv Lauvset
+  - Michela Martinelli
+  - David Nicholson
+  - "Kevin O\u2019Brien"
+  - Ruby Ortiz
+  - Andreas Oschlies
+  - Artur Palacz
+  - Peter Pissierssens
+  - Emilio Garcia Robledo
+  - Dan Rudnick
+  - Jonathan Sharp
+  - Caroline Slomp
+  - Ilaria Stendardo
+  - Linus Stoltz
+  - Toste Tanhua
+  - Maciej Telszewski
+  - Virginie Thierry
+  - Cooper Van Vranken
+  - Guizhi Wang
+  - Joanna Waniek
+  - Yuntao Zhou
+  publisher: Environmental Research Letters
+  date: '2026-02-06'
+  link: https://doi.org/hcn7rw
   orcid: 0000-0003-2653-9349
   plugin: orcid.py
   file: orcid.yaml
-- id: doi:10.22541/essoar.176460522.25112894/v1
-  title: Winter mixing controls carbon sequestration by the biological pump in the
-    subpolar North Atlantic
+- id: doi:10.21203/rs.3.rs-6378208/v1
+  title: Low-pressure storms drive nitrous oxide emissions in the Southern Ocean
   authors:
-  - Kristen E Fogaren
-  - Hilary Ilana Palevsky
-  - Meg F Yoder
+  - Colette Kelly
+  - Bonnie Chang
+  - Andrea Emmanuelli
+  - Ellen Park
+  - Alison Macdonald
   - David Nicholson
-  - Jose M Cuevas
-  - Lucy Wanzer
-  publisher: Wiley
-  date: '2025-12-01'
-  link: https://doi.org/hbdt5g
+  publisher: Springer Science and Business Media LLC
+  date: '2025-04-30'
+  link: https://doi.org/g9hcpq
   orcid: 0000-0003-2653-9349
   plugin: orcid.py
   file: orcid.yaml
@@ -97,6 +157,36 @@
   orcid: 0000-0003-2653-9349
   plugin: orcid.py
   file: orcid.yaml
+- id: doi:10.5194/bg-22-3301-2025
+  title: An upper-mesopelagic-zone carbon budget for the subarctic North Pacific
+  authors:
+  - Brandon M. Stephens
+  - "Montserrat Roca-Mart\xED"
+  - Amy E. Maas
+  - "Vin\xEDcius J. Amaral"
+  - Samantha Clevenger
+  - Shawnee Traylor
+  - Claudia R. Benitez-Nelson
+  - Philip W. Boyd
+  - Ken O. Buesseler
+  - Craig A. Carlson
+  - Nicolas Cassar
+  - Margaret Estapa
+  - Andrea J. Fassbender
+  - Yibin Huang
+  - Phoebe J. Lam
+  - Olivier Marchal
+  - Susanne Menden-Deuer
+  - Nicola L. Paul
+  - Alyson E. Santoro
+  - David A. Siegel
+  - David P. Nicholson
+  publisher: Biogeosciences
+  date: '2025-07-10'
+  link: https://doi.org/hcn7rx
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
 - id: doi:10.1002/lno.70002
   title: Autonomous observations enhance our ability to observe the biological carbon
     pump across diverse carbon export regimes
@@ -110,21 +200,6 @@
   publisher: Limnology and Oceanography
   date: '2025-02-28'
   link: https://doi.org/g88ksd
-  orcid: 0000-0003-2653-9349
-  plugin: orcid.py
-  file: orcid.yaml
-- id: doi:10.21203/rs.3.rs-6378208/v1
-  title: Low-pressure storms drive nitrous oxide emissions in the Southern Ocean
-  authors:
-  - Colette Kelly
-  - Bonnie Chang
-  - Andrea Emmanuelli
-  - Ellen Park
-  - Alison Macdonald
-  - David Nicholson
-  publisher: Springer Science and Business Media LLC
-  date: '2025-04-30'
-  link: https://doi.org/g9hcpq
   orcid: 0000-0003-2653-9349
   plugin: orcid.py
   file: orcid.yaml
@@ -223,6 +298,22 @@
   plugin: sources.py
   file: sources.yaml
   image: images/air-sea.png
+- id: doi:10.1016/j.ocemod.2023.102303
+  title: The sensitivity of the equatorial pacific ODZ to particulate organic matter
+    remineralization in a climate model under pre-industrial conditions
+  authors:
+  - Paul Lerner
+  - Anastasia Romanou
+  - David Nicholson
+  - Maxwell Kelley
+  - Reto Ruedy
+  - Gary Russell
+  publisher: Ocean Modelling
+  date: '2024-04-01'
+  link: https://doi.org/hcn7rz
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
 - id: doi:10.5194/bg-21-13-2024
   title: 'Reviews and syntheses: expanding the global coverage of gross primary production
     and net community production measurements using Biogeochemical-Argo floats'
@@ -234,6 +325,37 @@
   publisher: Biogeosciences
   date: '2024-01-02'
   link: https://doi.org/gtbsxh
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1016/j.pocean.2023.103170
+  title: Assessment of oceanographic conditions during the North Atlantic EXport processes
+    in the ocean from RemoTe sensing (EXPORTS) field campaign
+  authors:
+  - Leah Johnson
+  - David A. Siegel
+  - Andrew F. Thompson
+  - Erik Fields
+  - Zachary K. Erickson
+  - Ivona Cetinic
+  - Craig M. Lee
+  - Eric A. D'Asaro
+  - Norman B. Nelson
+  - Melissa M. Omand
+  - Michaela Sten
+  - Shawnee Traylor
+  - David P. Nicholson
+  - Jason R. Graff
+  - Deborah K. Steinberg
+  - Heidi M. Sosik
+  - Ken O. Buesseler
+  - Mark A. Brzezinski
+  - Inia Soto Ramos
+  - Filipa Carvalho
+  - Stephanie A. Henson
+  publisher: Progress in Oceanography
+  date: '2024-01-01'
+  link: https://doi.org/hcn7r2
   orcid: 0000-0003-2653-9349
   plugin: orcid.py
   file: orcid.yaml
@@ -281,34 +403,6 @@
   plugin: sources.py
   file: sources.yaml
   image: images/exports_logo.png
-- id: doi:10.12688/openreseurope.15047.2
-  title: Real-time quality control of optical backscattering data from Biogeochemical-Argo
-    floats
-  authors:
-  - Giorgio Dall'Olmo
-  - Udaya Bhaskar TVS
-  - Henry Bittig
-  - Emmanuel Boss
-  - Jodi Brewster
-  - "Herv\xE9 Claustre"
-  - Matt Donnelly
-  - Tanya Maurer
-  - David Nicholson
-  - Violetta Paba
-  - Josh Plant
-  - Antoine Poteau
-  - "Rapha\xEBlle Sauz\xE8de"
-  - Christina Schallenberg
-  - Catherine Schmechtig
-  - Claudia Schmid
-  - Xiaogang Xing
-  publisher: Open Research Europe
-  date: '2023-05-30'
-  link: https://doi.org/gsgcb8
-  orcid: 0000-0003-2653-9349
-  plugin: sources.py
-  file: sources.yaml
-  image: images/gobgc-logo-2-sm.png
 - id: doi:10.1073/pnas.2217946120
   title: Dissolved gases in the deep North Atlantic track ocean ventilation processes
   authors:
@@ -371,7 +465,7 @@
   plugin: sources.py
   file: sources.yaml
   image: images/exports_logo.png
-- id: doi:10.12688/openreseurope.15047.1
+- id: doi:10.12688/openreseurope.15047.2
   title: Real-time quality control of optical backscattering data from Biogeochemical-Argo
     floats
   authors:
@@ -393,11 +487,12 @@
   - Claudia Schmid
   - Xiaogang Xing
   publisher: Open Research Europe
-  date: '2022-10-13'
-  link: https://doi.org/gsgccb
+  date: '2023-05-30'
+  link: https://doi.org/gsgcb8
   orcid: 0000-0003-2653-9349
-  plugin: orcid.py
-  file: orcid.yaml
+  plugin: sources.py
+  file: sources.yaml
+  image: images/gobgc-logo-2-sm.png
 - id: doi:10.1029/2021GB007145
   title: "Can We Estimate Air\u2010Sea Flux of Biological O<sub>2</sub> From Total\
     \ Dissolved Oxygen?"
@@ -466,6 +561,90 @@
   publisher: Geophysical Research Letters
   date: '2021-09-23'
   link: https://doi.org/gsgccg
+  orcid: 0000-0003-2653-9349
+  plugin: orcid.py
+  file: orcid.yaml
+- id: doi:10.1525/elementa.2020.00107
+  title: An operational overview of the EXport Processes in the Ocean from RemoTe
+    Sensing (EXPORTS) Northeast Pacific field deployment
+  authors:
+  - David A. Siegel
+  - "Ivona Cetini\u0107"
+  - Jason R. Graff
+  - Craig M. Lee
+  - Norman Nelson
+  - Mary Jane Perry
+  - Inia Soto Ramos
+  - Deborah K. Steinberg
+  - Ken Buesseler
+  - Roberta Hamme
+  - Andrea J. Fassbender
+  - David Nicholson
+  - Melissa M. Omand
+  - Marie Robert
+  - Andrew Thompson
+  - Vinicius Amaral
+  - Michael Behrenfeld
+  - Claudia Benitez-Nelson
+  - Kelsey Bisson
+  - Emmanuel Boss
+  - Philip W. Boyd
+  - Mark Brzezinski
+  - Kristen Buck
+  - Adrian Burd
+  - Shannon Burns
+  - Salvatore Caprara
+  - Craig Carlson
+  - Nicolas Cassar
+  - Hilary Close
+  - "Eric D\u2019Asaro"
+  - Colleen Durkin
+  - Zachary Erickson
+  - Margaret L. Estapa
+  - Erik Fields
+  - James Fox
+  - Scott Freeman
+  - Scott Gifford
+  - Weida Gong
+  - Deric Gray
+  - Lionel Guidi
+  - "Nils Ha\xEBntjens"
+  - Kim Halsey
+  - Yannick Huot
+  - Dennis Hansell
+  - Bethany Jenkins
+  - Lee Karp-Boss
+  - Sasha Kramer
+  - Phoebe Lam
+  - Jong-Mi Lee
+  - Amy Maas
+  - Olivier Marchal
+  - Adrian Marchetti
+  - Andrew McDonnell
+  - Heather McNair
+  - Susanne Menden-Deuer
+  - Francoise Morison
+  - Alexandria K. Niebergall
+  - Uta Passow
+  - Brian Popp
+  - "Genevi\xE8ve Potvin"
+  - Laure Resplandy
+  - "Montserrat Roca-Mart\xED"
+  - Collin Roesler
+  - Tatiana Rynearson
+  - Shawnee Traylor
+  - Alyson Santoro
+  - Kanesa Duncan Seraphin
+  - Heidi M. Sosik
+  - Karen Stamieszkin
+  - Brandon Stephens
+  - Weiyi Tang
+  - Benjamin Van Mooy
+  - Yuanheng Xiong
+  - Xiaodong Zhang
+  publisher: 'Elementa: Science of the Anthropocene'
+  date: '2021-01-01'
+  link: https://doi.org/gv56pb
   orcid: 0000-0003-2653-9349
   plugin: orcid.py
   file: orcid.yaml
